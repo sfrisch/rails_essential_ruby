@@ -96,26 +96,6 @@ class EssentialsController < ApplicationController
     render('methods_6.html.erb')
   end
 
-  def arguments_7
-
-    render('arguments_7.html.erb')
-  end
-
-  def return_values_8
-
-    render('return_values_8.html.erb')
-  end
-
-  def classes_9
-
-    render('classes_9.html.erb')
-  end
-
-  def challenge_10
-
-    render('challenge_10.html.erb')
-  end
-
   def friendbc_11
 
     render('friendbc_11.html.erb')
