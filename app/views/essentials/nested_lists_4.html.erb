@@ -1,2 +1,38 @@
 <h1>Essentials#nested_lists_4</h1>
 <p>Find me in app/views/essentials/nested_lists_4.html.erb</p>
+
+<h2>Top Level</h2>
+
+<dl>
+  <dt><pre>@instructors.class</pre></dt>
+  <dd><%= @instructors.class %></dd>
+
+  <dt><pre>@instructors.length</pre></dt>
+  <dd><%= @instructors.length %></dd>
+
+  <dt><pre>@instructors.inspect</pre></dt>
+  <dd><%= @instructors.inspect %></dd>
+</dl>
+
+<h2>Second Level</h2>
+
+<dl>
+  <dt><pre>@instructors[1].class</pre></dt>
+  <dd><%= @instructors[1].class %></dd>
+
+  <dt><pre>@instructors[1].keys</pre></dt>
+  <dd><%= @instructors[1].keys %></dd>
+
+  <dt><pre>@instructors[1].inspect</pre></dt>
+  <dd><%= @instructors[1].inspect %></dd>
+</dl>
+
+<h2>Third Level</h2>
+
+<dl>
+  <dt><pre>@instructors[1]["first_name"].class</pre></dt>
+  <dd><%= @instructors[1]["first_name"].class %></dd>
+
+  <dt><pre>@instructors[1]["first_name"]</pre></dt>
+  <dd><%= @instructors[1]["first_name"] %></dd>
+</dl>
