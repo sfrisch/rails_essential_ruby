@@ -1,2 +1,8 @@
 <h1>Essentials#hashes_3</h1>
 <p>Find me in app/views/essentials/hashes_3.html.erb</p>
+
+<!-- Accessing data from Hashes (use a key): -->
+
+<p>Howdy, <%= @person1["first_name"] %> <%= @person1["last_name"] %> (<%= @person1["role"] %>). Your lucky number for today is <%= rand(1..100) + 7 %>.</p>
+
+<p>Howdy, <%= @person2["first_name"] %> <%= @person2["last_name"] %> (<%= @person2["role"] %>). Your lucky number for today is <%= rand(1..100) + 7 %>.</p>
