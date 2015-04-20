@@ -1,4 +1,26 @@
 Rails.application.routes.draw do
+  get 'essentials/basics_1'
+
+  get 'essentials/arrays_2'
+
+  get 'essentials/hashes_3'
+
+  get 'essentials/nested_lists_4'
+
+  get 'essentials/each_5'
+
+  get 'essentials/methods_6'
+
+  get 'essentials/arguments_7'
+
+  get 'essentials/return_values_8'
+
+  get 'essentials/classes_9'
+
+  get 'essentials/challenge_10'
+
+  get 'essentials/friendbc_11'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
