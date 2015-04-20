@@ -1,2 +1,17 @@
 <h1>Essentials#each_5</h1>
 <p>Find me in app/views/essentials/each_5.html.erb</p>
+
+<ul>
+<% @numbers.each do |the_number| %>
+  <li><%= the_number * the_number %></li>
+<% end %>
+</ul>
+
+<ul>
+<% @people.each do |person| %>
+  <li>
+    Howdy, <%= person["first_name"] %> <%= person["last_name"] %>.
+    Your lucky number for today is <%= rand(1..100) + 7 %>.
+  </li>
+<% end %>
+</ul>

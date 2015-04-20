@@ -62,6 +62,19 @@ class EssentialsController < ApplicationController
   end
 
   def each_5
+    # Each
+
+    @numbers = [3, 1, 5, 4]
+
+    rb = { "first_name" => "Raghu",     "last_name" => "Betina" }
+    av = { "first_name" => "Arjun",     "last_name" => "Venkataswamy" }
+    dy = { "first_name" => "Dan",       "last_name" => "Yu" }
+    mg = { "first_name" => "Marina",    "last_name" => "Goldshteyn" }
+    gn = { "first_name" => "Genevieve", "last_name" => "Nielsen" }
+    an = { "first_name" => "Alex",      "last_name" => "Niemczewski" }
+    ms = { "first_name" => "Marty",     "last_name" => "Stratton" }
+
+    @people = [rb, av, dy, mg, gn, an, ms]
 
     render('each_5.html.erb')
   end
