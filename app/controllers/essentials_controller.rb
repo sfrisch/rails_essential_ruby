@@ -1,8 +1,30 @@
 class EssentialsController < ApplicationController
   def basics_1
+    # Strings, integers, variables
+    # Simple methods, string interpolation
+
+    # The essential pattern in Ruby:
+    #    variable = object.method
+    first = "raghu".capitalize
+    last = "betina".capitalize
+
+    full = first + " " + last
+    lucky_number = rand(1..100) + 7
+
+    # Adding strings together with the + operator
+    @message1 = "Howdy, " + full + ". Your lucky number for today is " + lucky_number.to_s + "."
+    # is harder than with String Interpolation
+    @message2 = "Howdy, #{full}. Your lucky number for today is #{lucky_number}."
   end
 
   def arrays_2
+    # Arrays
+
+    # Creating Arrays
+    @students = ["Jocelyn", "Trenton", "Tom", "Lindsey"]
+
+    # Adding an element to an Array:
+    @students.push("Roz")
   end
 
   def hashes_3
