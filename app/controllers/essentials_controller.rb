@@ -79,19 +79,19 @@ class EssentialsController < ApplicationController
     render('each_5.html.erb')
   end
 
-  def encrypt(the_string)
+  def silly_encrypt(the_string)
     return the_string.reverse.swapcase
   end
 
-  def decrypt(the_string)
+  def silly_decrypt(the_string)
     return the_string.swapcase.reverse
   end
 
   def methods_6
-    starting_string = "The Ability To Quote Is A Serviceable Substitute For Wit."
+    @starting_string = "The Ability To Quote Is A Serviceable Substitute For Wit."
 
-    @encrypted_string = encrypt(starting_string)
-    @decrypted_string = decrypt(@encrypted_string)
+    @encrypted_string = silly_encrypt(starting_string)
+    @decrypted_string = silly_decrypt(@encrypted_string)
 
     render('methods_6.html.erb')
   end
