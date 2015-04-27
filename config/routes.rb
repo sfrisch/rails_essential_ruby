@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   get("/essentials/6", { :controller => "essentials", :action => "methods_6" })
 
   get("/essentials/11", { :controller => "essentials", :action => "friendbc_11" })
+
+ get("/essentials/hotelwherever", { :controller => "essentials", :action => "hotelwherever" })
+
 end

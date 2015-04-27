@@ -60,7 +60,13 @@ class EssentialsController < ApplicationController
 
     render('nested_lists_4.html.erb')
   end
+def hotelwherever
+    # Arrays
 
+    # Creating Arrays
+   
+    render('test.html.erb')
+  end
   def each_5
     # Each
 
