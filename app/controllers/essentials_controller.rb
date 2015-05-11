@@ -1,4 +1,9 @@
 class EssentialsController < ApplicationController
+
+
+
+
+
   def basics_1
     # Strings, integers, variables
     # Simple methods, string interpolation
@@ -60,13 +65,248 @@ class EssentialsController < ApplicationController
 
     render('nested_lists_4.html.erb')
   end
-def hotelwherever
-    # Arrays
 
-    # Creating Arrays
-   
+
+
+
+def hoteldetails
+require 'date'
+require 'open-uri'
+
+hotel = params["hotelid"]
+@checkin = params["checkin"]
+@checkout = params["checkout"]
+
+room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=55505&minorRev=28&apiKey=cbrzfta369qwyrm9t5b8y8kf&locale=en_EN&_type=json&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA48-36A9-1691-4D22-6DCC95E913AA&xml=<HotelRoomAvailabilityRequest>
+<hotelId>#{hotel}</hotelId>
+<arrivalDate>#{@checkin}</arrivalDate>
+<departureDate>#{@checkout}</departureDate>
+<RoomGroup>
+<Room>
+<numberOfAdults>
+</numberOfAdults>
+</Room>
+</RoomGroup>
+<includeRoomImages>true</includeRoomImages>
+</HotelRoomAvailabilityRequest>"
+
+
+room_search2 = URI.encode(room_search)
+jsonfeed2 = open(room_search2).read
+@roomhash = JSON.parse(jsonfeed2)
+
+
+render('hoteldetails.html.erb')
+
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def hotelwherever
+
+require 'open-uri'
+require 'date'
+
+
+@random = rand
+
+
+
+@checkin =  params['checkin']
+@checkout = params['checkout']
+@roomhash = {}
+@city = params['city']
+@hotelslist = []
+@stars = params['stars']
+@adults = params['adults']
+@region = params['region']
+@countrylist = []
+if @checkin == nil then
+
+
+else
+
+
+@pricerange = params["pricerange"]
+@pricerange2 = @pricerange.split(",")
+@maxprice = @pricerange2[1].to_i
+@minprice = @pricerange2[0].to_i
+
+
+
+sql = "SELECT Code FROM countries where Area == '#{@region}'"
+
+@countries = ActiveRecord::Base.connection.execute(sql)
+
+
+sql = "SELECT Code FROM countries where Area == '#{@region}'"
+
+
+@countries.each do |country|
+  @countrylist.push(country['Code'])
+end
+
+@countrylist =  @countrylist.map(&:strip).join("','")
+
+sql = "Select EANHotelID FROM hotels where Country IN ('#{@countrylist}') AND LowRate <= #{@maxprice}"
+
+@HotelIDS = ActiveRecord::Base.connection.execute(sql)
+
+
+#@HotelIDS = Hotel.where({:Country => @countrylist AND :LowRate <= @minprice}).select{[:EANHotelID]}
+
+
+   @HotelIDS.each do |hotelrow|
+
+     @hotelslist.push(hotelrow["EANHotelID"])
+
+         end
+
+
+@hotelstring = ""
+sqlinsert = ""
+
+
+
+sqldrop = "DROP TABLE hoteltemp"
+ActiveRecord::Base.connection.execute(sqldrop)
+sqlcreate = "CREATE TABLE hoteltemp (EANHotelID int);"
+ActiveRecord::Base.connection.execute(sqlcreate)
+
+
+
+
+ActiveRecord::Base.connection.execute("BEGIN TRANSACTION;")
+
+@hotelslist.each do |hotel|
+
+  @hotelstring = "(" + hotel.to_s + ")"
+sqlinsert = "INSERT INTO hoteltemp(EANHotelID) VALUES #{@hotelstring};"
+ActiveRecord::Base.connection.execute(sqlinsert)
+
+end
+
+
+ActiveRecord::Base.connection.execute("COMMIT;")
+
+
+if @hotelslist.count > 600 then
+    @hotelslist = @hotelslist[0..600]
+end
+
+@hotelslist =@hotelslist.map(&:inspect).join(', ')
+
+
+
+
+
+sql = "SELECT hotels.EANHotelID,airport_lat_long.LAT,airport_lat_long.LONG FROM hotels,hoteltemp INNER JOIN airport_lat_long ON airport_lat_long.AIRPORT = hotels.AirportCode where hotels.EANHotelID = hoteltemp.EANHotelID"
+
+
+
+
+@get_latlong = ActiveRecord::Base.connection.execute(sql)
+
+
+          hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=55505&minorRev=28&apiKey=cbrzfta369qwyrm9t5b8y8kf&locale=en_EN&_type=json&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.90+Safari/537.36&customerSessionId=&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
+
+
+
+          hotel_search2 = URI.encode(hotel_search)
+          jsonfeed = open(hotel_search2).read
+          @hotelhash = JSON.parse(jsonfeed)
+
+
+
+
+  @baserate = []
+  @hotelname = []
+  hashresults = {}
+  @check = nil
+
+
+begin
+
+
+     @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |zebra|
+
+          ##Checks for data
+         zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"]
+         num_of_hotels_returned = @hotelhash['HotelListResponse']['HotelList']['@activePropertyCount']
+
+      end
+
+
+rescue => e
+
+  case        when @hotelhash["HotelListResponse"]["EanWsError"]["category"] == "SOLD_OUT"
+                          @check = "SOLD OUT"
+
+              when @hotelhash["HotelListResponse"]["EanWsError"]["presentationMessage"] == "Data in this request could not be validated: Check-in date must be prior to check-out date."
+
+                         @check = "Check-in date must occur before Check-out date"
+
+              when @hotelhash["HotelListResponse"]["EanWsError"]["presentationMessage"] == "Data in this request could not be validated: Specified arrival date is prior to today's date."
+
+                         @check = "Arrival date is prior to today's date"
+
+              when @hotelhash["HotelListResponse"]["EanWsError"]["presentationMessage"] == "Data in this request could not be validated: We cannot accept a reservation for longer than 30 days."
+
+                        @check = "We cannot accept a reservation for longer than 30 days."
+
+              when @hotelhash["HotelListResponse"]["EanWsError"]["presentationMessage"] == "No Results Available"
+
+                        @check = "No Results Available"
+
+
+
+            else
+              @check = "Please enter date in DD/MM/YYYY format"
+
+   end
+
+   end
+
+   end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     render('test.html.erb')
+
   end
+
+
+
+
+
+
+
+
+
+
   def each_5
     # Each
 
@@ -107,3 +347,6 @@ def hotelwherever
     render('friendbc_11.html.erb')
   end
 end
+
+
+

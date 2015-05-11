@@ -15,4 +15,9 @@ Rails.application.routes.draw do
 
  get("/essentials/hotelwherever", { :controller => "essentials", :action => "hotelwherever" })
 
+ post("/essentials/hotelwherever", { :controller => "essentials", :action => "hotelwherever" })
+
+ post("/essentials/hoteldetails", { :controller => "essentials", :action => "hoteldetails" })
+
+
 end

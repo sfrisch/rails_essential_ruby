@@ -1,0 +1,301 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/app/assets/stylesheets/bootstrap.min.css">
+
+
+
+
+<link rel="stylesheet" href="/app/assets/stylesheets/datepicker.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>
+
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>!-->
+
+
+
+<script type="text/javascript" src="http://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+<style>
+.container img {
+    width:auto;
+    height:20px;
+
+}
+
+body{  font-family: 'Lato', sans-serif;}
+
+.jumbotron
+    {
+
+        height:350px;
+        font-size:80px;
+         font-weight: 900;
+         background-color:#336666;
+         color:white;
+         background-image:url("/assets/bondi2.JPG");
+ background-size: cover;
+    }
+
+.footerstyle
+
+{
+background-color:#00CCFF;
+height: 200px;
+;
+
+}
+
+
+
+.talldiv {height:200px;
+}
+.short_div {
+
+    height:100px;
+}
+.matchpadding{padding-top:50px;
+  }
+
+
+
+.navbar-fixed-top {
+    min-height: 80px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 80px;
+}
+
+.price{font-size:25px;
+  font-weight:900px;
+text-align:right;
+float:right;
+
+}
+
+
+.pricesmall{font-size:12px;
+  font-weight:900px;}
+
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a  {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;}
+}
+
+.errorhandling {
+color:red;
+}
+
+.bottompadding {border-top:50px;}
+.starcolor {font:red;}
+.totalprice {font-size:20px;
+            font-weight:900px;
+            }
+
+</style>
+
+
+
+
+
+
+<html>
+
+<head>
+
+<title>Hotel Wherever</title>
+
+
+
+
+        </head>
+
+
+
+
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+
+
+
+<% counter = 0 %>
+
+<%@roomhash['HotelRoomAvailabilityResponse']['HotelRoomResponse'].each do |zebra|%>
+
+
+<div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
+    <div class="panel panel-default">
+
+
+
+          <div class="panel-heading" role="tab" id="heading<%=counter%>">
+
+
+                 <h4 class="panel-title">
+
+
+
+                      <dl>
+
+
+
+
+                              <div class="media">
+                              <div class="media-left media-middle">
+                              <% if zebra["RoomImages"] != nil then%>
+                                 <% if zebra["RoomImages"]["RoomImage"].class == Array then%>
+
+  <div class="media-left"><img class="media-object" src=<%= zebra["RoomImages"]["RoomImage"][0]["url"]%>></div>
+        <%else%>
+  <div class="media-left"><img class="media-object" src="<%= zebra["RoomImages"]["RoomImage"]["url"]%>"></div>
+                              <%end%><%end%>
+
+
+                              <div class="media-body" style="padding-bottom:0px">
+                                    <h4 class="media-heading"><dt><%= zebra["rateDescription"].html_safe%> <span class="price">$<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span></dt></h4>
+
+
+          <dd><%= zebra["locationDescription"]%></dd>
+
+           <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
+         <dd><a href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
+
+
+</div>
+
+
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>" aria-expanded="false" aria-controls="collapse<%=counter%>">
+
+
+<dd>More Details</dd>
+
+
+</div>
+
+</dl>
+
+
+        </a>
+
+    </div>
+    <div id="collapse<%=counter%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%=counter%>">
+      <div class="panel-body">
+
+<dd><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"])%><span> X </span>
+<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["NightlyRatesPerRoom"]["@size"]%><span> Nights = </span>
+<%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@nightlyRateTotal"])%></dd>
+
+
+
+    <dd><%=number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["Surcharges"]["Surcharge"]["@amount"])%>
+        <%=zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["Surcharges"]["Surcharge"]["@type"]%> </dd>
+
+
+<dd class="totalprice"><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"])%></dd>
+
+
+          <dd><%= zebra["RateInfos"]["RateInfo"]["cancellationPolicy"].html_safe%></dd>
+      </div>
+    </div>
+
+
+<%counter = counter + 1%>
+
+  </div>
+
+</div>
+
+
+  <%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">$(function () {
+    $('#datepicker').datepicker({
+        inline: true,
+        //nextText: '→',
+        //prevText: '←',
+        showOtherMonths: true,
+        //dateFormat: 'dd MM yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        //showOn: "button",
+        //buttonImage: "img/calendar-blue.png",
+        //buttonImageOnly: true,
+    });
+});
+
+
+
+
+
+$(function () {
+    $('#datepicker2').datepicker({
+        inline: true,
+        //nextText: '→',
+        //prevText: '←',
+        showOtherMonths: true,
+        //dateFormat: 'dd MM yy',
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        //showOn: "button",
+        //buttonImage: "img/calendar-blue.png",
+        //buttonImageOnly: true,
+    });
+});
+
+
+
+
+
+$("#ex2").slider({});
+
+
+
+
+</script>
+
+
+    </body>
+    </html>

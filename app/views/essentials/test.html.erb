@@ -1,18 +1,15 @@
- 
 
-
- <link rel="stylesheet" href="/app/assets/stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-  <link href="/app/assets/stylesheets/slider.css" rel="stylesheet">
+<link rel="stylesheet" href="/app/assets/stylesheets/bootstrap.min.css">
 
 
-        
 
 <style>
 .container img {
     width:auto;
     height:20px;
-    
+
 }
 
 body{  font-family: 'Lato', sans-serif;}
@@ -21,12 +18,11 @@ body{  font-family: 'Lato', sans-serif;}
     {
 
         height:350px;
-        font-size:80px;
-         font-weight: 900;
+                font-weight: 900;
          background-color:#336666;
          color:white;
          background-image:url("/assets/bondi2.JPG");
- background-size: cover; 
+ background-size: cover;
     }
 
 .footerstyle
@@ -40,14 +36,16 @@ height: 200px;
 
 
 
-.talldiv {height:600px;
-}
+.talldiv {height:200px;}
+.meddiv {height:100px;}
+
 .short_div {
-  
-    height:100px;
+
+    height:50px;
 }
 .matchpadding{padding-top:50px;
   }
+
 
 
 .navbar-fixed-top {
@@ -60,6 +58,16 @@ height: 200px;
     line-height: 80px;
 }
 
+.price{font-size:25px;
+  font-weight:900px;
+text-align:right;
+float:right;
+
+}
+
+
+.pricesmall{font-size:12px;
+  font-weight:900px;}
 
 
 @media (max-width: 767px) {
@@ -69,9 +77,24 @@ height: 200px;
     padding-bottom: 10px;}
 }
 
+.errorhandling {
+color:red;
+}
+
+.check_jumbo{font:size:14px;
+}
+
+.checkinbox {width:30%;}
+
+
+.bottompadding {border-top:50px;}
+.starcolor {font:red;}
 
 
 
+.input-group-lg>.form-control, .input-group-lg>.input-group-addon,
+  .input-group-lg>.input-group-btn>.btn {
+  height: 49px;}
 </style>
 
 
@@ -79,13 +102,10 @@ height: 200px;
 
 
 
-<html>
 
 <head>
 
 <title>Hotel Wherever</title>
-
-
 
 
 
@@ -98,200 +118,411 @@ height: 200px;
 
 <body>
 
-<nav class="navbar navbar-default" >
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><img src="/assets/logo2.png"></a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-     
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 
 
 
-<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.8.18/themes/smoothness/jquery-ui.css"/>
+
+<!--<link rel="stylesheet" href="/app/assets/stylesheets/datepicker.css"> !-->
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
 
-<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>
-<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>
+
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>!-->
+
+
+
+<script type="text/javascript" src="http://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
+
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/app/assets/javascripts/bootstrap-slider.js"></script>
-
-
 
 
 <div class="container-fluid">
 
 
-    <div class="row Hello">
-        <div class="col-xs-12">
-        <h1 class="jumbotron"></h1>
-    </div>
-</div>
+
+    <form action="/essentials/hotelwherever" method="post", name="hotelsearch">
+
+  <div class="col-md-12 jumbotron">
+
+         <div class="col-md-3 short_div" style='font-color:black';">
+          <input type="text" name="checkin" class= "form-control" placeholder="Check-In">
+          <input type="text" name="checkout" class = "form-control" placeholder="Check-Out">
 
 
-    <div class="row">
-        <div class="Nav1 col-md-2 talldiv">
-        
-            <ul class = "nav nav-tabs nav-stacked">
-                <li><a href="">Home</a></li> 
-                 <li><a href="">About</a></li>
-                 <li><a href="">Services</a></li>
-                 <li><a href="">Products</a></li>
-                 <li><a href="">Contact Us</a></li>
-            </ul>
 
-        </div>
-
-        <div class="match1 col-md-5 col-xs-5 col-sm-5 col-md-5 short_div">  
-  
-           
-<label for="datepicker">Check-In Date</label>
-                <input type="text" id="datepicker" placeholder="DD/MM/YYYY"/>
-
-<label for="datepicker2">Check-Out Date</label>
-                <input type="text" id="datepicker2" placeholder="DD/MM/YYYY"/>
-
-
+              <p class="errorhandling"><%=@check%></p>
               </div>
-        <div class="match1 col-md-4 short_div">   
-Filter by price interval: <b>$ 50</b> <input id="ex2" type="text"  value="" data-slider-min="50" data-slider-max="2000" data-slider-step="5" data-slider-value="[50,450]"/> <b>$ 2000</b>
 
-
-
-        </div>
-
-      
-
-        <div class="match2 col-md-1 short_div">
-                  <div class="btn-group">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                      Rooms
-                      <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                      <li>1</li>
-                      <li>2</li>
-                      <li>3</li>
-                      <li>4</li>
-                      <li>5</li>
-                      <li>6</li>
-                      <li>7</li>
-                      <li>8</li>
-                      <li>9+</li>
-                  </ul>
+        <div class="col-md-6 short_div">
         </div>
 
 
-        </div>
+        <div class="col-md-6 short_div">
 
-                <div class="matchbutton col-md-4 short_div matchpadding border"><div class="text-center"></div></div>
-                 <div class="matchbutton col-md-2 short_div matchpadding border"><div class="text-center"><div class="btn btn-primary btn-block text-center">Search</div></div></div>
-                  <div class="matchbutton col-md-4 short_div matchpadding border"><div class="text-center"></div></div>
+        Filter by price interval:  <p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange"  value="" data-slider-min="50" data-slider-max="2000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax"> 500</span>
+
           </div>
-    
-<div class="row Hello">
-<div class="container">
-  <div class="page-header">
-    <h1>Sticky footer</h1>
-  </div>
-  <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.</p>
-  <p>Use <a href="../sticky-footer-navbar">the sticky footer with a fixed navbar</a> if need be, too.</p>
+
+
+        <div class="col-md-6 short_div">
+
+
+        </div>
+
+
+<div class="col-md-1 short_div">
+
+
+<label for = "rooms">Rooms</label>
+<select id="rooms" class="form-control" placeholder=".col-lg-1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9+</option>
+
+    </select>
 </div>
 
-<footer class="footer footerstyle">
-  <div class="container">
-    <p class="text-muted ">Place sticky footer content here.</p>
-  </div>
-</footer>
+
+
+<div class="col-md-1 short_div">
+
+
+<label for = "adults">Adults</label>
+<select id="adults" class="form-control" placeholder=".col-lg-1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+
+    </select>
 </div>
 
-<script>$(function () {
-    $('#datepicker').datepicker({
-        inline: true,
-        //nextText: '→',
-        //prevText: '←',
-        showOtherMonths: true,
-        //dateFormat: 'dd MM yy',
-        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        //showOn: "button",
-        //buttonImage: "img/calendar-blue.png",
-        //buttonImageOnly: true,
-    });
-});
-
-$(function () {
-    $('#datepicker2').datepicker({
-        inline: true,
-        //nextText: '→',
-        //prevText: '←',
-        showOtherMonths: true,
-        //dateFormat: 'dd MM yy',
-        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        //showOn: "button",
-        //buttonImage: "img/calendar-blue.png",
-        //buttonImageOnly: true,
-    });
-});
 
 
-</script>
+
+<div class="col-md-1 short_div">
+
+<label for = "children">Children</label>
+<select id="children" class="form-control" placeholder=".col-lg-1">
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+
+    </select>
+
+</div>
+
+
+
+        <div class="col-md-1 short_div">
+
+<label for = "stars">Stars</label>
+<select id="stars" class="form-control" placeholder=".col-lg-1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+
+
+    </select>
+</div>
+
+
+
+        <div class="col-md-2 short_div">
+
+<label for = "brand">Brand</label>
+<select id="brand" class="form-control" placeholder=".col-lg-4">
+      <option>Any</option>
+      <option>Starwood</option>
+      <option>Hilton</option>
+      <option>Marriott</option>
+      <option>ICH</option>
+      <option>Four Seasons</option>
+
+
+    </select>
+</div>
+
+        <div class="col-md-2 short_div">
+
+<label for = "temp">Temperature</label>
+<select id="temp" class="form-control" placeholder=".col-lg-2">
+      <option>Any</option>
+      <option>90+</option>
+      <option>80+</option>
+      <option>70+</option>
+      <option>60+</option>
+      <option>50+</option>
+
+
+    </select>
+</div>
+   <div class="col-md-2 short_div">
+
+<label for = "weather">Weather</label>
+<select id="weather" class="form-control" placeholder=".col-lg-2">
+      <option>Sunny</option>
+
+    </select>
+
+
+        </div>
+
+<div class="col-md-2 short_div">
+
+<label for = "region">Region</label>
+<select id="region" class="form-control" name="region" placeholder=".col-lg-4">
+      <option>US</option>
+      <option>Canada</option>
+       <option>Europe</option>
+        <option>South America</option>
+         <option>Asia</option>
+         <option>Latin America and the Caribbean</option>
+         <option>Middle East</option>
+           <option>Australia/Pacific</option>
+           <option>Africa</option>
+
+    </select>
+
+
+        </div>
+
+        <div class="col-md-2 short_div">
+
+<label for = "Hotel Type">Hotel Type</label>
+<select id="Hotel Type" class="form-control" placeholder=".col-lg-4">
+      <option>City</option>
+      <option>Resort</option>
+      <option>All-Inclusive</option>
+      <option>Other</option>
+
+
+    </select>
+
+        </div>
+
+
+
+
+         <div class="col-md-3 short_div" style="padding-top:40px;text-align:center;">
+
+
+
+                <input type="submit" "text="Search" class="btn btn-info btn-lg"></a>
+        </div>
+
+
+  </div>
+
+
+
+ <div class="col-md-1 match1 short_div">
+
+<input name="city" type="text">
+
+        </div>
+
+</div>
+
+        </div>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
 <script>
+$(function() {$('.datepicker').datepicker()});</script>
 
-$("#ex2").slider({});
+<div class="well">
+<input type="text" name="date" class="datepicker">
+</div>
+
+
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+
+
+
+ <link href="/app/assets/stylesheets/slider.css" rel="stylesheet">
+<script type="text/javascript" src="http://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
+
+
+
+
+
+
+
+
+    </form>
+
+
+
+<% counter = 0 %>
+
+<%if @hotelhash != nil && @check == nil then%>
+
+
+<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |zebra|%>
+
+
+
+<form id="accordion<%=counter%>" action="/essentials/hoteldetails" method="post">
+<!-- Your Form -->
+<a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit(); return false;">
+
+
+<div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
+    <div class="panel panel-default">
+
+
+
+          <div class="panel-heading" role="tab" id="heading<%=counter%>">
+
+
+                 <h4 class="panel-title">
+
+
+
+                      <dl>
+
+
+                              <div class="media">
+                              <div class="media-left media-middle">
+                                    <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"]%>"></div>
+                              <div class="media-body" style="padding-bottom:0px">
+                                    <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> <span class="price">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span></dt></h4>
+
+          <dd><%= zebra["city"]%></dd>
+          <dd><%= zebra["locationDescription"]%></dd>
+           <dd ><%= zebra["hotelRating"]%><i class="fa fa-star starrating"></i></dd>
+           <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
+         <dd><a href=<%= zebra["deepLink"]%>>Book Now</a></dd>
+
+
+<% @LAT = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LAT"]%>
+<% @LONG = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LONG"]%>
+
+<%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}"%>
+
+<%require 'open-uri'%>
+<%weather_search2 = URI.encode(weatherurl)%>
+<%weatherjsonfeed = open(weather_search2).read%>
+<%@weatherhash = JSON.parse(weatherjsonfeed)%>
+
+
+
+
+
+
+
+<p>High Temp (F) <%=(((@weatherhash["list"][0]["temp"]["max"].to_f)-273.15)*1.8+32).round(0)%></p>
+<p>Low Temp (F) :<%=(((@weatherhash["list"][0]["temp"]["min"].to_f)-273.15)*1.8+32).round(0)%></p>
+
+
+
+</div>
+
+
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>" aria-expanded="false" aria-controls="collapse<%=counter%>">
+
+
+<dd>See More Rooms</dd>
+
+
+</div>
+
+</dl>
+
+
+        </a>
+
+    </div>
+    <div id="collapse<%=counter%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%=counter%>">
+      <div class="panel-body">
+        <%@roomhash%>["<%= zebra["hotelId"]%>"]
+      </div>
+    </div>
+
+
+<%counter = counter + 1%>
+
+<input value = <%= zebra["hotelId"]%> name="hotelid" type="hidden">
+<input value ="<%=@checkin%>" name="checkin" type="hidden">
+<input value ="<%=@checkout%>" name="checkout" type="hidden">
+
+  </div>
+
+</div>
+
+</a>
+</form>
+
+  <%end%>
+<%end%>
+
+<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+</style>
+
+        <div class="col-md-6">
+            <p class="input-group">
+
+            </p>
+        </div>
+    </div>
+
+
+
+<script type="text/javascript">
+
+
+
+
+$("#ex2").slider({
+
+    min: 50,
+   max: 2000,
+    scale: 'logarithmic',
+    step: 10
+});
+
+$("#ex2").on("slide", function(slideEvt) {
+  $("#SliderValMin").text(slideEvt.value[0]);
+  $("#SliderValMax").text(slideEvt.value[1]);
+});
+
+
 
 
 </script>
-
-
-
-
-
-
-
-
 
 
 

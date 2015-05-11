@@ -1,0 +1,243 @@
+Country,Code,Area
+Burundi,BI,Africa
+Comoros,KM,Africa
+Djibouti,DJ,Africa
+Eritrea,ER,Africa
+Ethiopia,ET,Africa
+Kenya,KE,Africa
+Madagascar,MG,Africa
+Malawi,MW,Africa
+Mauritius,MU,Africa
+Mayotte,YT,Africa
+Mozambique,MZ,Africa
+Réunion,RE,Africa
+Rwanda,RW,Africa
+Seychelles,SC,Africa
+Somalia,SO,Africa
+"Tanzania, United Republic of",TZ,Africa
+Uganda,UG,Africa
+Zambia,ZM,Africa
+Zimbabwe,ZW,Africa
+Angola,AO,Africa
+Cameroon,CM,Africa
+Central African Republic,CF,Africa
+Chad,TD,Africa
+Congo,CG,Africa
+"Congo, Democratic Republic of the",CD,Africa
+Equatorial Guinea,GQ,Africa
+Gabon,GA,Africa
+Sao Tome and Principe,ST,Africa
+Algeria,DZ,Africa
+Egypt,EG,Africa
+Libya,LY,Africa
+Morocco,MA,Africa
+South Sudan,SS,Africa
+Sudan,SD,Africa
+Tunisia,TN,Africa
+Western Sahara,EH,Africa
+Botswana,BW,Africa
+Lesotho,LS,Africa
+Namibia,NA,Africa
+South Africa,ZA,Africa
+Swaziland,SZ,Africa
+Benin,BJ,Africa
+Burkina Faso,BF,Africa
+Cape Verde,CV,Africa
+Cote d'Ivoire,CI,Africa
+Gambia,GM,Africa
+Ghana,GH,Africa
+Guinea,GN,Africa
+Guinea-Bissau,GW,Africa
+Liberia,LR,Africa
+Mali,ML,Africa
+Mauritania,MR,Africa
+Niger,NE,Africa
+Nigeria,NG,Africa
+"Saint Helena, Ascension and Tristan da Cunha",SH,Africa
+Senegal,SN,Africa
+Sierra Leone,SL,Africa
+Togo,TG,Africa
+Kazakhstan,KZ,Asia
+Kyrgyzstan,KG,Asia
+Tajikistan,TJ,Asia
+Turkmenistan,TM,Asia
+Uzbekistan,UZ,Asia
+China,CN,Asia
+"China, Hong Kong Special Administrative Region",HK,Asia
+"China, Macao Special Administrative Region",MO,Asia
+Japan,JP,Asia
+"Korea, Democratic People's Republic of",KP,Asia
+"Korea, Republic of",KR,Asia
+Mongolia,MN,Asia
+Taiwan,TW,Asia
+Afghanistan,AF,Asia
+Bangladesh,BD,Asia
+Bhutan,BT,Asia
+India,IN,Asia
+Iran (Islamic Republic of),IR,Asia
+Maldives,MV,Asia
+Nepal,NP,Asia
+Pakistan,PK,Asia
+Sri Lanka,LK,Asia
+Brunei Darussalam,BN,Asia
+Cambodia,KH,Asia
+Indonesia,ID,Asia
+Lao People's Democratic Republic,LA,Asia
+Malaysia,MY,Asia
+Myanmar,MM,Asia
+Philippines,PH,Asia
+Singapore,SG,Asia
+Thailand,TH,Asia
+Timor-Leste,TL,Asia
+Viet Nam,VN,Asia
+Australia,AU,Australia/Pacific
+Christmas Island,CX,Australia/Pacific
+Cocos (keeling) Islands,CC,Australia/Pacific
+New Zealand,NZ,Australia/Pacific
+Norfolk Island,NF,Australia/Pacific
+Fiji,FJ,Australia/Pacific
+New Caledonia,NC,Australia/Pacific
+Papua New Guinea,PG,Australia/Pacific
+Solomon Islands,SB,Australia/Pacific
+Vanuatu,VU,Australia/Pacific
+Guam,GU,Australia/Pacific
+Kiribati,KI,Australia/Pacific
+Marshall Islands,MH,Australia/Pacific
+"Micronesia, Federated States of",FM,Australia/Pacific
+Nauru,NR,Australia/Pacific
+Northern Mariana Islands,MP,Australia/Pacific
+Palau,PW,Australia/Pacific
+American Samoa,AS,Australia/Pacific
+Cook Islands,CK,Australia/Pacific
+French Polynesia,PF,Australia/Pacific
+Niue,NU,Australia/Pacific
+Pitcairn,PN,Australia/Pacific
+Samoa,WS,Australia/Pacific
+Tokelau,TK,Australia/Pacific
+Tonga,TO,Australia/Pacific
+Tuvalu,TV,Australia/Pacific
+Wallis and Futuna Islands,WF,Australia/Pacific
+Canada,CA,Canada
+Saint Pierre and Miquelon,PM,Canada
+Greenland,GL,Europe
+Belarus,BY,Europe
+Bulgaria,BG,Europe
+Czech Republic,CZ,Europe
+Hungary,HU,Europe
+"Moldova, Republic of",MD,Europe
+Poland,PL,Europe
+Romania,RO,Europe
+Russian Federation,RU,Europe
+Slovakia,SK,Europe
+Ukraine,UA,Europe
+Aland Islands,AX,Europe
+Denmark,DK,Europe
+Estonia,EE,Europe
+Faeroe Islands,FO,Europe
+Finland,FI,Europe
+Guernsey,GG,Europe
+Iceland,IS,Europe
+Ireland,IE,Europe
+Jersey,JE,Europe
+Latvia,LV,Europe
+Lithuania,LT,Europe
+"Man, Isle of",IM,Europe
+Norway,NO,Europe
+Svalbard and Jan Mayen Islands,SJ,Europe
+Sweden,SE,Europe
+United Kingdom of Great Britain and Northern Ireland,GB,Europe
+Albania,AL,Europe
+Andorra,AD,Europe
+Bosnia and Herzegovina,BA,Europe
+Croatia,HR,Europe
+Gibraltar,GI,Europe
+Greece,GR,Europe
+Holy See (Vatican City State),VA,Europe
+Italy,IT,Europe
+Macedonia,MK,Europe
+Malta,MT,Europe
+Montenegro,ME,Europe
+Portugal,PT,Europe
+San Marino,SM,Europe
+Serbia,RS,Europe
+Slovenia,SI,Europe
+Spain,ES,Europe
+Austria,AT,Europe
+Belgium,BE,Europe
+France,FR,Europe
+Germany,DE,Europe
+Liechtenstein,LI,Europe
+Luxembourg,LU,Europe
+Monaco,MC,Europe
+Netherlands,NL,Europe
+Switzerland,CH,Europe
+Anguilla,AI,Latin America and the Caribbean
+Antigua and Barbuda,AG,Latin America and the Caribbean
+Aruba,AW,Latin America and the Caribbean
+Bahamas,BS,Latin America and the Caribbean
+Barbados,BB,Latin America and the Caribbean
+"Bonaire, Saint Eustatius and Saba",BQ,Latin America and the Caribbean
+British Virgin Islands,VG,Latin America and the Caribbean
+Cayman Islands,KY,Latin America and the Caribbean
+Cuba,CU,Latin America and the Caribbean
+Curaçao,CW,Latin America and the Caribbean
+Dominica,DM,Latin America and the Caribbean
+Dominican Republic,DO,Latin America and the Caribbean
+Grenada,GD,Latin America and the Caribbean
+Guadeloupe,GP,Latin America and the Caribbean
+Haiti,HT,Latin America and the Caribbean
+Jamaica,JM,Latin America and the Caribbean
+Martinique,MQ,Latin America and the Caribbean
+Montserrat,MS,Latin America and the Caribbean
+Puerto Rico,PR,Latin America and the Caribbean
+Saint-Barthélemy,BL,Latin America and the Caribbean
+Saint Kitts and Nevis,KN,Latin America and the Caribbean
+Saint Lucia,LC,Latin America and the Caribbean
+Saint Martin,MF,Latin America and the Caribbean
+Saint Vincent and the Grenadines,VC,Latin America and the Caribbean
+Sint Maarten,SX,Latin America and the Caribbean
+Trinidad and Tobago,TT,Latin America and the Caribbean
+Turks and Caicos Islands,TC,Latin America and the Caribbean
+United States Virgin Islands,VI,Latin America and the Caribbean
+Belize,BZ,Latin America and the Caribbean
+Costa Rica,CR,Latin America and the Caribbean
+El Salvador,SV,Latin America and the Caribbean
+Guatemala,GT,Latin America and the Caribbean
+Honduras,HN,Latin America and the Caribbean
+Mexico,MX,Latin America and the Caribbean
+Nicaragua,NI,Latin America and the Caribbean
+Panama,PA,Latin America and the Caribbean
+Bermuda,BM,Latin America and the Caribbean
+Armenia,AM,Middle East
+Azerbaijan,AZ,Middle East
+Bahrain,BH,Middle East
+Cyprus,CY,Middle East
+Georgia,GE,Middle East
+Iraq,IQ,Middle East
+Israel,IL,Middle East
+Jordan,JO,Middle East
+Kuwait,KW,Middle East
+Lebanon,LB,Middle East
+"Palestinian, State of",PS,Middle East
+Oman,OM,Middle East
+Qatar,QA,Middle East
+Saudi Arabia,SA,Middle East
+Syrian Arab Republic,SY,Middle East
+Turkey,TR,Middle East
+United Arab Emirates,AE,Middle East
+Yemen,YE,Middle East
+Argentina,AR,South America
+Bolivia (Plurinational State of),BO,South America
+Brazil,BR,South America
+Chile,CL,South America
+Colombia,CO,South America
+Ecuador,EC,South America
+Falkland Islands (Malvinas),FK,South America
+French Guiana,GF,South America
+Guyana,GY,South America
+Paraguay,PY,South America
+Peru,PE,South America
+Suriname,SR,South America
+Uruguay,UY,South America
+Venezuela (Bolivarian Republic of),VE,South America
+United States of America,US,US
