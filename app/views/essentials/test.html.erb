@@ -1,6 +1,6 @@
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/app/assets/stylesheets/bootstrap.min.css">
 
 
@@ -136,9 +136,9 @@ color:red;
 
 
 
-<script type="text/javascript" src="http://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
+<script type="text/javascript" src="https://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
 
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
 
 <div class="container-fluid">
@@ -421,7 +421,7 @@ $(function() {$('.datepicker').datepicker()});</script>
 <% @LAT = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LAT"]%>
 <% @LONG = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LONG"]%>
 
-<%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}"%>
+<%weatherurl ="https://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}"%>
 
 <%require 'open-uri'%>
 <%weather_search2 = URI.encode(weatherurl)%>
