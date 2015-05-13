@@ -147,6 +147,10 @@ color:red;
 
     <form action="/essentials/hotelwherever" method="post", name="hotelsearch">
 
+
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+
   <div class="col-md-12 jumbotron">
 
          <div class="col-md-3 short_div" style='font-color:black';">
@@ -164,7 +168,7 @@ color:red;
 
         <div class="col-md-6 short_div">
 
-        Filter by price interval:  <p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange"  value="" data-slider-min="50" data-slider-max="2000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax"> 500</span>
+        Filter by price interval:  <p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="2000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
 
           </div>
 
@@ -199,7 +203,7 @@ color:red;
 
 
 <label for = "adults">Adults</label>
-<select id="adults" class="form-control" placeholder=".col-lg-1">
+<select id="adults" name="adults" class="form-control" placeholder=".col-lg-1">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -250,15 +254,29 @@ color:red;
         <div class="col-md-2 short_div">
 
 <label for = "brand">Brand</label>
-<select id="brand" class="form-control" placeholder=".col-lg-4">
-      <option>Any</option>
-      <option>Starwood</option>
-      <option>Hilton</option>
-      <option>Marriott</option>
-      <option>ICH</option>
-      <option>Four Seasons</option>
-
-
+<select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4" value="<%=@chain%>">
+<option>Boscolo</option>
+<option>Fairmont</option>
+<option>Four Seasons</option>
+<option>Hilton</option>
+<option>Hyatt</option>
+<option>Intercontinental</option>
+<option>JW Marriott</option>
+<option>Le Meredian</option>
+<option>Mandarin Oriental</option>
+<option>Marriott</option>
+<option>Melia</option>
+<option>Radisson Blu</option>
+<option>Renaissance</option>
+<option>Ritz Carlton</option>
+<option>Shangri-La</option>
+<option>Sheraton</option>
+<option>Sofitel</option>
+<option>St. Regis</option>
+<option>Starwood Luxury Collection</option>
+<option>W Hotels</options>
+<option>Waldorf Astoria</option>
+<option>Westin</option>
     </select>
 </div>
 
@@ -290,16 +308,17 @@ color:red;
 <div class="col-md-2 short_div">
 
 <label for = "region">Region</label>
-<select id="region" class="form-control" name="region" placeholder=".col-lg-4">
-      <option>US</option>
-      <option>Canada</option>
-       <option>Europe</option>
-        <option>South America</option>
-         <option>Asia</option>
-         <option>Latin America and the Caribbean</option>
-         <option>Middle East</option>
-           <option>Australia/Pacific</option>
-           <option>Africa</option>
+<select id="region" class="form-control" name="region" placeholder=".col-lg-4" value = "<%=@region%>">
+
+      <option >US</option>
+      <option >Canada</option>
+       <option >Europe</option>
+        <option >South America</option>
+         <option >Asia</option>
+         <option> Latin America and the Caribbean</option>
+         <option >Middle East</option>
+           <option >Australia/Pacific</option>
+           <option >Africa</option>
 
     </select>
 
@@ -357,8 +376,6 @@ $(function() {$('.datepicker').datepicker()});</script>
 </div>
 
 
-<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
 
 
 
@@ -378,6 +395,9 @@ $(function() {$('.datepicker').datepicker()});</script>
 
 <% counter = 0 %>
 
+<% if counter < 100 then %>
+
+
 <%if @hotelhash != nil && @check == nil then%>
 
 
@@ -393,23 +413,21 @@ $(function() {$('.datepicker').datepicker()});</script>
 <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
     <div class="panel panel-default">
 
-
-
           <div class="panel-heading" role="tab" id="heading<%=counter%>">
-
-
                  <h4 class="panel-title">
-
-
-
                       <dl>
 
 
                               <div class="media">
                               <div class="media-left media-middle">
-                                    <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"]%>"></div>
+
+                                    <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"]%>">  </div>
+
+                              <span class="price">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span>
+
+
                               <div class="media-body" style="padding-bottom:0px">
-                                    <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> <span class="price">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span></dt></h4>
+                                    <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> </dt></h4>
 
           <dd><%= zebra["city"]%></dd>
           <dd><%= zebra["locationDescription"]%></dd>
@@ -417,11 +435,11 @@ $(function() {$('.datepicker').datepicker()});</script>
            <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
          <dd><a href=<%= zebra["deepLink"]%>>Book Now</a></dd>
 
-
 <% @LAT = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LAT"]%>
 <% @LONG = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LONG"]%>
 
-<%weatherurl ="https://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}"%>
+<%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}"%>
+
 
 <%require 'open-uri'%>
 <%weather_search2 = URI.encode(weatherurl)%>
@@ -434,10 +452,6 @@ $(function() {$('.datepicker').datepicker()});</script>
 
 
 
-<p>High Temp (F) <%=(((@weatherhash["list"][0]["temp"]["max"].to_f)-273.15)*1.8+32).round(0)%></p>
-<p>Low Temp (F) :<%=(((@weatherhash["list"][0]["temp"]["min"].to_f)-273.15)*1.8+32).round(0)%></p>
-
-
 
 </div>
 
@@ -445,7 +459,7 @@ $(function() {$('.datepicker').datepicker()});</script>
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>" aria-expanded="false" aria-controls="collapse<%=counter%>">
 
 
-<dd>See More Rooms</dd>
+<dd>What is the weather forecast?</dd>
 
 
 </div>
@@ -458,7 +472,14 @@ $(function() {$('.datepicker').datepicker()});</script>
     </div>
     <div id="collapse<%=counter%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%=counter%>">
       <div class="panel-body">
-        <%@roomhash%>["<%= zebra["hotelId"]%>"]
+
+
+<p>High Temp (F) <%=(((@weatherhash["list"][0]["temp"]["max"].to_f)-273.15)*1.8+32).round(0)%></p>
+<p>Low Temp (F) :<%=(((@weatherhash["list"][0]["temp"]["min"].to_f)-273.15)*1.8+32).round(0)%></p>
+
+
+
+
       </div>
     </div>
 
@@ -468,14 +489,22 @@ $(function() {$('.datepicker').datepicker()});</script>
 <input value = <%= zebra["hotelId"]%> name="hotelid" type="hidden">
 <input value ="<%=@checkin%>" name="checkin" type="hidden">
 <input value ="<%=@checkout%>" name="checkout" type="hidden">
+<input value ="<%=@adults%>" name="adults" type="hidden">
+
 
   </div>
 
 </div>
 
 </a>
+
+
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
 </form>
 
+
+  <%end%>
   <%end%>
 <%end%>
 
@@ -505,7 +534,6 @@ $(function() {$('.datepicker').datepicker()});</script>
 
 
 
-
 $("#ex2").slider({
 
     min: 50,
@@ -518,7 +546,6 @@ $("#ex2").on("slide", function(slideEvt) {
   $("#SliderValMin").text(slideEvt.value[0]);
   $("#SliderValMax").text(slideEvt.value[1]);
 });
-
 
 
 

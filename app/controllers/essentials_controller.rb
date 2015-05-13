@@ -76,6 +76,7 @@ require 'open-uri'
 hotel = params["hotelid"]
 @checkin = params["checkin"]
 @checkout = params["checkout"]
+@adults = params["adults"]
 
 room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=55505&minorRev=28&apiKey=cbrzfta369qwyrm9t5b8y8kf&locale=en_EN&_type=json&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA48-36A9-1691-4D22-6DCC95E913AA&xml=<HotelRoomAvailabilityRequest>
 <hotelId>#{hotel}</hotelId>
@@ -133,6 +134,8 @@ require 'date'
 @adults = params['adults']
 @region = params['region']
 @countrylist = []
+@chain = params['brand']
+
 if @checkin == nil then
 
 
@@ -144,15 +147,15 @@ else
 @maxprice = @pricerange2[1].to_i
 @minprice = @pricerange2[0].to_i
 
-
-
 sql = "SELECT Code FROM countries where Area == '#{@region}'"
 
 @countries = ActiveRecord::Base.connection.execute(sql)
 
 
-sql = "SELECT Code FROM countries where Area == '#{@region}'"
+sql = "SELECT ChainID FROM chain where ChainName == '#{@chain}'"
 
+@chainid = ActiveRecord::Base.connection.execute(sql)
+@chainid = @chainid[0]["ChainID"]
 
 @countries.each do |country|
   @countrylist.push(country['Code'])
@@ -160,7 +163,7 @@ end
 
 @countrylist =  @countrylist.map(&:strip).join("','")
 
-sql = "Select EANHotelID FROM hotels where Country IN ('#{@countrylist}') AND LowRate <= #{@maxprice}"
+sql = "Select EANHotelID FROM hotels where Country IN ('#{@countrylist}') AND LowRate <= #{@maxprice} AND ChainCodeID IN (#{@chainid})"
 
 @HotelIDS = ActiveRecord::Base.connection.execute(sql)
 
@@ -202,8 +205,10 @@ end
 ActiveRecord::Base.connection.execute("COMMIT;")
 
 
+
+
 if @hotelslist.count > 600 then
-    @hotelslist = @hotelslist[0..600]
+    @hotelslist = @hotelslist.sample(600)
 end
 
 @hotelslist =@hotelslist.map(&:inspect).join(', ')
@@ -229,8 +234,6 @@ sql = "SELECT hotels.EANHotelID,airport_lat_long.LAT,airport_lat_long.LONG FROM 
           @hotelhash = JSON.parse(jsonfeed)
 
 
-
-
   @baserate = []
   @hotelname = []
   hashresults = {}
@@ -246,8 +249,8 @@ begin
          zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"]
          num_of_hotels_returned = @hotelhash['HotelListResponse']['HotelList']['@activePropertyCount']
 
-      end
 
+  end
 
 rescue => e
 
@@ -270,10 +273,14 @@ rescue => e
 
                         @check = "No Results Available"
 
+                         when @hotelhash["HotelListResponse"]["EanWsError"]["presentationMessage"] == "Data in this request could not be validated: Specified city could not be resolved as valid location."
+
+                        @check = "No Results Available ; Please broaden your search criteria"
 
 
-            else
+ else
               @check = "Please enter date in DD/MM/YYYY format"
+
 
    end
 
