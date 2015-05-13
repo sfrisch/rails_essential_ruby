@@ -173,7 +173,7 @@ color:red;
 <div class="container-fluid">
 
 
-
+<!-- Hotel Details Response http://jsonviewer.stack.hu/#http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=55505&minorRev=28&apiKey=cbrzfta369qwyrm9t5b8y8kf&locale=en_EN&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA4E-3EF4-5B91-4D42-AAC276090292&xml=<HotelRoomAvailabilityRequest><hotelId>127286</hotelId><arrivalDate>06/02/2015</arrivalDate><departureDate>06/04/2015</departureDate><RoomGroup><Room><numberOfAdults></numberOfAdults></Room></RoomGroup><includeRoomImages>true</includeRoomImages><options>HOTEL_IMAGES</options></HotelRoomAvailabilityRequest>!-->
 
 <div class="col-md-8">
 <h1><%=@hoteldetailhash["HotelRoomAvailabilityResponse"]["hotelName"]%></h1>
@@ -210,8 +210,7 @@ color:red;
 <%end%>
   <img class="peopleCarouselImg"  src="<%=zebra["url"].sub("_b","_z")%>" alt="">
   <div class="carousel-caption">
-    slide 1
-  </div>
+     </div>
 </div>
 
 
@@ -390,7 +389,9 @@ $("#ex2").slider({});
 
 <script type="text/javascript" >
             $(document).ready(function() {
-        $('.carousel').carousel()
+        $('.carousel').carousel({
+  interval: 100
+})
             });
 </script>
 
