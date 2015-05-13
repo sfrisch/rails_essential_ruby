@@ -145,6 +145,10 @@ color:red;
 
 
 
+
+<%if @hotelhash == nil || @check != nil then%>
+
+
     <form action="/essentials/hotelwherever" method="post", name="hotelsearch">
 
 
@@ -368,13 +372,6 @@ color:red;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 
-<script>
-$(function() {$('.datepicker').datepicker()});</script>
-
-<div class="well">
-<input type="text" name="date" class="datepicker">
-</div>
-
 
 
 
@@ -390,6 +387,10 @@ $(function() {$('.datepicker').datepicker()});</script>
 
 
     </form>
+
+
+<%else%>   <!--else for 2nd page
+
 
 
 
@@ -506,6 +507,7 @@ $(function() {$('.datepicker').datepicker()});</script>
 
   <%end%>
   <%end%>
+<%end%>
 <%end%>
 
 <style>

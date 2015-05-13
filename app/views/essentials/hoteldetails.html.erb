@@ -21,7 +21,7 @@
 <script type="text/javascript" src="http://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
+<script src="http://bootstrapdocs.com/v2.0.3/docs/assets/js/bootstrap-carousel.js"></script>
 
 <style>
 .container img {
@@ -32,7 +32,7 @@
 
 body{  font-family: 'Lato', sans-serif;}
 
-.jumbotron
+.jumbotron2
     {
 
         height:350px;
@@ -105,6 +105,35 @@ color:red;
             font-weight:900px;
             }
 
+.carousel .item {
+    background:#F9F9F9;
+    border:1px solid #E0E0E0;
+    overflow:hidden;
+    margin-bottom:1em;
+    margin-top:1em;
+    padding:5px;
+}
+.carousel-inner > .item > img {
+    border: 1px solid #DDDDDD;
+    float: center;
+    margin: 0pt 3px;
+    padding: 2px;
+    height: none;
+    width:  100%;
+}
+
+.carousel-inner > .item > img:hover {
+    border: 1px solid #000000;
+}
+
+.peopleCarouselImg img {
+  width: auto;
+  height: 425px;
+  max-height: 425px;
+}
+
+
+
 </style>
 
 
@@ -142,6 +171,72 @@ color:red;
 
 
 <div class="container-fluid">
+
+
+
+
+<div class="col-md-8">
+<h1><%=@hoteldetailhash["HotelRoomAvailabilityResponse"]["hotelName"]%></h1>
+<h2><%=@hoteldetailhash["HotelRoomAvailabilityResponse"]["hotelCity"]%></h2>
+</div>
+
+<div class="col-md-8 col-md-offset-2">
+
+<div id="carousel-example-generic" class="carousel slide">
+<!-- Indicators -->
+<ol class="carousel-indicators">
+<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+</ol>
+
+<!-- Wrapper for slides -->
+<div class="carousel-inner">
+
+
+<% counter1 = 0 %>
+
+
+
+<%@hoteldetailhash["HotelRoomAvailabilityResponse"]["HotelImages"]["HotelImage"].each do |zebra|%>
+
+
+
+<%if counter1 == 0 then %>
+<div class="item active peopleCarouselImg">
+<%else%>
+<div class="item peopleCarouselImg">
+<%end%>
+  <img class="peopleCarouselImg"  src="<%=zebra["url"].sub("_b","_z")%>" alt="">
+  <div class="carousel-caption">
+    slide 1
+  </div>
+</div>
+
+
+
+
+
+<%counter1 = counter1 + 1%>
+<%end%>
+
+
+
+</div>
+
+<!-- Controls -->
+<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+<span class="icon-prev"></span>
+</a>
+<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+<span class="icon-next"></span>
+</a>
+</div>
+
+
+
+</div>
 
 
 
@@ -214,9 +309,6 @@ color:red;
 
 
 
-    <dd><%=number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["Surcharges"]["Surcharge"]["@amount"])%>
-        <%=zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["Surcharges"]["Surcharge"]["@type"]%> </dd>
-
 
 <dd class="totalprice"><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"])%></dd>
 
@@ -288,12 +380,18 @@ $(function () {
 
 
 
-
 $("#ex2").slider({});
 
 
 
 
+</script>
+
+
+<script type="text/javascript" >
+            $(document).ready(function() {
+        $('.carousel').carousel()
+            });
 </script>
 
 

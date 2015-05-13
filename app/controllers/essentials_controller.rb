@@ -97,6 +97,28 @@ jsonfeed2 = open(room_search2).read
 @roomhash = JSON.parse(jsonfeed2)
 
 
+
+hotel_detail ="http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=55505&minorRev=28&apiKey=cbrzfta369qwyrm9t5b8y8kf&locale=en_EN&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA4E-3EF4-5B91-4D42-AAC276090292&xml=<HotelRoomAvailabilityRequest><hotelId>#{hotel}</hotelId><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults></numberOfAdults></Room></RoomGroup><includeRoomImages>true</includeRoomImages><options>HOTEL_IMAGES</options></HotelRoomAvailabilityRequest>"
+
+
+hotel_detail2 = URI.encode(hotel_detail)
+jsonfeed3 = open(hotel_detail2).read
+@hoteldetailhash = JSON.parse(jsonfeed3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 render('hoteldetails.html.erb')
 
 
@@ -232,7 +254,6 @@ sql = "SELECT hotels.EANHotelID,airport_lat_long.LAT,airport_lat_long.LONG FROM 
           hotel_search2 = URI.encode(hotel_search)
           jsonfeed = open(hotel_search2).read
           @hotelhash = JSON.parse(jsonfeed)
-
 
   @baserate = []
   @hotelname = []
