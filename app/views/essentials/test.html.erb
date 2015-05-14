@@ -17,11 +17,14 @@ body{  font-family: 'Lato', sans-serif;}
 .jumbotron
     {
 
-        height:350px;
+        height:500px;
+        width:100%;
+        background-position: center center;
+  background-repeat: no-repeat;
                 font-weight: 900;
          background-color:#336666;
          color:white;
-         background-image:url("/assets/bondi2.JPG");
+         background-image:url("http://upload.wikimedia.org/wikipedia/commons/c/c7/Palazzo_Versace_Gold_Coast_-_Panoramic_View.jpg");
  background-size: cover;
     }
 
@@ -162,17 +165,16 @@ color:red;
           <input type="text" name="checkout" class = "form-control" placeholder="Check-Out">
 
 
-
-              <p class="errorhandling"><%=@check%></p>
               </div>
 
         <div class="col-md-6 short_div">
+        <p class="errorhandling"><%=@check%></p>
         </div>
 
 
         <div class="col-md-6 short_div">
 
-        Filter by price interval:  <p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="2000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
+        Filter by price interval:  <p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="1000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
 
           </div>
 
@@ -259,6 +261,7 @@ color:red;
 
 <label for = "brand">Brand</label>
 <select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4" value="<%=@chain%>">
+<option>Any</option>
 <option>Boscolo</option>
 <option>Fairmont</option>
 <option>Four Seasons</option>
@@ -402,7 +405,11 @@ color:red;
 <%if @hotelhash != nil && @check == nil then%>
 
 
-<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |zebra|%>
+<!-- ##%@hotelhash = @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]} %>  !-->
+
+<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra["tripAdvisorReviewCount"]}.reverse!.each do |zebra|%>
+
+
 
 
 <form id="accordion<%=counter%>" action="/essentials/hoteldetails" method="post">
@@ -431,8 +438,9 @@ color:red;
                                     <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> </dt></h4>
 
           <dd><%= zebra["city"]%></dd>
-          <dd><%= zebra["locationDescription"]%></dd>
+          <dd><%= zebra["locationDescription"].html_safe%></dd>
            <dd ><%= zebra["hotelRating"]%><i class="fa fa-star starrating"></i></dd>
+   <dd ><%= zebra["tripAdvisorReviewCount"]%>Trip Advisor Review Count</dd>
            <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
          <dd><a href=<%= zebra["deepLink"]%>>Book Now</a></dd>
 
@@ -539,7 +547,7 @@ color:red;
 $("#ex2").slider({
 
     min: 50,
-   max: 2000,
+   max: 1000,
     scale: 'logarithmic',
     step: 10
 });

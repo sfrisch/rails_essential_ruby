@@ -174,10 +174,16 @@ sql = "SELECT Code FROM countries where Area == '#{@region}'"
 @countries = ActiveRecord::Base.connection.execute(sql)
 
 
-sql = "SELECT ChainID FROM chain where ChainName == '#{@chain}'"
+if @chain != "Any" then
+ sql = "SELECT ChainID FROM chain where ChainName == '#{@chain}'"
 
 @chainid = ActiveRecord::Base.connection.execute(sql)
 @chainid = @chainid[0]["ChainID"]
+
+else
+  @chainid ="ChainCodeID"
+end
+
 
 @countries.each do |country|
   @countrylist.push(country['Code'])
@@ -254,6 +260,10 @@ sql = "SELECT hotels.EANHotelID,airport_lat_long.LAT,airport_lat_long.LONG FROM 
           hotel_search2 = URI.encode(hotel_search)
           jsonfeed = open(hotel_search2).read
           @hotelhash = JSON.parse(jsonfeed)
+
+
+
+
 
   @baserate = []
   @hotelname = []
