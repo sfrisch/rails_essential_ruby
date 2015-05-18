@@ -85,6 +85,7 @@ room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=55505&minor
 <RoomGroup>
 <Room>
 <numberOfAdults>
+#{@adults}
 </numberOfAdults>
 </Room>
 </RoomGroup>
@@ -106,16 +107,15 @@ jsonfeed3 = open(hotel_detail2).read
 @hoteldetailhash = JSON.parse(jsonfeed3)
 
 
+hotel_summary ="http://api.ean.com/ean-services/rs/hotel/v3/info?cid=55505&minorRev=28&apiKey=cbrzfta369qwyrm9t5b8y8kf&locale=en_EN&_type=json&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA48-36A9-1691-4D22-6DCC95E913AA&xml=<HotelInformationRequest>
+<hotelId>#{hotel}</hotelId>
+<options>0</options>
+</HotelInformationRequest>"
 
 
-
-
-
-
-
-
-
-
+hotel_summary2 = URI.encode(hotel_summary)
+jsonfeedsum = open(hotel_summary2).read
+@hotelsummary = JSON.parse(jsonfeedsum)
 
 
 
@@ -157,6 +157,15 @@ require 'date'
 @region = params['region']
 @countrylist = []
 @chain = params['brand']
+@temp = params['temp']
+
+case @temp when "90F+" then 90
+  when "80F+" then 80
+    when "70F+" then 70
+      when "60F+" then 60
+        when "50F+" then 50
+        end
+
 
 if @checkin == nil then
 
@@ -258,18 +267,33 @@ sql = "SELECT hotels.EANHotelID,airport_lat_long.LAT,airport_lat_long.LONG FROM 
 
 
           hotel_search2 = URI.encode(hotel_search)
-          jsonfeed = open(hotel_search2).read
-          @hotelhash = JSON.parse(jsonfeed)
-
-
+          @jsonfeed = open(hotel_search2).read
+          @hotelhash = JSON.parse(@jsonfeed)
 
 
 
   @baserate = []
   @hotelname = []
   hashresults = {}
+  @coordarray = []
   @check = nil
 
+
+@hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].each do |geo|
+
+  @coordarray.push([geo["latitude"],  geo["longitude"]])
+end
+
+@sum = 0.0
+@sum2 = 0.0
+@coordarray.each do |avg|
+
+@sum = avg[0] + @sum
+@sum2 = avg[1] + @sum2
+end
+
+@centerlat = @sum / @coordarray.length
+@centerlong = @sum2 / @coordarray.length
 
 begin
 
@@ -318,11 +342,6 @@ rescue => e
    end
 
    end
-
-
-
-
-
 
 
 

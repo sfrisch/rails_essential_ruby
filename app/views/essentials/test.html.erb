@@ -38,18 +38,17 @@ height: 200px;
 }
 
 
-
 .talldiv {height:200px;}
 .meddiv {height:100px;}
 
 .short_div {
-
-    height:50px;
+  color:black;
+    height:80px;
 }
 .matchpadding{padding-top:50px;
   }
 
-
+h4{font-size:24px;}
 
 .navbar-fixed-top {
     min-height: 80px;
@@ -61,7 +60,7 @@ height: 200px;
     line-height: 80px;
 }
 
-.price{font-size:25px;
+.price{font-size:30px;
   font-weight:900px;
 text-align:right;
 float:right;
@@ -80,6 +79,8 @@ float:right;
     padding-bottom: 10px;}
 }
 
+
+
 .errorhandling {
 color:red;
 }
@@ -93,7 +94,7 @@ color:red;
 .bottompadding {border-top:50px;}
 .starcolor {font:red;}
 
-
+.form-control{color:black;}
 
 .input-group-lg>.form-control, .input-group-lg>.input-group-addon,
   .input-group-lg>.input-group-btn>.btn {
@@ -174,7 +175,8 @@ color:red;
 
         <div class="col-md-6 short_div">
 
-        Filter by price interval:  <p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="1000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
+
+<label for = "ex2">Filter by price interval:  </label><p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="1000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
 
           </div>
 
@@ -183,25 +185,6 @@ color:red;
 
 
         </div>
-
-
-<div class="col-md-1 short_div">
-
-
-<label for = "rooms">Rooms</label>
-<select id="rooms" class="form-control" placeholder=".col-lg-1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-      <option>9+</option>
-
-    </select>
-</div>
 
 
 
@@ -222,22 +205,6 @@ color:red;
 
 
 
-
-<div class="col-md-1 short_div">
-
-<label for = "children">Children</label>
-<select id="children" class="form-control" placeholder=".col-lg-1">
-      <option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-
-    </select>
-
-</div>
 
 
 
@@ -289,28 +256,18 @@ color:red;
 
         <div class="col-md-2 short_div">
 
-<label for = "temp">Temperature</label>
-<select id="temp" class="form-control" placeholder=".col-lg-2">
+<label for = "temp">Check-In Temperature</label>
+<select id="temp" class="form-control" name= "temp" placeholder=".col-lg-2">
       <option>Any</option>
-      <option>90+</option>
-      <option>80+</option>
-      <option>70+</option>
-      <option>60+</option>
-      <option>50+</option>
+      <option>90F+</option>
+      <option>80F+</option>
+      <option>70F+</option>
+      <option>60F+</option>
+      <option>50F+</option>
 
 
     </select>
 </div>
-   <div class="col-md-2 short_div">
-
-<label for = "weather">Weather</label>
-<select id="weather" class="form-control" placeholder=".col-lg-2">
-      <option>Sunny</option>
-
-    </select>
-
-
-        </div>
 
 <div class="col-md-2 short_div">
 
@@ -396,7 +353,7 @@ color:red;
 
 
 
-
+<%counterbinary = 0%>
 <% counter = 0 %>
 
 <% if counter < 100 then %>
@@ -407,47 +364,21 @@ color:red;
 
 <!-- ##%@hotelhash = @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]} %>  !-->
 
-<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra["tripAdvisorReviewCount"]}.reverse!.each do |zebra|%>
-
-
-
-
-<form id="accordion<%=counter%>" action="/essentials/hoteldetails" method="post">
-
-
-<a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit(); return false;">
-
-
-<div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
-    <div class="panel panel-default">
-
-          <div class="panel-heading" role="tab" id="heading<%=counter%>">
-                 <h4 class="panel-title">
-                      <dl>
-
-
-                              <div class="media">
-                              <div class="media-left media-middle">
-
-                                    <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"]%>">  </div>
-
-                              <span class="price">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span>
-
-
-                              <div class="media-body" style="padding-bottom:0px">
-                                    <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> </dt></h4>
-
-          <dd><%= zebra["city"]%></dd>
-          <dd><%= zebra["locationDescription"].html_safe%></dd>
-           <dd ><%= zebra["hotelRating"]%><i class="fa fa-star starrating"></i></dd>
-   <dd ><%= zebra["tripAdvisorReviewCount"]%>Trip Advisor Review Count</dd>
-           <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
-         <dd><a href=<%= zebra["deepLink"]%>>Book Now</a></dd>
+<%weatherinfo = 0%>
+<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra['tripAdvisorReviewCount']}.reverse!.each do |zebra|%>
 
 <% @LAT = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LAT"]%>
 <% @LONG = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LONG"]%>
 
-<%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}"%>
+<input type="hidden" name="LAT" id="LAT" value = "<%=@LAT%>">
+<input type="hidden" name="LONG" id="LONG" value = "<%=@LONG%>">
+
+<%hotelweather = []%>
+
+<% if DateTime.strptime(@checkin,'%m/%d/%Y')-15 < Date.today %>
+
+<%weatherinfo = 1%>
+<%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}&cnt=16"%>
 
 
 <%require 'open-uri'%>
@@ -456,20 +387,74 @@ color:red;
 <%@weatherhash = JSON.parse(weatherjsonfeed)%>
 
 
+<%datelookup = []%>
+
+<%@weatherhash["list"].each do |dates|%>
+
+<%datelookup.push({'date' => dates["dt"],'icon' => dates["weather"][0]["icon"],'desc' => dates["weather"][0]["description"],'max' => (((dates["temp"]["max"].to_f)-273.15)*1.8+32).round(0),'min' => (((dates["temp"]["min"].to_f)-273.15)*1.8+32).round(0),'dateconverted' => DateTime.strptime(dates["dt"].to_s,'%s').strftime('%m/%d/%y') })%>
+
+<%end%>
+
+
+<% hotelweather = datelookup.select {|date| DateTime.strptime(date["dateconverted"],'%m/%d/%y') >= DateTime.strptime(@checkin,'%m/%d/%Y') && DateTime.strptime(date["dateconverted"],'%m/%d/%y') <= DateTime.strptime(@checkout,'%m/%d/%Y')}%>
+
+<%else%>
+
+<%hotelweather.push({'max' => 1000})%>
+
+<%end%>
 
 
 
+<% if hotelweather[0]["max"] >= @temp.to_i then%>
+
+
+
+<%counterbinary=1%>
+
+<form id="accordion<%=counter%>" action="/essentials/hoteldetails" method="post" >
+
+
+<a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit(); return false;" style="color:black">
+
+
+<div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
+    <div class="panel panel-default ">
+
+          <div class="panel-heading" role="tab" id="heading<%=counter%>">
+                 <h4 class="panel-title">
+                      <dl>
+
+
+                              <div class="media">
+                              <div class="media-left media-middle">
+ <span class="price">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span>
+
+                                    <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"].sub("_t","_d")%>">  </div>
+
+
+
+                              <div class="media-body" style="padding-bottom:0px">
+                                    <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> </dt></h4>
+
+          <dd><%= zebra["city"]%></dd>
+          <dd><%= zebra["locationDescription"].html_safe%></dd>
+           <dd ><%= zebra["hotelRating"]%><i class="fa fa-star starrating"></i><i class="fa fa-star starrating"></i></dd>
+           <% shortdesc = zebra["shortDescription"].html_safe %>
+  <%=shortdesc[58..-1].html_safe %> <span style="color:blue">...More</span>
+           <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
+          <!--<dd><a href=<%= zebra["deepLink"]%> style="color:black">Book Now</a></dd>!-->
 
 
 
 </div>
 
 
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>" aria-expanded="false" aria-controls="collapse<%=counter%>">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>"aria-expanded="false" aria-controls="collapse<%=counter%>" style="color:black">
 
-
+<%if weatherinfo==1%>
 <dd>What is the weather forecast?</dd>
-
+<%end%>
 
 </div>
 
@@ -479,15 +464,21 @@ color:red;
         </a>
 
     </div>
-    <div id="collapse<%=counter%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%=counter%>">
+    <div id="collapse<%=counter%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=counter%>">
       <div class="panel-body">
 
 
-<p>High Temp (F) <%=(((@weatherhash["list"][0]["temp"]["max"].to_f)-273.15)*1.8+32).round(0)%></p>
-<p>Low Temp (F) :<%=(((@weatherhash["list"][0]["temp"]["min"].to_f)-273.15)*1.8+32).round(0)%></p>
-
-
-
+<%if weatherinfo==1%>
+<table class="table">
+<%hotelweather.each do |weather|%>
+<tr><td><dt>
+Date: <%=weather["dateconverted"]%>
+<b>High: <%=weather["max"]%> (F)</b>
+<b>Low: <%=weather["min"]%> (F)</b>
+<img src="http://openweathermap.org/img/w/<%=weather["icon"]%>.png"></dt></td></tr>
+<%end%>
+</table>
+<%end%>
 
       </div>
     </div>
@@ -512,32 +503,39 @@ color:red;
 
 </form>
 
+<%else%>
 
+  <%end%>
   <%end%>
   <%end%>
 <%end%>
 <%end%>
 
-<style>
-  .full button span {
-    background-color: limegreen;
-    border-radius: 32px;
-    color: black;
-  }
-  .partially button span {
-    background-color: orange;
-    border-radius: 32px;
-    color: black;
-  }
-</style>
+
+
+
 
         <div class="col-md-6">
             <p class="input-group">
 
             </p>
         </div>
+
+
+<div class="panel-group col-md-8 col-md-offset-2">
+<div id="map-canvas" style="height:700px">
+</div>
+
+</div>
+
+
+
     </div>
 
+
+<%=@centerlat%>
+
+<%=@centerlong%>
 
 
 <script type="text/javascript">
@@ -564,5 +562,69 @@ $("#ex2").on("slide", function(slideEvt) {
 
 
 
+
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+
+
+
+
+
+
+ <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript">
+
+var locations = <%=raw @coordarray%>;
+
+var map = new google.maps.Map(document.getElementById('map-canvas'), {
+     zoom: 4,
+     center: new google.maps.LatLng(<%=raw @centerlat%>,<%=raw @centerlong%>),
+     mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+
+var infowindow = new google.maps.InfoWindow;
+
+var marker, i;
+
+for (i = 0; i < locations.length; i++) {
+    marker = new google.maps.Marker({
+         position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+         map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+         return function() {
+             infowindow.setContent(locations[i][0]);
+             infowindow.open(map, marker);
+         }
+    })(marker, i));
+}
+
+
+
+    </script>
+
+
+
+<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+</style>
+
+
     </body>
     </html>
+

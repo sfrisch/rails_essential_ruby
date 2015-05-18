@@ -76,7 +76,7 @@ height: 200px;
     line-height: 80px;
 }
 
-.price{font-size:25px;
+.price{font-size:30px;
   font-weight:900px;
 text-align:right;
 float:right;
@@ -241,6 +241,49 @@ color:red;
 
 <% counter = 0 %>
 
+
+
+
+<div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist"            aria-multiselectable="true" >
+          <div class="panel panel-default">
+
+
+
+                    <div class="panel-heading" role="tab" id="headingsum">
+
+
+                         <h4 class="panel-title">
+
+
+
+
+                            <%=@hotelsummary["HotelInformationResponse"]["HotelDetails"]["propertyDescription"][0..750]%>
+
+                    </div>
+
+
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapsesum" aria-expanded="false" aria-controls="collapsesum">
+
+
+                      <dd>More Details</dd>
+          </a>
+
+              </div>
+
+
+
+
+    <div id="collapsesum" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsum">
+      <div class="panel-body">
+
+<%=@hotelsummary["HotelInformationResponse"]["HotelDetails"]["propertyDescription"].html_safe%>
+
+      </div>
+    </div>
+</div>
+
+
+
 <%@roomhash['HotelRoomAvailabilityResponse']['HotelRoomResponse'].each do |zebra|%>
 
 
@@ -263,6 +306,7 @@ color:red;
 
                               <div class="media">
                               <div class="media-left media-middle">
+
                               <% if zebra["RoomImages"] != nil then%>
                                  <% if zebra["RoomImages"]["RoomImage"].class == Array then%>
 
@@ -299,7 +343,7 @@ color:red;
         </a>
 
     </div>
-    <div id="collapse<%=counter%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<%=counter%>">
+    <div id="collapse<%=counter%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=counter%>">
       <div class="panel-body">
 
 <dd><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"])%><span> X </span>
