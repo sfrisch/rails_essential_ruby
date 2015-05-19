@@ -277,12 +277,22 @@ sql = "SELECT hotels.EANHotelID,airport_lat_long.LAT,airport_lat_long.LONG FROM 
   hashresults = {}
   @coordarray = []
   @check = nil
+  @hotelhash3 = {'HotelListResponse'=> {'HotelList' => {"HotelSummary"=>[]}}}
 
+begin
+
+
+
+if @hotelhash["HotelListResponse"]["HotelList"]["@size"] == "1" then
+
+@hotelhash3["HotelListResponse"]["HotelList"]["HotelSummary"].push(@hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"])
+@hotelhash = @hotelhash3
+ end
 
 @hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].each do |geo|
-
   @coordarray.push([geo["latitude"],  geo["longitude"]])
 end
+
 
 @sum = 0.0
 @sum2 = 0.0
@@ -295,19 +305,12 @@ end
 @centerlat = @sum / @coordarray.length
 @centerlong = @sum2 / @coordarray.length
 
-begin
+
+@hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"]
 
 
-     @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |zebra|
 
-          ##Checks for data
-         zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"]
-         num_of_hotels_returned = @hotelhash['HotelListResponse']['HotelList']['@activePropertyCount']
-
-
-  end
-
-rescue => e
+rescue
 
   case        when @hotelhash["HotelListResponse"]["EanWsError"]["category"] == "SOLD_OUT"
                           @check = "SOLD OUT"

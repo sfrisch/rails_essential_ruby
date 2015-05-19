@@ -1,7 +1,35 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/assets/stylesheets/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script>
+/*** Handle jQuery plugin naming conflict between jQuery UI and Bootstrap ***/
+$.widget.bridge('uitooltip', $.ui.tooltip1);
+$.widget.bridge('uibutton', $.ui.button1);
+$.widget.bridge('slider', $.ui.slider1);
+$.widget.bridge('hasDatepicker', $.ui.datepicker2);
+</script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript" src="http://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
+
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>!-->
+
+
 
 
 
@@ -126,25 +154,6 @@ color:red;
 
 
 
-<!--<link rel="stylesheet" href="/app/assets/stylesheets/datepicker.css"> !-->
-
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-
-
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>
-
-<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>!-->
-
-
-
-<script type="text/javascript" src="https://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-
 <div class="container-fluid">
 
 
@@ -162,8 +171,8 @@ color:red;
   <div class="col-md-12 jumbotron">
 
          <div class="col-md-3 short_div" style='font-color:black';">
-          <input type="text" name="checkin" class= "form-control" placeholder="Check-In">
-          <input type="text" name="checkout" class = "form-control" placeholder="Check-Out">
+          <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control">
+          <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control">
 
 
               </div>
@@ -320,7 +329,6 @@ color:red;
 
  <div class="col-md-1 match1 short_div">
 
-<input name="city" type="text">
 
         </div>
 
@@ -328,16 +336,6 @@ color:red;
 
         </div>
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-
-
-
-
-
- <link href="/assets/stylesheets/slider.css" rel="stylesheet">
-<script type="text/javascript" src="http://seiyria.github.io/bootstrap-slider/javascripts/bootstrap-slider.js"></script>
 
 
 
@@ -365,6 +363,12 @@ color:red;
 <!-- ##%@hotelhash = @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]} %>  !-->
 
 <%weatherinfo = 0%>
+
+
+
+
+
+
 <%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra['tripAdvisorReviewCount']}.reverse!.each do |zebra|%>
 
 <% @LAT = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LAT"]%>
@@ -516,9 +520,7 @@ Date: <%=weather["dateconverted"]%>
 
 
         <div class="col-md-6">
-            <p class="input-group">
 
-            </p>
         </div>
 
 
@@ -538,28 +540,9 @@ Date: <%=weather["dateconverted"]%>
 <%=@centerlong%>
 
 
-<script type="text/javascript">
 
-
-
-$("#ex2").slider({
-
-    min: 50,
-   max: 1000,
-    scale: 'logarithmic',
-    step: 10
-});
-
-$("#ex2").on("slide", function(slideEvt) {
-  $("#SliderValMin").text(slideEvt.value[0]);
-  $("#SliderValMax").text(slideEvt.value[1]);
-});
-
-
-
-</script>
-
-
+    </div>
+</div>
 
 
 
@@ -623,6 +606,45 @@ for (i = 0; i < locations.length; i++) {
     color: black;
   }
 </style>
+
+
+
+<script type="text/javascript">
+
+
+
+
+var mySlider = $("#ex2").bootstrapSlider({
+    min: 50,
+   max: 1000,
+    scale: 'logarithmic',
+    step: 10
+});
+
+$("#ex2").on("slide", function(slideEvt) {
+  $("#SliderValMin").text(slideEvt.value[0]);
+  $("#SliderValMax").text(slideEvt.value[1]);
+});
+
+
+</script>
+
+
+<script>
+
+
+  $(function() {
+    $( "#checkin" ).datepicker();
+     $( "#checkout" ).datepicker();
+   });
+
+
+
+
+  </script>
+
+
+
 
 
     </body>
