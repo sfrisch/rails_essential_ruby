@@ -44,15 +44,6 @@ body{  font-family: 'Lato', sans-serif;}
  background-size: cover;
     }
 
-.footerstyle
-
-{
-background-color:#00CCFF;
-height: 200px;
-;
-
-}
-
 
 
 .talldiv {height:200px;
@@ -66,15 +57,6 @@ height: 200px;
 
 
 
-.navbar-fixed-top {
-    min-height: 80px;
-}
-
-.navbar-nav > li > a {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    line-height: 80px;
-}
 
 .price{font-size:30px;
   font-weight:900px;
@@ -132,7 +114,14 @@ color:red;
   max-height: 425px;
 }
 
+.amenities {font-size:13px;
+            padding-top:10px;
+            padding-bottom:20px;}
 
+.list-inline{display:block;}
+.list-inline li{display:inline-block;}
+.list-inline li:after{content:'|'; margin:0 10px;}
+.list-inline li:last-child:after {content: '';}
 
 </style>
 
@@ -208,11 +197,10 @@ color:red;
 <%else%>
 <div class="item peopleCarouselImg">
 <%end%>
-  <img class="peopleCarouselImg"  src="<%=zebra["url"].sub("_b","_z")%>" alt="">
+  <img class="peopleCarouselImg"  src="<%=zebra["url"].sub("_b","_z")%>" onError="this.onerror=null;this.src='<%=zebra["url"].sub("_b","_b")%>';"alt="">
   <div class="carousel-caption">
      </div>
 </div>
-
 
 
 
@@ -242,12 +230,9 @@ color:red;
 <% counter = 0 %>
 
 
-
-
 <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist"            aria-multiselectable="true" >
-          <div class="panel panel-default">
 
-
+          <div>
 
                     <div class="panel-heading" role="tab" id="headingsum">
 
@@ -257,17 +242,32 @@ color:red;
 
 
 
-                            <%=@hotelsummary["HotelInformationResponse"]["HotelDetails"]["propertyDescription"][0..750]%>
+
+<%@escapedescription = @hotelsummary["HotelInformationResponse"]["HotelDetails"]["propertyDescription"]%>
+
+
+<%@escapedescription.gsub! '&gt;','>'%>
+<%@escapedescription.gsub! '&lt;','<'%>
+
+
+
 
                     </div>
 
 
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapsesum" aria-expanded="false" aria-controls="collapsesum">
 
 
-                      <dd>More Details</dd>
+<%charbreak = @escapedescription.index("</p>") + 3%>
+   <div class="panel-body">
+<%==@escapedescription[0..charbreak]%>
+<a data-toggle="collapse" data-parent="#accordion" href="#collapsesum" aria-expanded="false" aria-controls="collapsesum">
+
+
+
+                      <dd>More Hotel Information</dd>
+
           </a>
-
+      </div>
               </div>
 
 
@@ -276,15 +276,26 @@ color:red;
     <div id="collapsesum" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsum">
       <div class="panel-body">
 
-<%=@hotelsummary["HotelInformationResponse"]["HotelDetails"]["propertyDescription"].html_safe%>
+
+
+<%==@escapedescription[charbreak+1..-1]%>
+
+
 
       </div>
     </div>
 </div>
 
 
-
 <%@roomhash['HotelRoomAvailabilityResponse']['HotelRoomResponse'].each do |zebra|%>
+
+
+
+
+<%if @roomhash['HotelRoomAvailabilityResponse']['HotelRoomResponse'].class == Hash%>
+<%zebra = @roomhash['HotelRoomAvailabilityResponse']['HotelRoomResponse']%>
+<%end%>
+
 
 
 <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
@@ -323,7 +334,10 @@ color:red;
           <dd><%= zebra["locationDescription"]%></dd>
 
            <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
-         <dd><a href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
+
+<div class="amenities"><%==zebra["RoomType"]["descriptionLong"] %></div>
+  <dd><a href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
+
 
 
 </div>
@@ -332,7 +346,7 @@ color:red;
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>" aria-expanded="false" aria-controls="collapse<%=counter%>">
 
 
-<dd>More Details</dd>
+<dd>Full Amenities / Further Details</dd>
 
 
 </div>
@@ -346,20 +360,33 @@ color:red;
     <div id="collapse<%=counter%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=counter%>">
       <div class="panel-body">
 
-<dd><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"])%><span> X </span>
-<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["NightlyRatesPerRoom"]["@size"]%><span> Nights = </span>
-<%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@nightlyRateTotal"])%></dd>
+<div>
+<ul class="list-inline">
+<%zebra["RoomType"]["roomAmenities"]["RoomAmenity"].each do |amenitys|%>
+<li><%=amenitys["amenity"]%></li>
+<%end%>
+</ul>
+</div>
 
 
 
 
-<dd class="totalprice"><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"])%></dd>
 
+
+
+
+<b>Cancellation Policy</b>
 
           <dd><%= zebra["RateInfos"]["RateInfo"]["cancellationPolicy"].html_safe%></dd>
       </div>
     </div>
 
+
+<dd class="totalprice"><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"])%></dd>
+
+<dd><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"])%><span> X </span>
+<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["NightlyRatesPerRoom"]["@size"]%><span> Nights = </span>
+<%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@nightlyRateTotal"])%></dd>
 
 <%counter = counter + 1%>
 
@@ -368,8 +395,14 @@ color:red;
 </div>
 
 
-  <%end%>
+<%if @roomhash['HotelRoomAvailabilityResponse']['HotelRoomResponse'].class == Hash%>
+<%break%>
+<%end%>
 
+
+
+
+<%end%>
 
 
 

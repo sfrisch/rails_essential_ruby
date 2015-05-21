@@ -90,6 +90,7 @@ room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=55505&minor
 </Room>
 </RoomGroup>
 <includeRoomImages>true</includeRoomImages>
+<options>HOTEL_DETAILS,ROOM_TYPES,ROOM_AMENITIES,PROPERTY_AMENITIES</options>
 </HotelRoomAvailabilityRequest>"
 
 
@@ -290,7 +291,7 @@ if @hotelhash["HotelListResponse"]["HotelList"]["@size"] == "1" then
  end
 
 @hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].each do |geo|
-  @coordarray.push([geo["latitude"],  geo["longitude"]])
+  @coordarray.push([geo["latitude"],  geo["longitude"],geo["name"]])
 end
 
 

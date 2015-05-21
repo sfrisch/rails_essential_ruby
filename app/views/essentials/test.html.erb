@@ -457,7 +457,7 @@ color:red;
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>"aria-expanded="false" aria-controls="collapse<%=counter%>" style="color:black">
 
 <%if weatherinfo==1%>
-<dd>What is the weather forecast?</dd>
+<dd style="padding-top:22px">What is the weather forecast?</dd>
 <%end%>
 
 </div>
@@ -570,19 +570,27 @@ var map = new google.maps.Map(document.getElementById('map-canvas'), {
      mapTypeId: google.maps.MapTypeId.ROADMAP
 });
 
-var infowindow = new google.maps.InfoWindow;
+
+var infowindow = new google.maps.InfoWindow({
+      content: "HELLO"
+  });
+
 
 var marker, i;
 
 for (i = 0; i < locations.length; i++) {
     marker = new google.maps.Marker({
          position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-         map: map
+         map: map,
+         title: locations[i][2]
     });
+
+
+
 
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
          return function() {
-             infowindow.setContent(locations[i][0]);
+
              infowindow.open(map, marker);
          }
     })(marker, i));
