@@ -5,34 +5,24 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: sqlite3
+  timeout: 5000
   pool: 5
-  username: hotelwherever
-  password: betar2626
+
 
 development:
   <<: *default
-  database: hotelwherever_development
+  database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: hotelwherever_test
+  database: db/test.sqlite3
 
 production:
-<<<<<<< HEAD
-  <<: *default
-  url: postgres://yuhimibbldnbws:IzChp4NYyY_MOy70XX0kAFvvIy@ec2-107-21-114-132.compute-1.amazonaws.com:5432/d2pc35ph8t112t
 
-=======
-  adapter: postgresql
-  host: ec2-107-21-114-132.compute-1.amazonaws.com
-  encoding: unicode
-  database: postgres://yuhimibbldnbws:IzChp4NYyY_MOy70XX0kAFvvIy@ec2-107-21-114-132.compute-1.amazonaws.com:5432/d2pc35ph8t112t
-  pool: 5
-  username:
-  password:
->>>>>>> parent of 1d6b787... url2
+  <<: *default
+  database: db/production.sqlite3
+

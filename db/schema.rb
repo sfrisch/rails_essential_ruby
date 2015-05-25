@@ -13,27 +13,56 @@
 
 ActiveRecord::Schema.define(version: 20150507140314) do
 
-  create_table "hotels", force: :cascade do |t|
-    t.integer  "EANHotelID"
-    t.integer  "ChainCodeID"
-    t.integer  "RegionID"
-    t.decimal  "Latitude"
-    t.decimal  "Longitude"
-    t.decimal  "StarRating"
-    t.decimal  "PropertyCategory"
-    t.decimal  "HighRate"
-    t.decimal  "LowRate"
-    t.string   "AirportCode"
-    t.string   "City"
-    t.string   "Address1"
-    t.string   "Address2"
-    t.string   "Location"
-    t.string   "Name"
-    t.string   "PostalCode"
-    t.string   "StateProvince"
-    t.string   "PropertyCurrency"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+  create_table "airport_lat_long", primary_key: "AIRPORT", force: :cascade do |t|
+    t.float "LAT"
+    t.float "LONG"
+  end
+
+  add_index "airport_lat_long", ["AIRPORT"], name: "sqlite_autoindex_airport_lat_long_1", unique: true
+
+  create_table "chain", primary_key: "ChainID", force: :cascade do |t|
+    t.string "ChainName"
+  end
+
+  create_table "countries", primary_key: "Code", force: :cascade do |t|
+    t.string "Country"
+    t.string "Area"
+  end
+
+  add_index "countries", ["Code"], name: "sqlite_autoindex_countries_1", unique: true
+
+  create_table "hotels", primary_key: "EANHotelID", force: :cascade do |t|
+    t.integer "SequenceNumber"
+    t.string  "Name"
+    t.string  "Address1"
+    t.string  "Address2"
+    t.string  "City"
+    t.string  "StateProvince"
+    t.string  "PostalCode"
+    t.string  "Country"
+    t.float   "Latitude"
+    t.float   "Longitude"
+    t.string  "AirportCode"
+    t.integer "PropertyCategory"
+    t.string  "PropertyCurrency"
+    t.float   "StarRating"
+    t.string  "Confidence"
+    t.string  "SupplierType"
+    t.string  "Location"
+    t.integer "ChainCodeID"
+    t.integer "RegionID"
+    t.float   "HighRate"
+    t.float   "LowRate"
+    t.float   "CheckInTime"
+    t.float   "CheckOutTime"
+  end
+
+  create_table "hoteltemp", id: false, force: :cascade do |t|
+    t.integer "EANHotelID"
+  end
+
+  create_table "test", id: false, force: :cascade do |t|
+    t.text "EANHotelID,StarRating,AirportCode,RegionID,Country,ChainCodeID,Name,Address1,Address2,City,StateProvince,PostalCode,Latitude,Longitude,PropertyCategory,PropertyCurrency,Location,HighRate,LowRate,,"
   end
 
 end
