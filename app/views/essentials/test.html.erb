@@ -158,7 +158,6 @@ color:red;
 
 
 
-
 <%if @hotelhash == nil || @check != nil then%>
 
 
@@ -171,14 +170,26 @@ color:red;
   <div class="col-md-12 jumbotron">
 
          <div class="col-md-3 short_div" style='font-color:black';">
-          <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control">
-          <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control">
+          <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control" value="<%=@checkin%>">
+          <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control" value="<%=@checkout%>">
 
 
               </div>
 
         <div class="col-md-6 short_div">
-        <p class="errorhandling"><%=@check%></p>
+<% if @check.present? %>
+
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong><%=@check%>
+</div>
+
+
+  <%end%>
+
+
+
+
         </div>
 
 
