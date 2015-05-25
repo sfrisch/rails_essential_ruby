@@ -3,7 +3,14 @@
 <head>
   <title>Hotel Wherever</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
-
+  <%= javascript_include_tag 'application' %>
+  <script>
+/*** Handle jQuery plugin naming conflict between jQuery UI and Bootstrap ***/
+$.widget.bridge('uitooltip', $.ui.tooltip1);
+$.widget.bridge('uibutton', $.ui.button1);
+$.widget.bridge('slider', $.ui.slider1);
+$.widget.bridge('hasDatepicker', $.ui.datepicker2);
+</script>
   <%= csrf_meta_tags %>
 
 <style>
