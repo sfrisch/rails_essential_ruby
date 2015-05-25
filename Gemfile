@@ -19,7 +19,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'activerecord-import'
 # Use jquery as the JavaScript library
 
- gem "twitter-bootstrap-rails"
 
 gem 'jquery-rails'
 
