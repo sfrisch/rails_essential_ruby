@@ -18,6 +18,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'activerecord-import'
 # Use jquery as the JavaScript library
+
+ gem "twitter-bootstrap-rails"
+
 gem 'jquery-rails'
 
 gem 'momentjs-rails', '>= 2.8.1'
