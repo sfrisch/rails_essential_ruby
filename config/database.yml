@@ -21,7 +21,7 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter:postgresql
-  database:d2pc35ph8t112t
-  pool:5
+  adapter: postgresql
+  database: d2pc35ph8t112t
+  pool: 5
   timeout: 5000
