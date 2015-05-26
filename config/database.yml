@@ -25,6 +25,6 @@ test:
   database: hotelwherever
 production:
 
-  <<: *default
+
   url: <%= ENV['postgres://yuhimibbldnbws:IzChp4NYyY_MOy70XX0kAFvvIy@ec2-107-21-114-132.compute-1.amazonaws.com:5432/d2pc35ph8t112t'] %>
 
