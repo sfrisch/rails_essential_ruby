@@ -192,7 +192,7 @@ if @chain != "Any" then
 @chainid = @chainid[0]["ChainID"]
 
 else
-  @chainid ="ChainCodeID"
+  @chainid = "\"ChainCodeID\""
 end
 
 
