@@ -1,0 +1,121 @@
+EANHotelID	SequenceNumber	Name	Address1	Address2	City	StateProvince	PostalCode	Country	Latitude	Longitude	AirportCode	PropertyCategory	PropertyCurrency	StarRating	Confidence	SupplierType	Location	ChainCodeID	RegionID	HighRate	LowRate	CheckInTime	CheckOutTime
+122650	626	Radisson Blu Edwardian Hampshire Hotel	31-36 Leicester Square		London		WC2H 7LH	GB	51.51003	-0.12966	LHR	1	GBP	5	95	ESR	Near Trafalgar Square	2187	2114	602.1329	307.2862		
+121668	629	Leonardo Royal Hotel Köln - Am Stadtwald	Duerener Strasse 287		Cologne		50935	DE	50.92656	6.90439	CGN	1	EUR	4.5	50	ESR	In Cologne (Lindenthal)	2476	821	284.48	239.89		
+313834	631	InterContinental Hotel Mauritius	"Baclava Fort, Coastal Road"		Balaclava			MU	-20.08713	57.51706	MRU	3	EUR	5	52	ESR	Near Turtle Bay Marine Park	66	602196	1018.052	190.8847		
+115203	632	Four Seasons Los Angeles at Beverly Hills	300 S Doheny Dr		Los Angeles	CA	90048	US	34.07289	-118.38969	LAX	1	USD	5	52	ESR	Near Robertson Boulevard	2130	2011	1499.9993	734.9975		
+348041	634	Hoposa Hotel Daina	"Carrer d'Atilio Boveri, 2"		Pollensa		7470	ES	39.90721	3.08298	PMI	1	EUR	4	52	ESR	Near Pollensa Port		4301	257.5231	189.8711		
+199809	636	Pueblo Bonito Sunset Beach Resort & Spa - All Inclusive	Predio Paraiso Escondido S/N		Cabo San Lucas		23450	MX	22.87532	-109.93069	SJD	8	MXN	4.5	52	ESR	Near Las Californias Museum		9631	1466.67	1093.33		
+217919	638	Novotel London ExCeL	7 Western Gateway	Royal Victoria Dock	London		E16 1AA	GB	51.50803	0.02297	LCY	1	GBP	4	80	ESR	Near Excel Exhibition Centre	300	2114	504.8238	191.6878		
+393537	639	Senator Marbella Spa Hotel	Principe Alfonso von Hohenlohe	Parcela 97	Marbella		29600	ES	36.50995	-4.90405	AGP	1	EUR	4	52	ESR	Near Fontanilla Beach	2254	5776	309.5842	71.1938		
+133660	641	"Radisson Royal Hotel, Moscow"	2/1 Kutuzovsky Avenue		Moscow		121248	RU	55.75173	37.56669	SVO	1	RUB	5	96	ESR	In Moscow (Dorogomilovo)	115	2395	541.1893	195.9499		
+245151	642	Paxton Resort & Spa	Rue Joseph Paxton		Ferrieres-en-Brie		77164	FR	48.82824	2.70795	CDG	1	EUR	4	43	ESR	Near Bay 2		10253	187.95	109.88		
+106367	644	JW Marriott Camelback Inn Scottsdale Resort & Spa	5402 E Lincoln Dr		Paradise Valley	AZ	85253	US	33.53364	-111.96525	PHX	3	USD	4.5	90	ESR	Near Camelback Mountain	86	55175	599	279		
+144800	645	Corus Hotel Hyde Park	Lancaster Gate		London		W2 3LG	GB	51.51175	-0.17775	LHR	1	GBP	4	43	ESR	Near Kensington Gardens	2410	2114	268.253	164.6137		
+127967	646	The Leela Goa	Mobor Cavelossim		Cavelossim		403 731	IN	15.15671	73.94961	GOI	1	INR	5	50	ESR	Near Cavelossim Beach		6047749	561.75	184.575		
+312110	647	The Strand Hotel	33 West 37 Street		New York	NY	10018	US	40.75111	-73.985	EWR	1	USD	4	52	ESR	Near Macy's		2621	479	319.0044		
+234913	648	Heritage Awali Golf & Spa Resort	Coastal Road		Bel Ombre			MU	-20.50865	57.41248	MRU	3	EUR	5	52	ESR	Near Heritage Golf Club	2806	6047078	806.8804	443.5525		
+215788	649	Holiday Inn London Camden Lock	30 Jamestown Road		London		NW1 7BY	GB	51.54025	-0.14575	LHR	1	GBP	4	60	ESR	Near London Zoo	56	2114	490.1969	218.0253		
+111768	652	Outrigger Waikiki Beach Resort	2335 Kalakaua Ave		Honolulu	HI	96815	US	21.2773	-157.827	HNL	3	USD	4	89	ESR	Near Honolulu Zoo	102	1488	519.48	319.48		
+392542	653	Quinta Polaris II	Sitio Dos Moinhos		Carvoeiro		8401	PT	37.10216	-8.45985	FAO	16	EUR	4	52	ESR	Near Algar Seco		6023514	75.67	55.09		
+220408	654	Ace Hotel London Shoreditch	100 Shoreditch High Street		London		E1 6JQ	GB	51.52566	-0.07771	LCY	1	GBP	5	30	ESR	In London (The City of London)	3144	2114	452.152	291.1894		
+212583	656	Tivoli Marina Vilamoura	Apartado 65	Marina Vilamoura	Vilamoura		8125 - 901	PT	37.07459	-8.11871	FAO	1	EUR	5	52	ESR	Near Marina Beach	2492	11395	182.2624	160.0402		
+222199	657	Hôtel Concorde Montparnasse	"40, rue du Commandant Mouchotte"		Paris		75014	FR	48.83769	2.31889	ORY	1	EUR	4	38	ESR	Near Tour Montparnasse	2181	2734	206.48	135.97		
+207239	658	Now Sapphire Riviera Cancun All Inclusive	"SM 11, MZ 9, Lote 10"		Puerto Morelos		77580	MX	20.87947	-86.86684	CUN	8	MXN	4	52	ESR	Near Crococun Zoo	2221	180137	338.14	260.26		
+242958	660	The Lake Resort	"Praia Da Falesia, Apartado 811"		Vilamoura		8126	PT	37.07921	-8.12721	FAO	1	EUR	5	52	ESR	Near Vilamoura Marina		11395	398.83	298.81		
+206060	661	Worldhotel Cristoforo Colombo	"Corso Buenos Aires, 3"		Milan			IT	45.47582	9.20639	LIN	1	EUR	4	52	ESR	Near Via della Spiga		2302	280.4812	215.8926		
+210581	663	Hotel Elefant	Sigmund Haffner Gasse 4		Salzburg		5020	AT	47.79971	13.04447	SZG	1	EUR	4	85	ESR	Near Mozart's Birthplace		3350	412.521	226.1131		
+122349	664	Hotel Brunelleschi	Via Flavio Baracchini 12		Milan		20123	IT	45.46125	9.19122	LIN	1	EUR	4	88	ESR	Near La Rinascente		2302	296.8616	250.5936		
+332678	666	Flatiron Hotel	9 West 26th Street		New York	NY	10010	US	40.74393	-73.98938	JFK	1	USD	4	5	ESR	Near Empire State Building		2621	319	229		
+145011	667	Paris Marriott Rive Gauche Hotel & Conference Center	17 Boulevard Saint Jacques		Paris		75014	FR	48.83207	2.33955	ORY	1	EUR	4	35	ESR	Near Cartier Foundation for Contemporary Art	86	2734	338.21	143.13		
+233199	669	The Majestic Hotel	Fira		Santorini		84 700	GR	36.40944	25.43472	JTR	1	EUR	5	52	ESR	Near Museum of Prehistoric Thira		177970	346.7	294.7		
+176705	672	Novotel Paris Les Halles	8 Place Marguerite De Navarre		Paris		75001	FR	48.86061	2.34662	CDG	1	EUR	4	80	ESR	Near Louvre Museum	300	2734	439.9899	304.2821		
+105909	675	Hotel Mediolanum	Via Mauro Macchi 1		Milan		20124	IT	45.48106	9.20373	LIN	1	EUR	4	55	ESR	Near Indro Montanelli Public Gardens		2302	259.7539	173.4944		
+130155	677	Infante Sagres	Praca D. Filipa de Lencastre 62		Porto		4050-259	PT	41.14797	-8.61282	OPO	1	EUR	5	95	ESR	Near Porto Cathedral		2686	250.0457	150.0274		
+109390	678	Hotel de France	Schottenring 3		Vienna		1010	AT	48.21426	16.36317	VIE	1	EUR	5	55	ESR	Near Burgtheater		3704	192.8044	191.8044		
+255275	679	Hotel Certaldo	"via del Molino, 74"		Certaldo		50052	IT	43.54409	11.0354	FLR	1	EUR	4	52	ESR	Near Bocaccio House		603153	230.3523	120.4841		
+207677	680	Globales Pionero Hotel	"Carrer Puig Des Teix, 5"	Santa Ponsa	Calvia		7180	ES	39.51713	2.48413	PMI	1	EUR	4	52	ESR	Near Western Water Park	2755	182299	208.4746	130.6355		
+310285	683	Manava Suite Resort Tahiti	BP 2851 Punavai		Punaauia		98703	PF	-17.60262	-149.61298	PPT	1	XPF	4	52	ESR	By the ocean		180199	308.8209	273.3777		
+218450	686	Crowne Plaza London The City	19 New Bridge Street		London		EC4V 6DB	GB	51.51229	-0.10493	LHR	1	GBP	4	80	ESR	Near St. Paul's Cathedral	256	2114	810.6548	323.3777		
+144665	687	The Blackstone Renaissance Chicago Hotel	636 S Michigan Ave		Chicago	IL	60605	US	41.87337	-87.62428	ORD	1	USD	4	79	ESR	Near Art Institute of Chicago	15	829	349	278		
+365665	688	First Hotel Paris - Tour Eiffel	2 Boulevard Garibaldi		Paris		75015	FR	48.84758	2.30236	CDG	1	EUR	4	52	ESR	In Paris (Eiffel Tower - Orsay Museum)	3194	2734	288.19	220.72		
+126439	690	Eldorado Hotel & Spa	309 W San Francisco Street		Santa Fe	NM	87501	US	35.68806	-105.94203	SAF	1	USD	4	95	ESR	Near Palace of the Governors	3040	3068	299	259		
+120256	691	Night Hotel Theater District	132 West 45th Street		New York	NY	10036	US	40.75735	-73.98407	LGA	1	USD	4	75	ESR	Near Broadway	2839	2621	479	239		
+251412	693	CenterHotel Thingholt	Thingholtsstraeti 3-5		Reykjavik		101	IS	64.14637	-21.93473	KEF	1	ISK	4	52	ESR	Near Hallgrimskirkja	2465	6035025	370.6	248.34		
+360911	696	Solara Resort and Spa	187 Kananaskis Way		Canmore	AB	T1W0A3	CA	51.08275	-115.34255	YYC	1	CAD	4	52	ESR	Near Canmore Museum and Geoscience Centre		10131	183.46	182.46		
+124329	702	Hotel Manin	"Via Daniele Manin,7"		Milan		20121	IT	45.47399	9.19615	LIN	1	EUR	4	52	ESR	Near Armani Megastore		2302	232.3612	231.3612		
+278304	704	Riviera Suites South Beach	318 20th Street		Miami Beach	FL	33139	US	25.79602	-80.13009	MIA	1	USD	4	52	ESR	Near Lincoln Road Mall		8833	258	158		
+234534	705	Aparthotel Viva Mallorca	"Avenida Santa Eulalia, s/n"	Can Picafort	Santa Margalida		7458	ES	39.76742	3.14272	PMI	22	EUR	4	52	ESR	In Santa Margalida (Can Picafort)		6125099	572.5188	108.6725		
+122053	710	Marriott Frenchman's Reef and Morning Star Beach Resort	5 Estate Bakkeroe	Po Box 7100	St Thomas		802	VI	18.32097	-64.92121	STT	3	USD	4	95	ESR	In St. Thomas (Charlotte Amalie)	86	3289	559	399		
+225118	711	Hotel Oriental	Avenida Tomas Cabreira	Praia da Rocha	Portimao		8500 - 802	PT	37.11779	-8.53253	FAO	1	EUR	4	52	ESR	Near Rock Beach		4693	123.0279	83.0152		
+230233	712	Hotel Ancora	"Corso Mameli, 65"		Verbania		28921	IT	45.935	8.57364	MXP	1	EUR	4	52	ESR	In Verbania (Intra)		55450	165.0869	90.6488		
+106298	713	Athens Ledra Hotel	115 Syngrou Avenue		Athens		117 45	GR	37.95723	23.71764	ATH	1	EUR	5	95	ESR	In Athens (Syggrou)		438	1272.63	147.41		
+145446	714	Art Nouveau Palace Hotel	Panska 12		Prague		11121	CZ	50.084	14.42778	PRG	1	CZK	5	52	ESR	Near Old Town Square		2872	220.3397	114.4057		
+217294	715	The Gant - Aspen	610 S. West End		Aspen	CO	81611	US	39.18503	-106.81479	ASE	7	USD	4	52	ESR	Near Aspen Mountain	2090	423	1445	495		
+114179	716	The Rubens At The Palace	39 Buckingham Palace Road		London		SW1W 0PS	GB	51.49842	-0.14316	LHR	1	GBP	4	91	ESR	Near Buckingham Palace	2914	2114	1242.2848	706.741		
+229918	718	Victoria & Alfred Hotel	"Mesa House, Portswood Close"	"Portswood Ridge, V & A Waterfront"	Cape Town		8001	ZA	-33.90602	18.41953	CPT	1	ZAR	4	52	ESR	Near Victoria and Alfred Waterfront	3108	910	382.8326	237.9031		
+136569	719	InterContinental Le Moana Resort Bora Bora	Matira Point	BP 156 Vaitape	Bora Bora		98730	PF	-16.54191	-151.73648	BOB	3	XPF	4	52	ESR	Near Coral Gardens	66	602862	692.68	387		
+234519	720	Europa Royale Vilnius	Ausros Vartu str 6		Vilnius		1129	LT	54.67577	25.28892	VNO	1	LTL	4	52	ESR	Near Gate of the Dawn		3723	125.13	86.33		
+225074	721	Melia Athens	Chalkokondyli 14 and 28th October Av.		Athens		10677	GR	37.98594	23.72984	ATH	1	EUR	4	43	ESR	Near National Archaeological Museum of Athens	2433	438	251.6114	163.4541		
+217088	726	River Terrace Inn - A Noble House Hotel	1600 Soscol Ave		Napa	CA	94559	US	38.30528	-122.28498	SFO	4	USD	4	90	ESR	Near Scientopia Discovery Center	2095	6141	284.0529	227.0497		
+186509	727	Le Chat Noir Design Hotel	68 Boulevard De Clichy		Paris		75018	FR	48.88345	2.33413	ORY	1	EUR	4	52	ESR	Near Moulin Rouge	2697	2734	242.7906	179.1744		
+212872	728	Grand Park Royal Cancun Caribe All Inclusive	Boulevard Kukulkan Km 10.5	Zona Hotelera	Cancun		77500	MX	21.12404	-86.75485	CUN	8	MXN	4	52	ESR	In Cancun (Hotel Zone)		935	743	496		
+233273	729	Corinthia Hotel St. George's Bay	St. Georges Bay		St Julians		STJ 3301	MT	35.92921	14.49012	MLA	3	EUR	5	52	ESR	Near St George's Beach	2792	4217	367.9881	366.9881		
+266195	730	WaterColor Inn & Resort	34 Golden Rod Circle		Santa Rosa Beach	FL	32459	US	30.32204	-86.14467	ECP	23	USD	4	52	ESR	Near Central Square		183118	535.49	495.49		
+121446	731	Clearwater Beach Marriott Suites on Sand Key	1201 Gulf Blvd		Clearwater Beach	FL	33767	US	27.95345	-82.82894	TPA	3	USD	4	90	ESR	Near Sand Key Park	86	10759	289	239		
+121296	733	Best Western Premier Opera Faubourg	49-51 Rue La Fayette		Paris		75009	FR	48.87524	2.3415	CDG	1	EUR	4	52	ESR	Near Galeries Lafayette	17	2734	385.9232	109.4145		
+230150	734	Cambridge Beaches Resort & Spa	30 Kings Point Road Somerset	Mangrove Bay	Sandys			BM	32.30859	-64.8682	BDA	3	USD	4	52	ESR	In Sandys (Somerset Village)		11670	619	219		
+114060	738	Eden Roc Miami Beach	4525 Collins Ave		Miami Beach	FL	33140	US	25.8195	-80.12282	MIA	3	USD	4	90	ESR	In Miami Beach (Mid Beach)	2090	8833	488.9566	368.9672		
+198055	739	Ramla Bay Resort	Marfa L/o Mellieha		Mellieha		MLH 7100	MT	35.98721	14.34833	MLA	3	EUR	4	52	ESR	Near Popeye Village Malta		4804	605.39	115.56		
+105804	742	Sheraton Dubai Creek Hotel & Towers	Baniyas Street	Po Box 4250	Dubai			AE	25.26185	55.3144	DXB	1	AED	5	71	ESR	In Dubai (Deira)	130	6053839	409.75	225.97		
+105429	743	Leonardo Plaza Hotel Jerusalem	47 King George Street Box 7686		Jerusalem		91076	IL	31.7765	35.21754	TLV	1	ILS	5	52	ESR	Near Jerusalem Great Synagogue	2864	1727	509.999	508.999		
+105641	744	B Ocean Resort	1140 Seabreeze Blvd		Fort Lauderdale	FL	33316	US	26.10876	-80.10676	FLL	3	USD	4	95	ESR	Near Port Everglades		1219	439	359		
+425197	745	JA Ocean View Hotel	The Walk Jbr		Dubai		26500	AE	25.07364	55.13022	DXB	1	AED	4	52	ESR	Near The Beach Mall	3103	6053839	724.84	392.12		
+248312	746	Sunrise on the Bund	No 168 Gaoyang Road		Shanghai		200080	CN	31.25311	121.49805	SHA	1	CNY	4.5	52	ESR	In Shanghai (Hong Kou - The North Bund)		3145	447.76	190.06		
+364503	747	"Radisson Royal Hotel, Dubai"	Plot 49 Sheikh Zayed Road	Trade Centre District	Dubai		9940	AE	25.22333	55.2827	DXB	1	AED	5	52	ESR	Near Dubai International Convention and Exhibition Centre	115	6053839	1086.3174	559.4887		
+195400	750	Nordic C Hotel	Vasaplan 4		Stockholm		113 31	SE	59.33222	18.05637	ARN	1	SEK	4	3	ESR	Near Hotorgshallen Food Market	3023	3286	287.8391	140.5216		
+231415	751	Apex City Of London Hotel	1 Seething Lane		London		EC3N 4AX	GB	51.51053	-0.07927	LHR	1	GBP	4	46	ESR	Near Tower of London	2919	2114	730.1735	155.1066		
+168934	752	Hotel Neptun	Sankt Annæ Plads 18-20		Copenhagen		1250	DK	55.68131	12.59207	CPH	1	DKK	4	85	ESR	Near Nyhavn		906	401.3569	339.7369		
+143399	753	Be Live Family Lanzarote Resort	"Av. del Mar, s/n"	Costa Teguise	Teguise		35509	ES	28.98654	-13.5106	ACE	1	EUR	4	52	ESR	In Teguise (Costa Teguise)		5741	119.2747	91.0835		
+125733	754	Hotel Veneto Palace	Via Piemonte 63		Rome		187	IT	41.90861	12.49339	FCO	1	EUR	4	52	ESR	Near Borghese Gallery		3023	688.18	206.46		
+194955	758	Towers Rotana - Dubai	Sheikh Zayed Road		Dubai		30430	AE	25.21274	55.27556	DXB	1	AED	4	52	ESR	In Dubai (Trade Centre 1)	2681	6053839	313.2632	136.1322		
+233043	761	Point Hotel Taksim	Topcu Caddesi No.2 Taksim		Istanbul		34437	TR	41.04052	28.98558	IST	1	TRY	5	93	ESR	Near Taksim Square		1639	412.31	136.95		
+168099	763	Best Western Mornington Hotel	12 Lancaster Gate		London		W2 3LG	GB	51.51188	-0.17828	LHR	1	GBP	4	90	ESR	Near Whiteleys Shopping Centre	17	2114	445.083	164.6192		
+215791	766	New Orly	Gabrielenstr. 6		Munich		80636	DE	48.1491	11.53894	MUC	1	EUR	4	52	ESR	In Munich (Neuhausen - Nymphenburg)		2452	212.044	138.7192		
+196167	768	Saint Patrick's Hotel	29 Marina Street	Xlendi Bay	Munxar		VCT 115	MT	36.0304	14.21804	MLA	1	EUR	4	52	ESR	In Munxar (Gozo)		602230	105.03	75.32		
+410334	769	Chateau Royal Beach Resort and Spa	140 Promenade Roger Laroque	BP 18716	Noumea		98807	NC	-22.30924	166.45017	NOU	1	XPF	4	52	ESR	Near Aquarium des Lagons		2590	307.31	262.9		
+256908	770	Grace Bay Club	Grace Bay Circle Road	P.O. Box 128 Grace Bay	Providenciales			TC	21.78235	-72.20636	PLS	3	USD	5	52	ESR	Near Salt Mills Plaza		2822	1450	630		
+217267	771	Coyaba Beach Resort & Club	Little River		Montego Bay			JM	18.51991	-77.87222	MBJ	3	USD	4	52	ESR	In Montego Bay (Rose Hall)		2222	540	206.88		
+125635	772	Golden Tulip Accra	Liberation Road		Accra		16033	GH	5.59344	-0.18045	ACC	1	GHS	4	52	ESR	Near Accra Mall	213	6297295	795.17	267.18		
+207033	774	Hotel Petit Palace Museum	Diputacio 250		Barcelona		8007	ES	41.38903	2.16517	BCN	1	EUR	4	88	ESR	Near Bulevard Rosa	2238	513	290.5	190.84		
+367111	776	Gloria Hotel and Hotel Apartments	Sheikh Zayed Road		Dubai		502222	AE	25.10295	55.17172	DXB	1	AED	4	52	ESR	Near Wild Wadi Water Park		6053839	353.938	134.7646		
+121059	777	"Radisson Blu Hotel, Nice"	223 Promenade Des Anglais		Nice		6200	FR	43.68429	7.23527	NCE	1	EUR	4	52	ESR	In Nice (Les Baumettes)	2431	2526	719.8894	242.7904		
+107642	779	Marriott London Marble Arch	134 George Street		London		W1H 5DN	GB	51.51637	-0.16407	LHR	1	GBP	4	40	ESR	Near Selfridges	86	2114	554.58	248.76		
+107090	783	Crowne Plaza London - Kensington	100 Cromwell Road		London		SW7 4ER	GB	51.49499	-0.1834	LHR	1	GBP	4	40	ESR	Near Kensington Roof Gardens	256	2114	390.6931	181.4455		
+112771	784	"FireSky Resort & Spa, a Kimpton Hotel"	4925 N Scottsdale Road		Scottsdale	AZ	85251	US	33.50824	-111.92599	PHX	3	USD	4	5	ESR	Near Scottsdale Fashion Square	225	9829	239	199		
+215154	785	Hotel RH Victoria Benidorm	"Avenida de Emilio Ortuno, 20"		Benidorm		3501	ES	38.53905	-0.12633	ALC	1	EUR	4	52	ESR	Near Avenida Martinez Alejos	2723	181363	217.5571	131.8065		
+126606	786	Hotel La Bourdonnais	111 Avenue De La Bourdonnais		Paris		75007	FR	48.8548	2.30458	CDG	1	EUR	4	80	ESR	Near Eiffel Tower	3005	2734	338.21	285.2		
+355605	789	Stella Di Mare Beach Hotel & Spa	Neama Bay		Sharm el Sheikh			EG	27.9048	34.32716	SSH	3	USD	5	52	ESR	Near Naama Bay Beach		6051298	624.9997	194.9957		
+239175	791	Benalmadena Palace	Camino de Gilabert s/n		Benalmadena		29630	ES	36.58571	-4.53596	AGP	22	EUR	4	52	ESR	Near Paloma Park		5734	121.9111	62.8794		
+114076	797	The Capitol Hotel Tokyu	2-10-3 Nagata-cho	Chiyoda-ku	Tokyo		100-0014	JP	35.67403	139.74138	HND	1	JPY	5	3	ESR	Near National Diet Building	651	3593	999.1436	998.1436		
+352611	798	"Langham Place, New York, Fifth Avenue"	400 Fifth Avenue		New York	NY	10018	US	40.75009	-73.98337	JFK	1	USD	5	52	ESR	Near Empire State Building	2585	2621	1325.49	765.49		
+278380	802	Amathus Beach Hotel Rhodes	"Iraklidon Avenue 100, Ixia"		Rhodes		85101	GR	36.42019	28.18753	RHO	1	EUR	5	52	ESR	Near Rhodes Aquarium		11286	221.09	45.22		
+307615	803	Grand Velas Riviera Maya - All Inclusive	Carretera Cancún-Tulum KM 62	Municipio Solaridad	Playa del Carmen		77710	MX	20.67582	-87.02339	CUN	8	USD	5	52	ESR	Near El Camaleon Golf Club		601751	1573.33	982.67		
+207998	807	Globales Club Almirante Farragut	"Avenida Los Delfines, s/n"		Ciudadela de Menorca		7760	ES	39.99913	3.7982	MAH	1	EUR	4	52	ESR	In Ciudadela de Menorca (Los Delfines)	2755	182309	303.0109	97.7629		
+253949	808	Radisson Acqua Hotel & Spa Concon	Av. Borgono 23333		Concon			CL	-32.9188	-71.52336	SCL	1	CLP	4	52	ESR	Near Amarilla Beach	115	6053833	290	150		
+184784	809	Miramar Hotel by Windsor	"Avenida Atlantica, 3668 - Copacabana"		Rio de Janeiro		22070-001	BR	-22.981	-43.1898	GIG	1	BRL	5	52	ESR	Near Arpoador Beach		2998	613.8882	276.0536		
+404973	810	Auris Plaza Hotel	Al Barsha 1	Next to Mall of the Emirates	Dubai		390531	AE	25.11315	55.20091	DXB	1	AED	5	52	ESR	Near Mall of the Emirates	3190	6053839	285.8686	272.2559		
+118511	812	Sofitel LA at Beverly Hills	8555 Beverly Blvd		Los Angeles	CA	90048	US	34.07603	-118.37727	LAX	1	USD	4.5	52	ESR	In Los Angeles (Beverly Hills - West Hollywood)	272	2011	509	319		
+234103	820	Hotel Geranios Suites & Spa	Paseo Maritimo S/N	Caleta de Fuste	Antigua		35630	ES	28.39267	-13.86045	FUE	1	EUR	4	52	ESR	Near Fuerteventura Golf Course		6034060	82.1917	81.1917		
+218758	821	Hotel Straf	Via San Raffaele 3		Milan		20121	IT	45.46501	9.1914	MXP	1	EUR	4	95	ESR	Near Cathedral of Milan		2302	241.68	225.3		
+207646	823	Globales Santa Ponsa Park Hotel	"Puig des Teix, 3"	Santa Ponsa	Calvia		7180	ES	39.51676	2.4835	PMI	1	EUR	4	52	ESR	Near Western Water Park	2755	182299	208.4746	130.6355		
+264003	824	L'Horizon Beach Hotel & Spa	La Route de la Baie		St Brelade		JE3 8EF	GB	49.18485	-2.1934	JER	1	GBP	4	52	ESR	Near Sir Winston Churchill Memorial Gardens	2901	182629	408.25	276.56		
+113313	825	Hotel Park Lane Paris	4 Rue La Boetie		Paris		75008	FR	48.87441	2.31862	CDG	1	EUR	4	3	ESR	Near Parc Monceau		2734	293.9672	202.4066		
+255830	829	Kenwood Inn and Spa	10400 Sonoma Hwy		Kenwood	CA	95452	US	38.40332	-122.53977	SFO	4	USD	4	52	ESR	Near Remick Ridge Vineyards		177541	550	425		
+221018	830	Brentwood Bay Resort & Spa	849 Verdier Ave		Brentwood Bay	BC	V8M1C5	CA	48.57787	-123.46422	YYJ	1	CAD	4.5	52	ESR	Near Butchart Gardens		6034843	334.6259	235.1509		
+404151	831	Hotel Bahía Príncipe Coral Playa	"Carrer Torrenova, 41"		Calvia		7181	ES	39.50975	2.54205	PMI	1	EUR	4	52	ESR	Near Pirates Adventure Show		182299	249.163	182.2759		
+430857	832	Melbourne Short Stay Apartments MP Deluxe	241 City Road		Southbank	VC	3006	AU	-37.82635	144.9597	MEL	16	AUD	4	52	ESR	Near Crown Casino		601789	329.6082	208.2079		
+119255	834	Divani Caravel	"2, Vas. Alexandrou Avenue"		Athens		16121	GR	37.97452	23.7504	ATH	1	EUR	5	52	ESR	Near Benaki Museum		438	381.6687	117.1615		
+360481	837	Biz Apartment Gärdet	Sehlstedtsgatan 4		Stockholm		11528	SE	59.34218	18.1126	ARN	16	SEK	4	52	ESR	In Stockholm (Ladugardsgardet)		3286	191.5181	151.8488		
+257222	1480	Hacienda Encantada Resort & Spa	Kilometro 7.3 Carretera Transpeninsular		Cabo San Lucas		23410	MX	22.90328	-109.84499	SJD	3	MXN	4	52	ESR	Near Monuments Beach		9631	696	296		
+122239	1481	The Clarence	6-8 Wellington Quay		Dublin		2	IE	53.34547	-6.26677	DUB	1	EUR	4	64	ESR	Near Jervis Shopping Center		1069	247.0631	149.7879		
+125862	1482	Grand Hotel Palace	Via Vittorio Veneto 70		Rome		187	IT	41.90693	12.49021	FCO	1	EUR	5	52	ESR	Near Spanish Steps	263	3023	648.43	243.16		

@@ -179,13 +179,14 @@ else
 @maxprice = @pricerange2[1].to_i
 @minprice = @pricerange2[0].to_i
 
-sql = "SELECT Code FROM countries where Area == '#{@region}'"
+sql = "SELECT \"Code\" FROM countries where \"Area\" = '#{@region}'"
 
-@countries = ActiveRecord::Base.connection.execute(sql)
+conn = ActiveRecord::Base.connection
+@countries = ActiveRecord::Base.connection.execute sql
 
 
 if @chain != "Any" then
- sql = "SELECT ChainID FROM chain where ChainName == '#{@chain}'"
+ sql = "SELECT \"ChainID\" FROM chain where \"ChainName\" = '#{@chain}'"
 
 @chainid = ActiveRecord::Base.connection.execute(sql)
 @chainid = @chainid[0]["ChainID"]
@@ -201,7 +202,8 @@ end
 
 @countrylist =  @countrylist.map(&:strip).join("','")
 
-sql = "Select EANHotelID FROM hotels where Country IN ('#{@countrylist}') AND LowRate <= #{@maxprice} AND ChainCodeID IN (#{@chainid})"
+
+sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid}"
 
 @HotelIDS = ActiveRecord::Base.connection.execute(sql)
 
@@ -218,7 +220,6 @@ sql = "Select EANHotelID FROM hotels where Country IN ('#{@countrylist}') AND Lo
 
 @hotelstring = ""
 sqlinsert = ""
-
 
 
 sqldrop = "DROP TABLE hoteltemp"
@@ -249,15 +250,12 @@ if @hotelslist.count > 600 then
     @hotelslist = @hotelslist.sample(600)
 end
 
-@hotelslist =@hotelslist.map(&:inspect).join(', ')
+@hotelslist =@hotelslist.map(&:strip).join(', ')
 
 
 
 
-
-sql = "SELECT hotels.EANHotelID,airport_lat_long.LAT,airport_lat_long.LONG FROM hotels,hoteltemp INNER JOIN airport_lat_long ON airport_lat_long.AIRPORT = hotels.AirportCode where hotels.EANHotelID = hoteltemp.EANHotelID"
-
-
+sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\""
 
 
 @get_latlong = ActiveRecord::Base.connection.execute(sql)
@@ -270,8 +268,6 @@ sql = "SELECT hotels.EANHotelID,airport_lat_long.LAT,airport_lat_long.LONG FROM 
           hotel_search2 = URI.encode(hotel_search)
           @jsonfeed = open(hotel_search2).read
           @hotelhash = JSON.parse(@jsonfeed)
-
-
 
   @baserate = []
   @hotelname = []

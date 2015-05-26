@@ -376,8 +376,8 @@ color:red;
 
 <%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra['tripAdvisorReviewCount']}.reverse!.each do |zebra|%>
 
-<% @LAT = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LAT"]%>
-<% @LONG = @get_latlong.find{|i| i["EANHotelID"] == zebra["hotelId"]}["LONG"]%>
+<% @LAT = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LAT"]%>
+<% @LONG = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LONG"]%>
 
 <input type="hidden" name="LAT" id="LAT" value = "<%=@LAT%>">
 <input type="hidden" name="LONG" id="LONG" value = "<%=@LONG%>">
