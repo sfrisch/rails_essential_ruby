@@ -407,3 +407,6 @@ end
 
 
 
+def contactus
+render('contactus.html.erb')
+end
