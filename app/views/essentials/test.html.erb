@@ -221,7 +221,7 @@ color:red;
         <div class="col-md-2 col-xs-12 col-sm-3 short_div">
 
 <label for = "brand">Brand</label>
-<select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4" value="<%=@chain%>">
+<select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4 .col-xs-4" value="<%=@chain%>">
 <option>Any</option>
 <option>Boscolo</option>
 <option>Fairmont</option>
@@ -251,7 +251,7 @@ color:red;
         <div class="col-md-2 col-xs-12 col-sm-3 short_div">
 
 <label for = "temp">Check-In Temperature</label>
-<select id="temp" class="form-control" name= "temp" placeholder=".col-lg-2">
+<select id="temp" class="form-control" name= "temp" placeholder=".col-lg-2 .col-xs-4">
       <option>Any</option>
       <option>90F+</option>
       <option>80F+</option>
@@ -416,10 +416,10 @@ color:red;
 
 
                               <div class="media">
-                              <div class="media-left media-middle">
- <span class="price">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span>
+                              <div class="media-left media-middle col-xs-12">
+ <span class="price col-xs-12">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall col-xs-12">  rate per night</span></span>
 
-                                    <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"].sub("_t","_d")%>">  </div>
+                                    <div class="media-left col-xs-12"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"].sub("_t","_d")%>">  </div>
 
 
 
