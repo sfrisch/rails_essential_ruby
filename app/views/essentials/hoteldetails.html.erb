@@ -274,7 +274,7 @@ color:red;
 
 
 
-<div class="panel-group col-md-8 col-md-offset-2 column col-xs-12" id="accordion" role="tablist" aria-multiselectable="true" >
+<div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
     <div class="panel panel-default col-xs-12">
 
 
@@ -291,20 +291,20 @@ color:red;
 
 
 
-                              <div class="media col-xs-12">
-                              <div class="media-left media-middle col-xs-12">
+                              <div class="media ">
+                              <div class="media-left media-middle ">
 
                               <% if zebra["RoomImages"] != nil then%>
                                  <% if zebra["RoomImages"]["RoomImage"].class == Array then%>
 
-  <div class="media-left col-xs-12"><img class="media-object col-xs-12" src=<%= zebra["RoomImages"]["RoomImage"][0]["url"]%>></div>
+  <div class="media-left"><img class="media-object " src=<%= zebra["RoomImages"]["RoomImage"][0]["url"]%>></div>
         <%else%>
-  <div class="media-left col-xs-12"><img class="media-object col-xs-12" src="<%= zebra["RoomImages"]["RoomImage"]["url"]%>"></div>
+  <div class="media-left"><img class="media-object " src="<%= zebra["RoomImages"]["RoomImage"]["url"]%>"></div>
                               <%end%><%end%>
 
 
-                              <div class="media-body col-xs-12" style="padding-bottom:0px">
-                                    <h4 class="media-heading col-xs-12"><dt><%= zebra["rateDescription"].html_safe%> <span class="price col-xs-12">$<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span></dt></h4>
+                              <div class="media-body " style="padding-bottom:0px">
+                                    <h4 class="media-heading col-xs-12"><dt><%= zebra["rateDescription"].html_safe%> <span class="price ">$<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span></dt></h4>
 
 
           <dd><%= zebra["locationDescription"]%></dd>

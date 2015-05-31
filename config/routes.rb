@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get("/essentials/1", { :controller => "essentials", :action => "basics_1" })
 
   get("/essentials/2", { :controller => "essentials", :action => "arrays_2" })

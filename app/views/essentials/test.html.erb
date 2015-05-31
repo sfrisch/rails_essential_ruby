@@ -135,7 +135,7 @@ color:red;
 <%if @hotelhash == nil || @check != nil then%>
 
 
-    <form action="/essentials/hotelwherever" method="post", name="hotelsearch">
+    <form action="/essentials/hotelwherever" method="post", name="hotelsearch" role="form">
 
 
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -157,6 +157,7 @@ color:red;
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong><%=@check%>
 </div>
+
 
 
   <%end%>
@@ -219,7 +220,6 @@ color:red;
 
 
         <div class="col-md-2 col-xs-12 col-sm-3 short_div">
-
 <label for = "brand">Brand</label>
 <select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4 .col-xs-4" value="<%=@chain%>">
 <option>Any</option>
@@ -246,37 +246,47 @@ color:red;
 <option>Waldorf Astoria</option>
 <option>Westin</option>
     </select>
+
+
+
+
 </div>
 
-        <div class="col-md-2 col-xs-12 col-sm-3 short_div">
-
-<label for = "temp">Check-In Temperature</label>
-<select id="temp" class="form-control" name= "temp" placeholder=".col-lg-2 .col-xs-4">
-      <option>Any</option>
-      <option>90F+</option>
-      <option>80F+</option>
-      <option>70F+</option>
-      <option>60F+</option>
-      <option>50F+</option>
 
 
+<div class="col-md-2 col-xs-12 col-sm-3 short_div">
+
+<label for = "temp"> Check-In Temperature</label>
+<select id="temp" class="form-control" name="temp" placeholder=".col-lg-4">
+
+        <option>Any</option>
+        <option>90+</option>
+        <option>80+</option>
+        <option>70+</option>
+        <option>60+</option>
+        <option>50+</option>
     </select>
+
 </div>
+
+
+
+
 
 <div class="col-md-2 col-xs-12 col-sm-3 short_div">
 
 <label for = "region">Region</label>
 <select id="region" class="form-control" name="region" placeholder=".col-lg-4" value = "<%=@region%>">
 
-      <option >US</option>
-      <option >Canada</option>
-       <option >Europe</option>
-        <option >South America</option>
-         <option >Asia</option>
-         <option> Latin America and the Caribbean</option>
-         <option >Middle East</option>
-           <option >Australia/Pacific</option>
-           <option >Africa</option>
+      <option>US</option>
+      <option>Canada</option>
+       <option>Europe</option>
+        <option>South America</option>
+         <option>Asia</option>
+         <option>Latin America and the Caribbean</option>
+         <option>Middle East</option>
+           <option>Australia/Pacific</option>
+           <option>Africa</option>
 
     </select>
 
@@ -354,7 +364,7 @@ color:red;
 
 
 
-<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra['tripAdvisorReviewCount']}.reverse!.each do |zebra|%>
+<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
 
 <% @LAT = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LAT"]%>
 <% @LONG = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LONG"]%>
