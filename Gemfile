@@ -58,3 +58,5 @@ gem 'quiet_assets', group: [:test, :development]
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "rails-database-url"
 gem 'mandrill-api'
+gem 'ransack'
+gem 'filterrific'

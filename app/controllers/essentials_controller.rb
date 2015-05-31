@@ -278,8 +278,6 @@ sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"
 
 begin
 
-
-
 if @hotelhash["HotelListResponse"]["HotelList"]["@size"] == "1" then
 
 @hotelhash3["HotelListResponse"]["HotelList"]["HotelSummary"].push(@hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"])
@@ -304,7 +302,6 @@ end
 
 
 @hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"]
-
 
 
 rescue
@@ -410,3 +407,11 @@ end
 def contactus
 render('contactus.html.erb')
 end
+
+
+#TOTAL PRICE DAT
+##<dd class="totalprice"><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"])%></dd>
+
+#<dd><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"])%><span> X </span>
+#<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["NightlyRatesPerRoom"]["@size"]%><span> Nights = </span>
+#<%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@nightlyRateTotal"])%></dd>

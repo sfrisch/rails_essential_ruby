@@ -149,12 +149,7 @@ color:red;
 
 <div id="carousel-example-generic" class="carousel slide">
 <!-- Indicators -->
-<ol class="carousel-indicators">
-<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-<li data-target="#carousel-example-generic" data-slide-to="3"></li>
-</ol>
+
 
 <!-- Wrapper for slides -->
 <div class="carousel-inner">
@@ -275,14 +270,14 @@ color:red;
 
 
 <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
-    <div class="panel panel-default col-xs-12">
+    <div class="panel panel-default">
 
 
 
-          <div class="panel-heading col-xs-12" role="tab" id="heading<%=counter%>">
+          <div class="panel-heading" role="tab" id="heading<%=counter%>">
 
 
-                 <h4 class="panel-title col-xs-12">
+                 <h4 class="panel-title">
 
 
 
@@ -304,7 +299,7 @@ color:red;
 
 
                               <div class="media-body " style="padding-bottom:0px">
-                                    <h4 class="media-heading col-xs-12"><dt><%= zebra["rateDescription"].html_safe%> <span class="price ">$<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span></dt></h4>
+                                    <h4 class="media-heading"><dt><%= zebra["rateDescription"].html_safe%> <span class="price ">$<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span></dt></h4>
 
 
           <dd><%= zebra["locationDescription"]%></dd>
@@ -312,7 +307,7 @@ color:red;
            <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
 
 <div class="amenities"><%==zebra["RoomType"]["descriptionLong"] %></div>
-  <dd><a href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
+  <dd><a class="btn btn-primary" href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
 
 
 
@@ -322,12 +317,12 @@ color:red;
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>" aria-expanded="false" aria-controls="collapse<%=counter%>">
 
 
-<dd>Full Amenities / Further Details</dd>
-
 
 </div>
 
 </dl>
+
+<dd>Full Amenities / Further Details</dd>
 
 
         </a>
@@ -358,11 +353,6 @@ color:red;
     </div>
 
 
-<dd class="totalprice"><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"])%></dd>
-
-<dd><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"])%><span> X </span>
-<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["NightlyRatesPerRoom"]["@size"]%><span> Nights = </span>
-<%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@nightlyRateTotal"])%></dd>
 
 <%counter = counter + 1%>
 
@@ -442,6 +432,12 @@ $("#ex2").slider({});
 
 <script type="text/javascript" >
             $(document).ready(function() {
-        $('.carousel').carousel()
+        $('.carousel').carousel(
+{interval:false}
+          )
+
             });
+
+
+
 </script>

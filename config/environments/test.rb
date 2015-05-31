@@ -47,8 +47,7 @@ config.action_mailer.smtp_settings = {
   :port      => 587,
   :user_name => "simon.frisch@gmail.com",
   :password  => "Ara_h6S5hBKJgM1lwaV_TA"
-  :openssl_verify_mode => 'none'
-  :enable_starttls_auto => true,
+
 }
 
 
