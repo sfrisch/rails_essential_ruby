@@ -25,6 +25,6 @@ Rails.application.routes.draw do
  post("/essentials/hotelwherever", { :controller => "essentials", :action => "hotelwherever" })
 
  post("/essentials/hoteldetails", { :controller => "essentials", :action => "hoteldetails" })
-
+root "essentials#hotelwherever"
 
 end
