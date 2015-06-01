@@ -20,7 +20,7 @@ html, body {
 }
 
 #wrap {
-min-height:100%;
+min-height:60%;
 }
 #main {
   overflow:auto;
@@ -89,9 +89,9 @@ min-height:100%;
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+   <!--    <ul class="nav navbar-nav">
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+       <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -105,7 +105,7 @@ min-height:100%;
           </ul>
         </li>
       </ul>
-
+-->
       <ul class="nav navbar-nav navbar-right"  style="vertical-align=center">
        <%if current_user.present?%>
  <li><a href="/users/edit">Welcome, <%=current_user.email%></a></li>
@@ -116,7 +116,7 @@ min-height:100%;
         <li><a href="/users/sign_in">Sign-In</a></li>
         <li><a href="/users/sign_up">Sign-Up</a></li>
         <%end%>
-        <li class="dropdown">
+     <!--   <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Action</a></li>
@@ -125,11 +125,14 @@ min-height:100%;
             <li class="divider"></li>
             <li><a href="#">Separated link</a></li>
           </ul>
-        </li>
+        </li>  -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+
+
 <%if alert.present?%>
 <div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -161,8 +164,7 @@ min-height:100%;
 </div>
 <footer class="footer" style="color:white">
   <p><a href="/contactus.html"> Contact Us</a></p>
-  <p>FAQ</p>
-  <p>Find Us on Facebook</p>
+  <p><a href="/aboutus.html"> About Us</a></p>
 
 
 </footer>

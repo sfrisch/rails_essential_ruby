@@ -94,7 +94,8 @@ color:red;
 
 
 .bottompadding {border-top:50px;}
-.starcolor {font:red;}
+.starrating {color: red;
+text-decoration: none;}
 
 .form-control{color:black;}
 
@@ -206,16 +207,13 @@ color:red;
         <div class="col-md-1 col-xs-12 col-sm-3 short_div">
 
 <label for = "stars">Stars</label>
-<select id="stars" class="form-control" placeholder=".col-lg-1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+<select id="stars" name="stars" class="form-control" placeholder=".col-lg-1">
       <option>4</option>
+      <option>4.5</option>
       <option>5</option>
-
-
     </select>
 </div>
+
 
 
 
@@ -277,7 +275,7 @@ color:red;
 
 <label for = "region">Region</label>
 <select id="region" class="form-control" name="region" placeholder=".col-lg-4" value = "<%=@region%>">
-
+    <option>Any</option>
       <option>US</option>
       <option>Canada</option>
        <option>Europe</option>
@@ -296,12 +294,13 @@ color:red;
         <div class="col-md-2 col-xs-12 col-sm-3 short_div">
 
 <label for = "Hotel Type">Hotel Type</label>
-<select id="Hotel Type" class="form-control" placeholder=".col-lg-4">
-      <option>City</option>
-      <option>Resort</option>
-      <option>All-Inclusive</option>
-      <option>Other</option>
-
+<select id="hoteltype" name="hoteltype" class="form-control" placeholder=".col-lg-4">
+      <option value=-1>Any</option>
+      <option value=3>Resort</option>
+      <option value=8>All-Inclusive</option>
+      <option value=5>Bed and Breakfast</option>
+      <option value=14>Villa</option>
+       <option value=25>Riad</option>
 
     </select>
 
@@ -438,10 +437,35 @@ color:red;
                                     <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> </dt></h4>
 
           <dd><%= zebra["city"]%></dd>
+
+<%zebra["locationDescription"].gsub! '&gt;','>'%>
+<%zebra["locationDescription"].gsub! '&lt;','<'%>
+
+
           <dd><%= zebra["locationDescription"].html_safe%></dd>
-           <dd ><%= zebra["hotelRating"]%><i class="fa fa-star starrating"></i><i class="fa fa-star starrating"></i></dd>
+           <dd ><%= zebra["hotelRating"]%>
+
+
+<%i = 1 %>
+           <%while i <= zebra["hotelRating"] do%>
+
+           <i class="fa fa-star starrating"></span></i>
+            <%i = i + 1%>
+           <%end%>
+
+           <%if zebra["hotelRating"].floor == zebra["hotelRating"]%>
+           <%else%>
+<i class="fa fa-star-half-o starrating"></i>
+<%end%>
+           </dd>
+
+<%zebra["shortDescription"].gsub! '&gt;','>'%>
+<%zebra["shortDescription"].gsub! '&lt;','<'%>
+
+
+
            <% shortdesc = zebra["shortDescription"].html_safe %>
-  <%=shortdesc[58..-1].html_safe %> <span style="color:blue">...More</span>
+  <%=shortdesc[23..-1].html_safe %> <span style="color:blue">...More</span>
            <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
           <!--<dd><a href=<%= zebra["deepLink"]%> style="color:black">Book Now</a></dd>!-->
 

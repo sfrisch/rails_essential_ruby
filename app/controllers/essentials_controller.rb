@@ -2,8 +2,6 @@ class EssentialsController < ApplicationController
 
 
 
-
-
   def basics_1
     # Strings, integers, variables
     # Simple methods, string interpolation
@@ -153,12 +151,13 @@ require 'date'
 @roomhash = {}
 @city = params['city']
 @hotelslist = []
-@stars = params['stars']
+@stars = params['stars'].to_f
 @adults = params['adults']
 @region = params['region']
 @countrylist = []
 @chain = params['brand']
 @temp = params['temp']
+@hoteltype = params['hoteltype']
 
 case @temp when "90F+" then 90
   when "80F+" then 80
@@ -179,10 +178,22 @@ else
 @maxprice = @pricerange2[1].to_i
 @minprice = @pricerange2[0].to_i
 
+
+if @region != "Any" then
+
 sql = "SELECT \"Code\" FROM countries where \"Area\" = '#{@region}'"
 
 conn = ActiveRecord::Base.connection
 @countries = ActiveRecord::Base.connection.execute sql
+
+else
+sql = "SELECT \"Code\" FROM countries"
+
+conn = ActiveRecord::Base.connection
+@countries = ActiveRecord::Base.connection.execute sql
+
+end
+
 
 
 if @chain != "Any" then
@@ -202,8 +213,14 @@ end
 
 @countrylist =  @countrylist.map(&:strip).join("','")
 
+if @hoteltype == "-1" then
+  @hoteltypeid = "\"PropertyCategory\""
+else
+  @hoteltypeid = @hoteltype
+end
 
-sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid}"
+
+sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid} AND \"StarRating\" >= #{@stars} AND \"PropertyCategory\" = #{@hoteltypeid}"
 
 @HotelIDS = ActiveRecord::Base.connection.execute(sql)
 
@@ -339,8 +356,6 @@ rescue
    end
 
    end
-
-
 
 
 

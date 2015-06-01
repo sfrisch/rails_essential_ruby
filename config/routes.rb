@@ -19,6 +19,9 @@ Rails.application.routes.draw do
  get("/contactus", { :controller => "essentials", :action => "contactus" })
 
 
+ get("/aboutus", { :controller => "essentials", :action => "aboutus" })
+
+
 
  get("/", { :controller => "essentials", :action => "hotelwherever" })
 
