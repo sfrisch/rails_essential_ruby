@@ -19,7 +19,21 @@ html, body {
   height: 100%;
 }
 
-#wrap {
+body {
+  display: table;
+  width: 100%;
+}
+
+.page-row {
+  display: table-row;
+  height: 1px;
+}
+
+.page-row-expanded { height: 100%; }
+
+
+
+#wrapper {
 min-height:100%;
 height:auto;
  margin: 0 auto -100px;
@@ -152,7 +166,7 @@ height:auto;
 <body>
 
 
-<div class="wrapper">
+<div class="page-row page-row-expanded">
 
 <%= yield %>
 
@@ -161,7 +175,7 @@ height:auto;
 
 </body>
 
-<footer class="footer" style="color: white">
+<footer class="footer page-row"" style="color: white">
   <span><dd><a href="/contactus.html"> Contact Us</a></span>
    <span><a href="/aboutus.html"> About Us</a></span>
    <span><a href="http://travel.ian.com/index.jsp?pageName=userAgreement&locale=en_US&cid=489058">Terms and Conditions</a></dd></span>
