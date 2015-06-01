@@ -309,7 +309,7 @@ text-decoration: none;}
 
          <div class="col-md-12 col-xs-12 col-sm-3 short_div" style="padding-top:40px;padding-bottom:40px;text-align:center;">
 
-                <input type="submit" "text="Search" value="Search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 2000);"></a>
+                <input type="submit" "text="Search" value="Search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);"></a>
         </div>
 
 
@@ -412,11 +412,11 @@ text-decoration: none;}
 
 <form id="accordion<%=counter%>" action="/essentials/hoteldetails" method="post" >
 
- <input type="submit" "text="Search" value="Search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 2000);"></a>
 
 
 
-<a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 2000); return false;" style="color:black">
+
+<a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000); return false;" style="color:black">
 
 
 <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
