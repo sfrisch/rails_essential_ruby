@@ -307,6 +307,12 @@ color:red;
            <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
 
 <div class="amenities"><%==zebra["RoomType"]["descriptionLong"] %></div>
+
+
+<%@escapedescription.gsub! '&gt;','>'%>
+
+<% zebra["deepLink"].gsub! 'https://www.travelnow.com/','http://reservations.hotelwherever.com/'%>
+
   <dd><a class="btn btn-primary" href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
 
 
