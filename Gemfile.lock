@@ -74,8 +74,6 @@ GEM
     erubis (2.7.0)
     excon (0.45.3)
     execjs (2.5.2)
-    filterrific (2.0.5)
-      rails (>= 3.1.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -233,7 +231,6 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   devise
-  filterrific
   jbuilder (~> 2.0)
   jquery-rails
   mandrill-api
