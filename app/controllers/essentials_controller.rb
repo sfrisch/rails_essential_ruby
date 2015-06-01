@@ -425,6 +425,9 @@ render('contactus.html.erb')
 end
 
 
+
+
+
 #TOTAL PRICE DAT
 ##<dd class="totalprice"><%= number_to_currency(zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@total"])%></dd>
 
