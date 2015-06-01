@@ -42,3 +42,10 @@
   padding: 7px 9px;
 }
 
+.footer a {color: white}
+
+.footer {color: white;}
+
+.footer {text-align:center}
+.footer span {padding-left:75px;padding-bottom:85px;}
+.footer span dd {padding-top:25px;text-align:center;}

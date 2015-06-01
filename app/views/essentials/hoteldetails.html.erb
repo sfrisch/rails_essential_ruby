@@ -192,7 +192,7 @@ color:red;
 </a>
 </div>
 
-
+<dd style="font-size:12px">It is the responsibility of the hotel chain and/or the individual property to ensure the accuracy of the photos displayed. Hotelwherever is not responsible for any inaccuracies in the photos.</dd>
 
 </div>
 
@@ -302,16 +302,17 @@ color:red;
                                     <h4 class="media-heading"><dt><%= zebra["rateDescription"].html_safe%> <span class="price ">$<%= zebra["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]%><span class="pricesmall">  rate per night</span></span></dt></h4>
 
 
+
           <dd><%= zebra["locationDescription"]%></dd>
+
+
+
 
            <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
 
 <div class="amenities"><%==zebra["RoomType"]["descriptionLong"] %></div>
 
-
-<%@escapedescription.gsub! '&gt;','>'%>
-
-<% zebra["deepLink"].gsub! 'https://www.travelnow.com/','http://reservations.hotelwherever.com/'%>
+<dd class="amenities"><%= if zebra["RateInfos"]["RateInfo"]["nonRefundable"] == TRUE then "Non Refundable" end%></dd>
 
   <dd><a class="btn btn-primary" href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
 
@@ -328,7 +329,7 @@ color:red;
 
 </dl>
 
-<dd>Full Amenities / Further Details</dd>
+<dd class="amenities">Full Amenities / Further Details >></dd>
 
 
         </a>
@@ -351,10 +352,16 @@ color:red;
 
 
 
+     <dd><%= @roomhash["HotelRoomAvailabilityResponse"]["checkInInstructions"].html_safe%></dd>
+
 
 <b>Cancellation Policy</b>
 
           <dd><%= zebra["RateInfos"]["RateInfo"]["cancellationPolicy"].html_safe%></dd>
+          <dd></dd>
+          <dd>The room rates listed are for double occupancy per room unless otherwise stated and exclude tax recovery charges and service fees.</dd>
+
+
       </div>
     </div>
 

@@ -75,7 +75,7 @@ require 'open-uri'
 hotel = params["hotelid"]
 @checkin = params["checkin"]
 @checkout = params["checkout"]
-@adults = params["adults"]
+@adults = params["adults"].to_i
 
 room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA48-36A9-1691-4D22-6DCC95E913AA&xml=<HotelRoomAvailabilityRequest>
 <hotelId>#{hotel}</hotelId>
@@ -83,9 +83,7 @@ room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&mino
 <departureDate>#{@checkout}</departureDate>
 <RoomGroup>
 <Room>
-<numberOfAdults>
-#{@adults}
-</numberOfAdults>
+<numberOfAdults>#{@adults}</numberOfAdults>
 </Room>
 </RoomGroup>
 <includeRoomImages>true</includeRoomImages>
@@ -118,9 +116,7 @@ jsonfeedsum = open(hotel_summary2).read
 @hotelsummary = JSON.parse(jsonfeedsum)
 
 
-
 render('hoteldetails.html.erb')
-
 
 end
 
