@@ -20,12 +20,13 @@ html, body {
 }
 
 #wrap {
-min-height:60%;
+min-height:100%;
+height:auto;
+ margin: 0 auto -100px;
+    padding-bottom: 100px;
 }
-#main {
-  overflow:auto;
-  padding-bottom:100px; /* this needs to be bigger than footer height*/
-}
+
+
 
 .footer {
   position: relative;
@@ -148,24 +149,22 @@ min-height:60%;
 </div>
 <%end%>
 
+<body>
 
+
+<div class="wrapper">
 
 <%= yield %>
 
-
+</div>
 
 
 </body>
 
-<div id="wrap">
-  <div id="main" class="container clear-top">
-    <p></p>
-  </div>
-</div>
 <footer class="footer" style="color: white">
-  <span><a href="/contactus.html"> Contact Us</a></span>
+  <span><dd><a href="/contactus.html"> Contact Us</a></span>
    <span><a href="/aboutus.html"> About Us</a></span>
-   <span><a href="http://travel.ian.com/index.jsp?pageName=userAgreement&locale=en_US&cid=489058">Terms and Conditions</a></span>
+   <span><a href="http://travel.ian.com/index.jsp?pageName=userAgreement&locale=en_US&cid=489058">Terms and Conditions</a></dd></span>
 
   <span><dd> US and Canada: 1-800-780-5733 Europe: 00-800-11-20-11-40 Promo Code 489058</dd></span>
 
