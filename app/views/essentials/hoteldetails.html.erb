@@ -300,7 +300,7 @@ color:red;
 
 <dd class="amenities"><%= if zebra["RateInfos"]["RateInfo"]["nonRefundable"] == TRUE then "Non Refundable" end%></dd>
 
-  <dd><a class="btn btn-primary" onClick="ga('send', 'event', 'Button', 'Click', 'Booking');" href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
+  <dd><a class="btn btn-primary" onClick="ga('send', 'event', 'Booking', 'Click', 'Booking');" href=<%= zebra["deepLink"].html_safe%>>Book Now</a></dd>
 
 
 

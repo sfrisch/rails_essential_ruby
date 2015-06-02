@@ -293,7 +293,7 @@ text-decoration: none;}
 
          <div class="col-md-12 col-xs-12 col-sm-3 short_div" style="padding-top:40px;padding-bottom:40px;text-align:center;">
 
-                <input type="submit" "text="Search" value="Search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);"></a>
+                <input type="submit" "text="Search" value="Search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);ga('send', 'event', 'Search', 'Click', 'Search');"></a>
         </div>
 
 
@@ -400,7 +400,7 @@ text-decoration: none;}
 
 
 
-<a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000); return false;" style="color:black">
+<a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000);"ga('send', 'event', 'Rooms', 'Click', 'Booking'); return false;" style="color:black">
 
 
 <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
@@ -474,7 +474,7 @@ text-decoration: none;}
         </a>
 
     </div>
-    <div id="collapse<%=counter%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%=counter%>">
+    <div id="collapse<%=counter%>" class="panel-collapse collapse" onClick="ga('send', 'event', 'Booking', 'Click', 'Booking');" role="tabpanel" aria-labelledby="heading<%=counter%>">
       <div class="panel-body">
 
 
