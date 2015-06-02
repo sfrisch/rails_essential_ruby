@@ -77,7 +77,7 @@ hotel = params["hotelid"]
 @checkout = params["checkout"]
 @adults = params["adults"].to_i
 
-room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelRoomAvailabilityRequest>
+room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA48-36A9-1691-4D22-6DCC95E913AA&xml=<HotelRoomAvailabilityRequest>
 <hotelId>#{hotel}</hotelId>
 <arrivalDate>#{@checkin}</arrivalDate>
 <departureDate>#{@checkout}</departureDate>
@@ -97,7 +97,7 @@ jsonfeed2 = open(room_search2).read
 
 
 
-hotel_detail ="http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&currencyCode=USD&xml=<HotelRoomAvailabilityRequest><hotelId>#{hotel}</hotelId><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults></Room></RoomGroup><includeRoomImages>true</includeRoomImages><options>HOTEL_IMAGES</options></HotelRoomAvailabilityRequest>"
+hotel_detail ="http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA4E-3EF4-5B91-4D42-AAC276090292&xml=<HotelRoomAvailabilityRequest><hotelId>#{hotel}</hotelId><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults></Room></RoomGroup><includeRoomImages>true</includeRoomImages><options>HOTEL_IMAGES</options></HotelRoomAvailabilityRequest>"
 
 
 hotel_detail2 = URI.encode(hotel_detail)
@@ -105,7 +105,7 @@ jsonfeed3 = open(hotel_detail2).read
 @hoteldetailhash = JSON.parse(jsonfeed3)
 
 
-hotel_summary ="http://api.ean.com/ean-services/rs/hotel/v3/info?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelInformationRequest>
+hotel_summary ="http://api.ean.com/ean-services/rs/hotel/v3/info?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.135+Safari/537.36&customerSessionId=0ABAAA48-36A9-1691-4D22-6DCC95E913AA&xml=<HotelInformationRequest>
 <hotelId>#{hotel}</hotelId>
 <options>0</options>
 </HotelInformationRequest>"
@@ -279,7 +279,7 @@ sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"
 @get_latlong = ActiveRecord::Base.connection.execute(sql)
 
 
-          hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
+          hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&customerIpAddress=10.187.20.19&customerUserAgent=Mozilla/5.0+(Windows+NT+6.1)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/42.0.2311.90+Safari/537.36&customerSessionId=&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
 
 
 
