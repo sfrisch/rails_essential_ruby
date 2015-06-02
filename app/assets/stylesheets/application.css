@@ -47,5 +47,6 @@
 .footer {color: white;}
 
 .footer {text-align:center}
-.footer span {padding-left:75px;text-align:center;}
-.footer span dd {text-align:center;}
+.footer span {padding-left:75px;text-align:center;
+.footer span break {width:100%;}
+

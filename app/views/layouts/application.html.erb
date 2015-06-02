@@ -19,23 +19,24 @@ $.widget.bridge('hasDatepicker', $.ui.datepicker2);
 
 <style>
 
+* {
+margin: 0;
+}
+html, body {
+height: 100%;
+}
+.wrapper {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -4em;
+}
+.footer, .push {
+height: 4em;
+background-color:#5e5e5e;
 
-html {
-  position: relative;
-  min-height: 100%;
 }
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 200px;
-}
-.footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 180px;
- background-color:#5e5e5e;
-}
+
 
 
 
@@ -74,7 +75,11 @@ body {
 
 
 </head>
+
+
 <body>
+
+   <div class="wrapper">
 
 
 
@@ -94,9 +99,9 @@ body {
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
    <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-       <li><a href="https://travelnow.com/selfService/searchform?cid=489058&lang=en">My Reservations</a></li>
-        <li class="dropdown">
+    <!--    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+
+     <!--   <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Action</a></li>
@@ -107,10 +112,11 @@ body {
             <li class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
 
       <ul class="nav navbar-nav navbar-right"  style="vertical-align=center">
+       <li><a href="https://travelnow.com/selfService/searchform?cid=489058&lang=en">My Reservations</a></li>
        <%if current_user.present?%>
  <li><a href="/users/edit">Welcome, <%=current_user.email%></a></li>
 <%end%>
@@ -137,6 +143,12 @@ body {
 
 
 
+
+
+
+
+
+
 <%if alert.present?%>
 <div class="alert alert-danger alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -153,30 +165,25 @@ body {
 <%end%>
 
 
-
-
 <%= yield %>
+
+   <div class="push"></div>
+</div>
+
+<div class="footer">
+
+  <span><a href="/contactus.html"> Contact Us</a></span>
+<span><a href="/aboutus.html"> About Us</a></span>
+   <span><a href="http://travel.ian.com/index.jsp?pageName=userAgreement&locale=en_US&cid=489058">Terms and Conditions</a></span>
+<span class="break"></span>
+   <span>US and Canada: 1-800-780-5733 Europe: 00-800-11-20-11-40 Promo Code 489058</span>
+<br>
+<span> © 2015 HotelWherever™ All rights reserved.</span>
+</div>
 
 
 
 </body>
-
-
-    <footer class="footer">
-      <div class="container">
-
-  <span><dd><a href="/contactus.html"> Contact Us</a></span>
-   <span ><a href="/aboutus.html"> About Us</a></span>
-   <span><a href="http://travel.ian.com/index.jsp?pageName=userAgreement&locale=en_US&cid=489058">Terms and Conditions</a></dd></span>
-
-  <span><dd> US and Canada: 1-800-780-5733 Europe: 00-800-11-20-11-40 Promo Code 489058</dd></span>
-
-
-  <span><dd> © 2015 HotelWherever™ All rights reserved.</dd></span>
-
-
-  </div>
-</footer>
 
 
 
