@@ -118,7 +118,7 @@ text-decoration: none;}
 <%if @hotelhash == nil || @check != nil then%>
 
 
-    <form action="/essentials/hotelwherever" method="post", name="hotelsearch" role="form">
+    <form action="/essentials/hotelwherever" method="get", name="hotelsearch" role="form">
 
 
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
