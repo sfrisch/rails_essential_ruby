@@ -76,6 +76,24 @@ hotel = params["hotelid"]
 @checkin = params["checkin"]
 @checkout = params["checkout"]
 @adults = params["adults"].to_i
+@children = params["children"].to_i
+@age1 = params["age1"].to_i
+@age2 = params["age2"].to_i
+@age3 = params["age3"].to_i
+
+#@agelist = ""
+#for i in 1..@children
+#  @agelist = "@age" + i.to_s
+#end
+
+#@agelist
+
+
+#A
+#{@minprice}
+
+#@agelist =@hotelslist.map(&:strip).join(', ')
+
 
 room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelRoomAvailabilityRequest>
 <hotelId>#{hotel}</hotelId>
@@ -84,6 +102,7 @@ room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&mino
 <RoomGroup>
 <Room>
 <numberOfAdults>#{@adults}</numberOfAdults>
+<numberOfChildren>#{@children}</numberOfChildren>
 </Room>
 </RoomGroup>
 <includeRoomImages>true</includeRoomImages>
@@ -97,7 +116,7 @@ jsonfeed2 = open(room_search2).read
 
 
 
-hotel_detail ="http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&currencyCode=USD&xml=<HotelRoomAvailabilityRequest><hotelId>#{hotel}</hotelId><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults></Room></RoomGroup><includeRoomImages>true</includeRoomImages><options>HOTEL_IMAGES</options></HotelRoomAvailabilityRequest>"
+hotel_detail ="http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&currencyCode=USD&xml=<HotelRoomAvailabilityRequest><hotelId>#{hotel}</hotelId><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren></Room></RoomGroup><includeRoomImages>true</includeRoomImages><options>HOTEL_IMAGES</options></HotelRoomAvailabilityRequest>"
 
 
 hotel_detail2 = URI.encode(hotel_detail)
@@ -154,11 +173,18 @@ require 'date'
 @hotelslist = []
 @stars = params['stars'].to_f
 @adults = params['adults']
+@children = params['children']
 @region = params['region']
 @countrylist = []
 @chain = params['brand']
 @temp = params['temp']
 @hoteltype = params['hoteltype']
+@age1 = params["age1"].to_i
+@age2 = params["age2"].to_i
+@age3 = params["age3"].to_i
+
+
+
 
 case @temp when "90F+" then 90
   when "80F+" then 80
@@ -279,7 +305,7 @@ sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"
 @get_latlong = ActiveRecord::Base.connection.execute(sql)
 
 
-          hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
+          hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
 
 
 

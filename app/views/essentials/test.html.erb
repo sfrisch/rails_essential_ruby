@@ -26,9 +26,10 @@ body{  font-family: 'Lato', sans-serif;}
                 font-weight: 900;
          background-color:#336666;
          color:white;
-         background-image:url("http://upload.wikimedia.org/wikipedia/commons/c/c7/Palazzo_Versace_Gold_Coast_-_Panoramic_View.jpg");
+         background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("http://upload.wikimedia.org/wikipedia/commons/c/c7/Palazzo_Versace_Gold_Coast_-_Panoramic_View.jpg");
  background-size: cover;
     }
+
 
 .footerstyle
 
@@ -44,7 +45,7 @@ height: 200px;
 .meddiv {height:100px;}
 
 .short_div {
-  color:black;
+  color:white;
     height:80px;
 }
 .matchpadding{padding-top:50px;
@@ -81,7 +82,12 @@ float:right;
     padding-bottom: 10px;}
 }
 
+.age1{display:none;}
 
+.age2{display:none;}
+
+
+.age3{display:none;}
 
 .errorhandling {
 color:red;
@@ -180,6 +186,21 @@ text-decoration: none;}
 
     </select>
 </div>
+
+
+<div class="col-md-1 col-xs-12 col-sm-3 short_div children">
+
+<label for = "children">Children</label>
+<select id="children" name="children" class="form-control" placeholder=".col-lg-1">
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+
+
+    </select>
+
+    </div>
 
 
 
@@ -287,6 +308,104 @@ text-decoration: none;}
     </select>
 
         </div>
+
+<div class="row">
+        <div class="col-md-2 col-xs-12 col-sm-3 short_div age1">
+<label for = "age1">Child 1 Age</label>
+<select id="age1" name="age1" class="form-control" placeholder=".col-lg-1">
+<option value=null selected="TRUE">Age</option>
+      <option value=0>Under 1</option>
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+      <option value=5>5</option>
+      <option value=6>6</option>
+      <option value=7>7</option>
+      <option value=8>8</option>
+      <option value=9>9</option>
+      <option value=10>10</option>
+      <option value=11>11</option>
+      <option value=12>12</option>
+      <option value=13>13</option>
+      <option value=14>14</option>
+      <option value=15>15</option>
+      <option value=16>16</option>
+      <option value=17>17</option>
+    </select>
+</div>
+
+
+
+
+        <div class="col-md-2 col-xs-12 col-sm-3 short_div age2">
+<label for = "age2">Child 2 Age</label>
+<select id="age2" name="age2" class="form-control" placeholder=".col-lg-1">
+<option value=null selected="TRUE">Age</option>
+            <option value=0>Under 1</option>
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+      <option value=5>5</option>
+      <option value=6>6</option>
+      <option value=7>7</option>
+      <option value=8>8</option>
+      <option value=9>9</option>
+      <option value=10>10</option>
+      <option value=11>11</option>
+      <option value=12>12</option>
+      <option value=13>13</option>
+      <option value=14>14</option>
+      <option value=15>15</option>
+      <option value=16>16</option>
+      <option value=17>17</option>
+
+
+    </select>
+</div>
+
+
+        <div class="col-md-2 col-xs-12 col-sm-3 short_div age3">
+<label for = "age3">Child 3 Age</label>
+<select id="age3" name="age3" class="form-control" placeholder=".col-lg-1" >
+<option value selected="TRUE">Age</option>
+           <option value=0>Under 1</option>
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+      <option value=5>5</option>
+      <option value=6>6</option>
+      <option value=7>7</option>
+      <option value=8>8</option>
+      <option value=9>9</option>
+      <option value=10>10</option>
+      <option value=11>11</option>
+      <option value=12>12</option>
+      <option value=13>13</option>
+      <option value=14>14</option>
+      <option value=15>15</option>
+      <option value=16>16</option>
+      <option value=17>17</option>
+
+
+
+    </select>
+</div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
 
 
 
@@ -500,6 +619,10 @@ Date: <%=weather["dateconverted"]%>
 <input value ="<%=@checkin%>" name="checkin" type="hidden">
 <input value ="<%=@checkout%>" name="checkout" type="hidden">
 <input value ="<%=@adults%>" name="adults" type="hidden">
+<input value ="<%=@children%>" name="children" type="hidden">
+<input value ="<%=@age1%>" name="age1" type="hidden">
+<input value ="<%=@age2%>" name="age2" type="hidden">
+<input value ="<%=@age3%>" name="age3" type="hidden">
 
 
   </div>
@@ -647,6 +770,25 @@ $("#ex2").on("slide", function(slideEvt) {
    });
 
 
+$("#children").change(function(){
+
+var ageselection = document.getElementById('children').value;
+$(".age1").hide();
+$(".age2").hide();
+$(".age3").hide();
+
+
+
+for (i=1; i <= ageselection;i++) {
+    $(".age" + i).show();
+}
+
+
+});
+
+
+
+
 var waitingDialog = (function ($) {
 
     // Creating modal dialog's DOM
@@ -699,6 +841,7 @@ var waitingDialog = (function ($) {
   }
 
 })(jQuery);
+
 
 
 
