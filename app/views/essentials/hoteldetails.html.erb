@@ -294,7 +294,6 @@ color:red;
 
 
 
-           <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
 
 <div class="amenities"><%==zebra["RoomType"]["descriptionLong"] %></div>
 
@@ -341,13 +340,18 @@ color:red;
      <dd><%= @roomhash["HotelRoomAvailabilityResponse"]["checkInInstructions"].html_safe%></dd>
 
 
+
+
+
+
 <b>Cancellation Policy</b>
 
           <dd><%= zebra["RateInfos"]["RateInfo"]["cancellationPolicy"].html_safe%></dd>
           <dd></dd>
           <dd>The room rates listed are for double occupancy per room unless otherwise stated and exclude tax recovery charges and service fees.</dd>
+          <p>
            <p>You will be charged the total amount of your reservation at booking.</p>
-            <p>All prices are in $(USD)</p>
+            <p>All prices are in $(USD) unless otherwise stated.</p>
 
 
       </div>
