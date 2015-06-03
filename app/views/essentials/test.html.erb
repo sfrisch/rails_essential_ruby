@@ -546,7 +546,7 @@ text-decoration: none;}
 
           <dd><%= zebra["locationDescription"].html_safe%></dd>
            <dd ><%= zebra["hotelRating"]%>
-            <dd ><%= if zebra["supplierType"] == "E" then "Online Only!" end%></dd>
+            <dd ><%= if zebra["supplierType"] != "E" then "Online Only!" end%></dd>
 
 
 <%i = 1 %>
