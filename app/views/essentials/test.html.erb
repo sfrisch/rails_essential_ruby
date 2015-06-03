@@ -313,7 +313,7 @@ text-decoration: none;}
         <div class="col-md-2 col-xs-12 col-sm-3 short_div age1">
 <label for = "age1">Child 1 Age</label>
 <select id="age1" name="age1" class="form-control" placeholder=".col-lg-1">
-<option value=null selected="TRUE">Age</option>
+<option value="null" selected="TRUE">Age</option>
       <option value=0>Under 1</option>
       <option value=1>1</option>
       <option value=2>2</option>
@@ -341,7 +341,7 @@ text-decoration: none;}
         <div class="col-md-2 col-xs-12 col-sm-3 short_div age2">
 <label for = "age2">Child 2 Age</label>
 <select id="age2" name="age2" class="form-control" placeholder=".col-lg-1">
-<option value=null selected="TRUE">Age</option>
+<option value="null" selected="TRUE">Age</option>
             <option value=0>Under 1</option>
       <option value=1>1</option>
       <option value=2>2</option>
@@ -369,7 +369,7 @@ text-decoration: none;}
         <div class="col-md-2 col-xs-12 col-sm-3 short_div age3">
 <label for = "age3">Child 3 Age</label>
 <select id="age3" name="age3" class="form-control" placeholder=".col-lg-1" >
-<option value selected="TRUE">Age</option>
+<option value ="null" selected="TRUE">Age</option>
            <option value=0>Under 1</option>
       <option value=1>1</option>
       <option value=2>2</option>
@@ -403,9 +403,6 @@ text-decoration: none;}
 
 
     </div>
-
-
-
 
 
 
@@ -529,6 +526,9 @@ text-decoration: none;}
                  <h4 class="panel-title">
                       <dl>
 
+
+
+<p><%= @agestring %></p>
 
                               <div class="media">
                               <div class="media-left media-middle col-xs-12">
