@@ -95,7 +95,7 @@ end
 
 
 
-room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelRoomAvailabilityRequest>
+room_search = "http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelRoomAvailabilityRequest>
 <hotelId>#{hotel}</hotelId>
 <arrivalDate>#{@checkin}</arrivalDate>
 <departureDate>#{@checkout}</departureDate>
@@ -117,7 +117,7 @@ jsonfeed2 = open(room_search2).read
 
 
 
-hotel_detail ="http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&currencyCode=USD&xml=<HotelRoomAvailabilityRequest><hotelId>#{hotel}</hotelId><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren><childAges>#{@agestring}</childAges></Room></RoomGroup><includeRoomImages>true</includeRoomImages><options>HOTEL_IMAGES</options></HotelRoomAvailabilityRequest>"
+hotel_detail ="http://api.ean.com/ean-services/rs/hotel/v3/avail?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&currencyCode=USD&xml=<HotelRoomAvailabilityRequest><hotelId>#{hotel}</hotelId><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren><childAges>#{@agestring}</childAges></Room></RoomGroup><includeRoomImages>true</includeRoomImages><options>HOTEL_IMAGES</options></HotelRoomAvailabilityRequest>"
 
 
 hotel_detail2 = URI.encode(hotel_detail)
@@ -125,7 +125,7 @@ jsonfeed3 = open(hotel_detail2).read
 @hoteldetailhash = JSON.parse(jsonfeed3)
 
 
-hotel_summary ="http://api.ean.com/ean-services/rs/hotel/v3/info?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelInformationRequest>
+hotel_summary ="http://api.ean.com/ean-services/rs/hotel/v3/info?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelInformationRequest>
 <hotelId>#{hotel}</hotelId>
 <options>0</options>
 </HotelInformationRequest>"
@@ -318,7 +318,7 @@ sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"
 @get_latlong = ActiveRecord::Base.connection.execute(sql)
 
 
-          hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_EN&_type=json&currencyCode=USD&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren><childAges>#{@agestring}</childAges></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
+          hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren><childAges>#{@agestring}</childAges></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
 
 
 

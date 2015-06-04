@@ -217,6 +217,8 @@ color:red;
 <%charbreak = @escapedescription.index("</p>") + 3%>
    <div class="panel-body">
 <%==@escapedescription[0..charbreak]%>
+
+
 <a data-toggle="collapse" data-parent="#accordion" href="#collapsesum" aria-expanded="false" aria-controls="collapsesum">
 
 
@@ -236,6 +238,13 @@ color:red;
 
 
 <%==@escapedescription[charbreak+1..-1]%>
+
+<b>Hotel Policy</b>
+<dd><p><%=@hotelsummary["HotelInformationResponse"]["HotelDetails"]["hotelPolicy"]%></p></dd>
+
+
+<b><p>Check-In Time: </b><%=@hotelsummary["HotelInformationResponse"]["HotelDetails"]["checkInTime"]%></p>
+<b><p>Check-Out Time: </b><%=@hotelsummary["HotelInformationResponse"]["HotelDetails"]["checkOutTime"]%></p>
 
 
 
@@ -292,9 +301,6 @@ color:red;
           <dd><%= zebra["locationDescription"]%></dd>
 
 
-
-
-
 <div class="amenities"><%==zebra["RoomType"]["descriptionLong"] %></div>
 
 <dd class="amenities"><%= if zebra["RateInfos"]["RateInfo"]["nonRefundable"] == TRUE then "Non Refundable" else "Refundable" end%></dd>
@@ -341,19 +347,16 @@ color:red;
 
 
 
-
-
-
 <b>Cancellation Policy</b>
 
           <dd><%= zebra["RateInfos"]["RateInfo"]["cancellationPolicy"].html_safe%></dd>
-          <dd></dd>
+
           <dd>The room rates listed are for double occupancy per room unless otherwise stated and exclude tax recovery charges and service fees.</dd>
-          <p>
+
+<dd><b>Other</b></dd>
            <p>You will be charged the total amount of your reservation at booking.</p>
-            <p>All prices are in $(USD) unless otherwise stated.</p>
-
-
+            <p>All prices are in $(USD) unless otherwise stated. </p>
+<dd>All displayed prices exclude taxes Tax Recovery Charges and Service Fees</dd>
       </div>
     </div>
 
@@ -376,6 +379,7 @@ color:red;
 <%end%>
 
 </div>
+
 
 
 
