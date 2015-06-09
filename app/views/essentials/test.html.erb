@@ -124,7 +124,7 @@ text-decoration: none;}
 <%if @hotelhash == nil || @check != nil then%>
 
 
-    <form action="/essentials/hotelwherever" method="get", name="hotelsearch" role="form">
+    <form action="/essentials/hotelwherever" method="get", name="hotelsearch" id="hotelsearch" role="form">
 
 
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -186,6 +186,7 @@ text-decoration: none;}
 
     </select>
 </div>
+
 
 
 <div class="col-md-1 col-xs-12 col-sm-3 short_div children">
@@ -293,6 +294,8 @@ text-decoration: none;}
 
 
         </div>
+
+
 
         <div class="col-md-2 col-xs-12 col-sm-3 short_div">
 
@@ -409,10 +412,8 @@ text-decoration: none;}
 
          <div class="col-md-12 col-xs-12 col-sm-3 short_div" style="padding-top:40px;padding-bottom:40px;text-align:center;">
 
-                <input type="submit" "text="Search" value="Search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);ga('send', 'event', 'Search', 'Click', 'Search');"></a>
+                <input type="button" "text="Search" value="Search" id="search" name="search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);ga('send', 'event', 'Search', 'Click', 'Search');"></a>
         </div>
-
-
 
 
 
@@ -657,7 +658,8 @@ Date: <%=weather["dateconverted"]%>
 
 <%if counterbinary==1 then %>
 <div class="panel-group col-md-8 col-md-offset-2">
-<p>All displayed prices exclude taxes Tax Recovery Charges and Service Fees</p>
+<p>All displayed prices exclude Tax Recovery Charges and Service Fees</p>
+
 <div id="map-canvas" style="height:600px">
 </div>
 </div>
@@ -772,6 +774,46 @@ $("#ex2").on("slide", function(slideEvt) {
      $( "#checkout" ).datepicker();
    });
 
+$("#search").click(function(){
+
+var checkin = document.getElementById('checkin').value;
+var checkout = document.getElementById('checkout').value;
+var region = document.getElementById('region').value;
+var brand = document.getElementById('brand').value;
+var stars = document.getElementById('stars').value;
+var temp = document.getElementById('temp').value;
+var hoteltype = document.getElementById('hoteltype').value;
+var pricerange = document.getElementById('ex2').value;
+
+var adults = document.getElementById('adults').value;
+var children1 = document.getElementById('children').value;
+var age1a = document.getElementById('age1').value;
+var age2a = document.getElementById('age2').value;
+var age3a = document.getElementById('age3').value;
+
+
+var searchstring2 = [checkin,checkout,region,brand,stars,temp,hoteltype,pricerange,adults,children1,age1a,age2a,age3a];
+
+var searchstring3 = searchstring2.join('|');
+
+
+
+var input = $("<input>")
+               .attr("type", "hidden")
+               .attr("name", "searchstring").val(searchstring3)
+               .attr("class","form-control");
+$('#hotelsearch').append($(input));
+
+
+$("#hotelsearch").submit();
+
+
+});
+
+
+
+
+
 
 $("#children").change(function(){
 
@@ -788,6 +830,13 @@ for (i=1; i <= ageselection;i++) {
 
 
 });
+
+
+
+
+
+
+
 
 
 

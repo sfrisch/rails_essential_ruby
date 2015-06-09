@@ -183,6 +183,17 @@ require 'date'
 @age1 = params["age1"].to_i
 @age2 = params["age2"].to_i
 @age3 = params["age3"].to_i
+@searchstring = params["searchstring"].to_i
+
+if @pricerange != nil then
+
+@pricerange = params["pricerange"]
+@pricerange2 = @pricerange.split(",")
+@maxprice = @pricerange2[1].to_i
+@minprice = @pricerange2[0].to_i
+end
+
+#@searchstring = @checkin.to_s + "|" + @checkout.to_s + "|" + @region.to_s + "|" + @chain.to_s + "|" + @temp.to_s + "|" + @hoteltype.to_s + "|" + @minprice.to_s + "|" + @maxprice.to_s + "|" + @adults.to_s + "|" + @children.to_s + "|" + @age1.to_s + "|"+ @age2.to_s + "|"+ @age3.to_s
 
 
 @agelist = [@age1,@age2,@age3]
@@ -396,9 +407,6 @@ rescue
    end
 
    end
-
-
-
 
 
 
