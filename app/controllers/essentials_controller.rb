@@ -369,7 +369,21 @@ end
 @centerlong = @sum2 / @coordarray.length
 
 
+
 @hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"]
+
+
+@cachelocation = @hotelhash["HotelListResponse"]["cacheLocation"]
+
+@cachekey = @hotelhash["HotelListResponse"]["cacheKey"]
+
+
+moreresults = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelListRequest><cacheKey>#{@cachekey}</cacheKey><cacheLocation>#{@cachelocation}</cacheLocation></HotelListRequest>"
+
+
+          moreresults2 = URI.encode(moreresults)
+          @jsonfeed5 = open(moreresults2).read
+          @moreresults = JSON.parse(@jsonfeed5)
 
 
 rescue
