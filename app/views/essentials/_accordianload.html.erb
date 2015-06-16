@@ -112,7 +112,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
                             <d1><%=@filterresults%></d1>
                               <%@hotelhash = eval(@hotelhash.to_s)%>
-                              <%@get_latlong = eval(@get_latlong)%>
+
                             <%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
 
                             <% @LAT = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LAT"]%>
@@ -139,8 +139,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
                             <%@weatherhash["list"].each do |dates|%>
 
-       <%datelookup.push({'date' => dates["dt"],'icon' => dates["weather"][0]["icon"],'desc' => dates["weather"][0]["description"],'max' => (((dates["temp"]["max"].to_f)-273.15)*1.8+32).round(0),'min' => (((dates["temp"]["min"].to_f)-273.15)*1.8+32).round(0),'dateconverted' => DateTime.strptime(dates["dt"].to_s,'%s').strftime('%m/%d/%y')
-})%>
+       <%datelookup.push({'date' => dates["dt"],'icon' => dates["weather"][0]["icon"],'desc' => dates["weather"][0]["description"],'max' => (((dates["temp"]["max"].to_f)-273.15)*1.8+32).round(0),'min' => (((dates["temp"]["min"].to_f)-273.15)*1.8+32).round(0),'dateconverted' => DateTime.strptime(dates["dt"].to_s,'%s').strftime('%m/%d/%y')})%>
 
                             <%end%>
 
@@ -170,17 +169,11 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 
-                              <a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit
-
-();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000);ga('send', 'event',
-
-'Rooms', 'Click', 'Booking'); return false;" style="color:black">
+                              <a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000);ga('send', 'event','Rooms', 'Click', 'Booking'); return false;" style="color:black">
 
 
 
-                          <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-
-
-multiselectable="true" >
+                          <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
 
                                 <div class="panel panel-default ">
 
@@ -252,9 +245,7 @@ Now</a></dd>!-->
                                     </div>
 
 
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>"aria-
-
-expanded="false" aria-controls="collapse<%=counter%>" style="color:black">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>"aria-expanded="false" aria-controls="collapse<%=counter%>" style="color:black">
 
                                       <%if weatherinfo==1%>
                                       <dd style="padding-top:22px">What is the weather forecast?</dd>
@@ -272,9 +263,7 @@ expanded="false" aria-controls="collapse<%=counter%>" style="color:black">
 
 
 
-                              <div id="collapse<%=counter%>" class="panel-collapse collapse" onClick="ga('send', 'event',
-
-'Weather', 'Click', 'Weather');" role="tabpanel" aria-labelledby="heading<%=counter%>">
+                              <div id="collapse<%=counter%>" class="panel-collapse collapse" onClick="ga('send', 'event','Weather', 'Click', 'Weather');" role="tabpanel" aria-labelledby="heading<%=counter%>">
                                 <div class="panel-body">
 
 
