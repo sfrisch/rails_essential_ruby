@@ -30,4 +30,7 @@ Rails.application.routes.draw do
  post("/essentials/hoteldetails", { :controller => "essentials", :action => "hoteldetails" })
 
 
+ post("/essentials/filter", { :controller => "essentials", :action => "filter" })
+
 end
+

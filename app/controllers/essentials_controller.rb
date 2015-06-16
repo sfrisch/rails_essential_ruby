@@ -184,6 +184,12 @@ require 'date'
 @age2 = params["age2"].to_i
 @age3 = params["age3"].to_i
 @searchstring = params["searchstring"].to_i
+@filterresults = params["filterresults"]
+
+if @filterresults == nil then
+  @filterresults = 15
+end
+
 
 if @pricerange != nil then
 
@@ -373,17 +379,45 @@ end
 @hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"]
 
 
-@cachelocation = @hotelhash["HotelListResponse"]["cacheLocation"]
 
-@cachekey = @hotelhash["HotelListResponse"]["cacheKey"]
-
-
-moreresults = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelListRequest><cacheKey>#{@cachekey}</cacheKey><cacheLocation>#{@cachelocation}</cacheLocation></HotelListRequest>"
+        @pagecount = @hotelhash["HotelListResponse"]["cachedSupplierResponse"]["@cacheEntryMissNum"].to_i / 20
 
 
-          moreresults2 = URI.encode(moreresults)
-          @jsonfeed5 = open(moreresults2).read
-          @moreresults = JSON.parse(@jsonfeed5)
+
+for i in 1..@pagecount
+
+
+        if i == 1 then
+        @cachelocation = @hotelhash["HotelListResponse"]["cacheLocation"]
+        @cachekey = @hotelhash["HotelListResponse"]["cacheKey"]
+else
+        @cachelocation = @moreresults["HotelListResponse"]["cacheLocation"]
+        @cachekey = @moreresults["HotelListResponse"]["cacheKey"]
+      end
+
+
+
+        moreresults = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelListRequest><cacheKey>#{@cachekey}</cacheKey><cacheLocation>#{@cachelocation}</cacheLocation></HotelListRequest>"
+
+
+                  moreresults2 = URI.encode(moreresults)
+                  @jsonfeed5 = open(moreresults2).read
+                  @moreresults = JSON.parse(@jsonfeed5)
+
+
+
+          for t in 0..@moreresults["HotelListResponse"]["cachedSupplierResponse"]["@supplierResponseNum"].to_i-1
+
+
+           @hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].push(@moreresults["HotelListResponse"]["HotelList"]["HotelSummary"][t])
+
+              end
+
+    end
+
+
+
+
 
 
 rescue
@@ -433,10 +467,26 @@ rescue
 
 
 
+def filter
 
 
+  @filterresults = params[:filterresults]
+  @get_latlong = params[:get_latlong].gsub!(/#/,'')
+   @checkin = params[:checkin]
+
+  @hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))
+
+  @check = nil
+@LAT = 50
+@LONG = 30
 
 
+  respond_to do |format|
+    format.js {}
+  end
+end
+
+##format.html {render :partial => "accordianload", :layout => false}
 
   def each_5
     # Each

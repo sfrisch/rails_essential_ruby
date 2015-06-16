@@ -1,0 +1,368 @@
+
+
+
+
+
+
+
+        <select id="filterresults" name="filterresults">
+                    <option value=4>5</option>
+                    <option value=9>10</option>
+          </select>
+
+
+
+
+<%if @hotelhash != nil and @check == nil then%>
+
+
+
+
+
+
+
+    <%counterbinary = 0%>
+    <% counter = 0 %>
+
+         <% if counter < 100 then %>
+
+
+                  <%if @hotelhash != nil && @check == nil then%>
+
+
+
+
+
+
+  <div id="wrapper">
+
+
+
+                <div id="sidebar-wrapper">
+                         <ul class="sidebar-nav">
+                                             <li><div class="checkbox">
+                                              <label>
+                                               <input type="checkbox" value="">
+                                               Starwood
+                                             </label>
+                                           </div></li>
+
+                                           <li><div class="checkbox">
+                                            <label>
+                                              <input type="checkbox" value="">
+                                              Hyatt
+                                            </label>
+                                          </div></li>
+
+
+                                  <li><div class="checkbox">
+                                    <label>
+                                      <input type="checkbox" value="">
+                                      Intercontinental
+                                    </label>
+                                  </div></li>
+
+
+                                          <li><div class="checkbox">
+                                            <label>
+                                              <input type="checkbox" value="">
+                                              Four Seasons
+                                            </label>
+                                          </div></li>
+                        </ul>
+                </div>
+
+
+
+
+
+
+      <div id="page-content-wrapper">
+            <div class="page-content">
+                 <div class="container">
+                   <div class="row">
+
+
+
+                          <div class="col-md-12">
+
+
+
+
+
+
+                              <div class="panel-group col-md-8 col-md-offset-2 column" id="resultsform"><a
+
+href="/">Return to Search</a>
+                              </div>
+
+
+
+
+
+                            <!-- ##%@hotelhash = @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|
+
+zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]} %>
+
+!-->
+
+                            <%weatherinfo = 0%>
+
+
+
+                            <d1><%=@filterresults%></d1>
+                              <%@hotelhash = eval(@hotelhash.to_s)%>
+                              <%@get_latlong = eval(@get_latlong)%>
+                            <%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
+
+                            <% @LAT = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LAT"]%>
+                            <% @LONG = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LONG"]%>
+
+                            <input type="hidden" name="LAT" id="LAT" value = "<%=@LAT%>">
+                            <input type="hidden" name="LONG" id="LONG" value = "<%=@LONG%>">
+
+                            <%hotelweather = []%>
+
+                            <% if DateTime.strptime(@checkin,'%m/%d/%Y')-15 < Date.today %>
+
+                            <%weatherinfo = 1%>
+                            <%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}&cnt=16&APPID=d6b355ed174cb0591af8ebcc4f5de038"%>
+
+
+                            <%require 'open-uri'%>
+                            <%weather_search2 = URI.encode(weatherurl)%>
+                            <%weatherjsonfeed = open(weather_search2).read%>
+                            <%@weatherhash = JSON.parse(weatherjsonfeed)%>
+
+
+                            <%datelookup = []%>
+
+                            <%@weatherhash["list"].each do |dates|%>
+
+       <%datelookup.push({'date' => dates["dt"],'icon' => dates["weather"][0]["icon"],'desc' => dates["weather"][0]["description"],'max' => (((dates["temp"]["max"].to_f)-273.15)*1.8+32).round(0),'min' => (((dates["temp"]["min"].to_f)-273.15)*1.8+32).round(0),'dateconverted' => DateTime.strptime(dates["dt"].to_s,'%s').strftime('%m/%d/%y')
+})%>
+
+                            <%end%>
+
+
+                            <% hotelweather = datelookup.select {|date| DateTime.strptime(date["dateconverted"],'%m/%d/%y')>= DateTime.strptime(@checkin,'%m/%d/%Y') && DateTime.strptime(date["dateconverted"],'%m/%d/%y') <= DateTime.strptime(@checkout,'%m/%d/%Y')}%>
+
+                            <%else%>
+
+                            <%hotelweather.push({'max' => 1000})%>
+
+                            <%end%>
+
+
+
+                            <% if hotelweather[0]["max"] >= @temp.to_i then%>
+
+
+
+                            <%counterbinary=1%>
+
+
+
+
+                            <form id="accordion<%=counter%>" action="/essentials/hoteldetails" method="post" >
+
+
+
+
+
+                              <a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit
+
+();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000);ga('send', 'event',
+
+'Rooms', 'Click', 'Booking'); return false;" style="color:black">
+
+
+
+                          <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-
+
+multiselectable="true" >
+
+                                <div class="panel panel-default ">
+
+                                    <div class="panel-heading" role="tab" id="heading<%=counter%>">
+
+                                         <h4 class="panel-title">
+                                               <dl>
+
+
+                                          <div class="media">
+                                                <div class="media-left media-middle col-xs-12">
+                                                 <span class="price col-xs-12">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"].to_i.round(0)%><span class="pricesmall"> rate per night</span></span>
+
+
+                                                 <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"].sub("_t","_d")%>">  </div>
+
+
+
+                                      <div class="media-body" style="padding-bottom:0px">
+
+
+                                            <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> </dt></h4>
+
+
+                                            <dd><%= zebra["city"]%></dd>
+
+
+                                            <%zebra["locationDescription"].gsub! '&gt;','>'%>
+                                            <%zebra["locationDescription"].gsub! '&lt;','<'%>
+
+
+
+                                            <dd><%= zebra["locationDescription"].html_safe%></dd>
+                                            <dd ><%= zebra["hotelRating"]%>
+
+                                              <dd ><%= if zebra["supplierType"] != "E" then "Online Only!" end%></dd>
+
+
+
+                                              <%i = 1 %>
+
+                                              <%while i <= zebra["hotelRating"] do%>
+
+                                                    <i class="fa fa-star starrating"></span></i>
+                                                    <%i = i + 1%>
+                                              <%end%>
+
+                                              <%if zebra["hotelRating"].floor == zebra["hotelRating"]%>
+
+                                              <%else%>
+                                                       <i class="fa fa-star-half-o starrating"></i>
+                                              <%end%>
+                                            </dd>
+
+                                            <%zebra["shortDescription"].gsub! '&gt;','>'%>
+                                            <%zebra["shortDescription"].gsub! '&lt;','<'%>
+
+
+
+                                            <% shortdesc = zebra["shortDescription"].html_safe %>
+                                            <%=shortdesc[23..-1].html_safe %> <span style="color:blue">...More</span>
+                                            <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
+                                            <!--<dd><a href=<%= zebra["deepLink"]%> style="color:black">Book
+
+Now</a></dd>!-->
+
+
+
+                                    </div>
+
+
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>"aria-
+
+expanded="false" aria-controls="collapse<%=counter%>" style="color:black">
+
+                                      <%if weatherinfo==1%>
+                                      <dd style="padding-top:22px">What is the weather forecast?</dd>
+                                      <%end%>
+
+                                    </div>
+
+                                  </dl>
+
+
+                                </a>
+
+
+                              </div>
+
+
+
+                              <div id="collapse<%=counter%>" class="panel-collapse collapse" onClick="ga('send', 'event',
+
+'Weather', 'Click', 'Weather');" role="tabpanel" aria-labelledby="heading<%=counter%>">
+                                <div class="panel-body">
+
+
+                                  <%if weatherinfo==1%>
+                                  <table class="table">
+                                    <%hotelweather.each do |weather|%>
+                                    <tr><td><dt>
+                                      Date: <%=weather["dateconverted"]%>
+                                      <b>High: <%=weather["max"]%> (F)</b>
+                                      <b>Low: <%=weather["min"]%> (F)</b>
+                                      <img src="http://openweathermap.org/img/w/<%=weather["icon"]%>.png"></dt></td></tr>
+                                      <%end%>
+                                    </table>
+                                    <%end%>
+
+                                  </div>
+                                </div>
+
+
+                                <%counter = counter + 1%>
+
+                                <input value = <%= zebra["hotelId"]%> name="hotelid" type="hidden">
+                                <input value ="<%=@checkin%>" name="checkin" type="hidden">
+                                <input value ="<%=@checkout%>" name="checkout" type="hidden">
+                                <input value ="<%=@adults%>" name="adults" type="hidden">
+                                <input value ="<%=@children%>" name="children" type="hidden">
+                                <input value ="<%=@age1%>" name="age1" type="hidden">
+                                <input value ="<%=@age2%>" name="age2" type="hidden">
+                                <input value ="<%=@age3%>" name="age3" type="hidden">
+                                <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
+                                <input value ="<%=@get_latlong%>" name="get_latlong" id="get_latlong" type="hidden">
+
+
+                              </div>
+
+                            </div>
+
+                          </a>
+                        </a>
+
+                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+                      </form>
+
+                      <%else%>
+
+                      <%end%>
+
+                      <%end%>
+
+                      <%end%>
+
+                      <%end%>
+
+
+
+                      <div class="col-md-6">
+
+                      </div>
+
+                      <%if counterbinary==1 then %>
+                      <div class="panel-group col-md-8 col-md-offset-2">
+                        <p>All displayed prices exclude Tax Recovery Charges and Service Fees</p>
+
+
+                        <div id="map-canvas" style="height:600px">
+                        </div>
+                      </div>
+                      <%end%>
+
+
+                    </div>
+
+
+
+
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+                      <%end%>

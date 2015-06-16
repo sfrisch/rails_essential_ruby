@@ -1,685 +1,471 @@
 
 
 
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>!-->
+  <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>!-->
 
 
 
 
 
-<style>
-.container img {
-    width:auto;
-    height:20px;
+  <style>
+    .container img {
+      width:auto;
 
-}
 
-body{  font-family: 'Lato', sans-serif;}
+    }
 
-.jumbotron
+    body{  font-family: 'Lato', sans-serif;}
+
+    .jumbotron
     {
 
-        height:500px;
-        width:100%;
-        background-position: center center;
-  background-repeat: no-repeat;
-                font-weight: 900;
-         background-color:#336666;
-         color:white;
-         background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("http://upload.wikimedia.org/wikipedia/commons/c/c7/Palazzo_Versace_Gold_Coast_-_Panoramic_View.jpg");
- background-size: cover;
+      height:500px;
+      width:100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      font-weight: 900;
+      background-color:#336666;
+      color:white;
+      background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("http://upload.wikimedia.org/wikipedia/commons/c/c7/Palazzo_Versace_Gold_Coast_-_Panoramic_View.jpg");
+      background-size: cover;
     }
 
 
-.footerstyle
+    .footerstyle
 
-{
-background-color:#00CCFF;
-height: 200px;
-;
+    {
+      background-color:#00CCFF;
+      height: 200px;
+      ;
 
-}
-
-
-.talldiv {height:200px;}
-.meddiv {height:100px;}
-
-.short_div {
-  color:white;
-    height:80px;
-}
-.matchpadding{padding-top:50px;
-  }
-
-h4{font-size:24px;}
-
-.navbar-fixed-top {
-    min-height: 80px;
-}
-
-.navbar-nav > li > a {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    line-height: 80px;
-}
-
-.price{font-size:30px;
-  font-weight:900px;
-text-align:right;
-float:right;
-
-}
+    }
 
 
-.pricesmall{font-size:12px;
-  font-weight:900px;}
+    .talldiv {height:200px;}
+    .meddiv {height:100px;}
+
+    .short_div {
+      color:white;
+      height:80px;
+    }
+    .matchpadding{padding-top:50px;
+    }
+
+    h4{font-size:24px;}
+
+    .navbar-fixed-top {
+      min-height: 80px;
+    }
+
+    .navbar-nav > li > a {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      line-height: 80px;
+    }
+
+    .price{font-size:30px;
+      font-weight:900px;
+      text-align:right;
+      float:right;
+
+    }
 
 
-@media (max-width: 767px) {
-    .navbar-nav > li > a  {
-    line-height: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;}
-}
-
-.age1{display:none;}
-
-.age2{display:none;}
-
-
-.age3{display:none;}
-
-.errorhandling {
-color:red;
-}
-
-.check_jumbo{font:size:14px;
-}
-
-.checkinbox {width:30%;}
-
-
-.bottompadding {border-top:50px;}
-.starrating {color: red;
-text-decoration: none;}
-
-.form-control{color:black;}
-
-.input-group-lg>.form-control, .input-group-lg>.input-group-addon,
-  .input-group-lg>.input-group-btn>.btn {
-  height: 49px;}
-</style>
+    .pricesmall{font-size:12px;
+      font-weight:900px;}
 
 
 
 
 
+      #wrapper {
+        padding-left: 75px;
+        transition: all 0.4s ease 0s;
+      }
 
+      #sidebar-wrapper {
+        margin-left: -30px;
+        left: 75px;
+        width: 250px;
+        position: absolute;
+        height: 100%;
+        z-index: 1000;
+        transition: all 0.4s ease 0s;
+      }
+
+      #page-content-wrapper {
+        width: 100%;
+      }
+
+      .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+
+
+
+
+      @media (max-width: 767px) {
+        .navbar-nav > li > a  {
+          line-height: 20px;
+          padding-top: 10px;
+          padding-bottom: 10px;}
+        }
+
+        .age1{display:none;}
+
+        .age2{display:none;}
+
+
+        .age3{display:none;}
+
+        .errorhandling {
+          color:red;
+        }
+
+        .check_jumbo{font:size:14px;
+        }
+
+        .checkinbox {width:30%;}
+
+
+        .bottompadding {border-top:50px;}
+        .starrating {color: red;
+          text-decoration: none;}
+
+          .form-control{color:black;}
+
+          .input-group-lg>.form-control, .input-group-lg>.input-group-addon,
+          .input-group-lg>.input-group-btn>.btn {
+            height: 49px;}
+          </style>
 
 
 <div class="container-fluid">
 
 
 
-<%if @hotelhash == nil || @check != nil then%>
+    <%if @hotelhash == nil || @check != nil then%>
 
 
-    <form action="/essentials/hotelwherever" method="get", name="hotelsearch" id="hotelsearch" role="form">
+             <form action="/essentials/hotelwherever" method="get", name="hotelsearch" id="hotelsearch" role="form">
 
 
-<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
 
-  <div class="col-md-12 jumbotron">
+    <div class="col-md-12 jumbotron">
 
-         <div class="col-md-3 short_div" style='font-color:black';">
-          <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control" value="<%=@checkin%>">
-          <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control" value="<%=@checkout%>">
+             <div class="col-md-3 short_div" style='font-color:black';">
+              <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control" value="<%=@checkin%>">
+              <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control" value="<%=@checkout%>">
+             </div>
 
 
+
+
+            <div class="col-md-6 col-xs-12 col-sm-3 hidden-xs short_div">
+                   <% if @check.present? %>
+
+                          <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong><%=@check%>
+                            </div>
+
+
+
+                         <%end%>
               </div>
 
-        <div class="col-md-6 col-xs-12 col-sm-3 hidden-xs short_div">
-<% if @check.present? %>
-
-<div class="alert alert-danger alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong><%=@check%>
-</div>
 
 
 
-  <%end%>
+          <div class="col-md-6 short_div">
 
 
-
-
-        </div>
-
-
-        <div class="col-md-6 short_div">
-
-
-<label for = "ex2">Filter by price interval:  </label><p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="1000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
+            <label for = "ex2">Filter by price interval:  </label><p>$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="1000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
 
           </div>
 
 
-        <div class="col-md-6 short_div">
+            <div class="col-md-6 short_div">
 
 
-        </div>
+            </div>
 
 
 
-<div class="col-md-1 col-xs-12 col-sm-3 short_div">
+            <div class="col-md-1 col-xs-12 col-sm-3 short_div">
 
 
-<label for = "adults">Adults</label>
-<select id="adults" name="adults" class="form-control" placeholder=".col-lg-1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
+              <label for = "adults">Adults</label>
+              <select id="adults" name="adults" class="form-control" placeholder=".col-lg-1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
 
-    </select>
-</div>
+              </select>
+            </div>
 
 
 
-<div class="col-md-1 col-xs-12 col-sm-3 short_div children">
+                  <div class="col-md-1 col-xs-12 col-sm-3 short_div children">
 
-<label for = "children">Children</label>
-<select id="children" name="children" class="form-control" placeholder=".col-lg-1">
-      <option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+                    <label for = "children">Children</label>
+                    <select id="children" name="children" class="form-control" placeholder=".col-lg-1">
+                      <option>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
 
 
-    </select>
+                    </select>
 
-    </div>
+                  </div>
 
 
 
 
 
 
-        <div class="col-md-1 col-xs-12 col-sm-3 short_div">
+                <div class="col-md-1 col-xs-12 col-sm-3 short_div">
 
-<label for = "stars">Stars</label>
-<select id="stars" name="stars" class="form-control" placeholder=".col-lg-1">
-      <option>4</option>
-      <option>4.5</option>
-      <option>5</option>
-    </select>
-</div>
+                  <label for = "stars">Stars</label>
+                  <select id="stars" name="stars" class="form-control" placeholder=".col-lg-1">
+                    <option>4</option>
+                    <option>4.5</option>
+                    <option>5</option>
+                  </select>
+                </div>
 
 
 
 
-        <div class="col-md-2 col-xs-12 col-sm-3 short_div">
-<label for = "brand">Brand</label>
-<select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4 .col-xs-4" value="<%=@chain%>">
-<option>Any</option>
-<option>Boscolo</option>
-<option>Fairmont</option>
-<option>Four Seasons</option>
-<option>Hilton</option>
-<option>Hyatt</option>
-<option>Intercontinental</option>
-<option>JW Marriott</option>
-<option>Le Meredian</option>
-<option>Mandarin Oriental</option>
-<option>Marriott</option>
-<option>Melia</option>
-<option>Radisson Blu</option>
-<option>Renaissance</option>
-<option>Ritz Carlton</option>
-<option>Shangri-La</option>
-<option>Sheraton</option>
-<option>Sofitel</option>
-<option>St. Regis</option>
-<option>Starwood Luxury Collection</option>
-<option>W Hotels</options>
-<option>Waldorf Astoria</option>
-<option>Westin</option>
-    </select>
+                <div class="col-md-2 col-xs-12 col-sm-3 short_div">
+                  <label for = "brand">Brand</label>
+                  <select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4 .col-xs-4" value="<%=@chain%>">
+                    <option>Any</option>
+                    <option>Boscolo</option>
+                    <option>Fairmont</option>
+                    <option>Four Seasons</option>
+                    <option>Hilton</option>
+                    <option>Hyatt</option>
+                    <option>Intercontinental</option>
+                    <option>JW Marriott</option>
+                    <option>Le Meredian</option>
+                    <option>Mandarin Oriental</option>
+                    <option>Marriott</option>
+                    <option>Melia</option>
+                    <option>Radisson Blu</option>
+                    <option>Renaissance</option>
+                    <option>Ritz Carlton</option>
+                    <option>Shangri-La</option>
+                    <option>Sheraton</option>
+                    <option>Sofitel</option>
+                    <option>St. Regis</option>
+                    <option>Starwood Luxury Collection</option>
+                    <option>W Hotels</options>
+                      <option>Waldorf Astoria</option>
+                      <option>Westin</option>
+                    </select>
 
+                 </div>
 
 
 
-</div>
+                  <div class="col-md-2 col-xs-12 col-sm-3 short_div">
 
+                    <label for = "temp"> Check-In Temperature</label>
+                    <select id="temp" class="form-control" name="temp" placeholder=".col-lg-4">
 
+                      <option>Any</option>
+                      <option>90+</option>
+                      <option>80+</option>
+                      <option>70+</option>
+                      <option>60+</option>
+                      <option>50+</option>
+                    </select>
 
-<div class="col-md-2 col-xs-12 col-sm-3 short_div">
+                  </div>
+
+
+
+
+
+                    <div class="col-md-2 col-xs-12 col-sm-3 short_div">
+
+                      <label for = "region">Region</label>
+                      <select id="region" class="form-control" name="region" placeholder=".col-lg-4" value = "<%=@region%>">
+                        <option>Any</option>
+                        <option>US</option>
+                        <option>Canada</option>
+                        <option>Europe</option>
+                        <option>South America</option>
+                        <option>Asia</option>
+                        <option>Latin America and the Caribbean</option>
+                        <option>Middle East</option>
+                        <option>Australia/Pacific</option>
+                        <option>Africa</option>
+
+                      </select>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-2 col-xs-12 col-sm-3 short_div">
+
+                      <label for = "Hotel Type">Hotel Type</label>
+                      <select id="hoteltype" name="hoteltype" class="form-control" placeholder=".col-lg-4">
+                        <option value=-1>Any</option>
+                        <option value=3>Resort</option>
+                        <option value=8>All-Inclusive</option>
+                        <option value=5>Bed and Breakfast</option>
+                        <option value=14>Villa</option>
+                        <option value=25>Riad</option>
 
-<label for = "temp"> Check-In Temperature</label>
-<select id="temp" class="form-control" name="temp" placeholder=".col-lg-4">
+                      </select>
 
-        <option>Any</option>
-        <option>90+</option>
-        <option>80+</option>
-        <option>70+</option>
-        <option>60+</option>
-        <option>50+</option>
-    </select>
-
-</div>
-
-
-
-
-
-<div class="col-md-2 col-xs-12 col-sm-3 short_div">
-
-<label for = "region">Region</label>
-<select id="region" class="form-control" name="region" placeholder=".col-lg-4" value = "<%=@region%>">
-    <option>Any</option>
-      <option>US</option>
-      <option>Canada</option>
-       <option>Europe</option>
-        <option>South America</option>
-         <option>Asia</option>
-         <option>Latin America and the Caribbean</option>
-         <option>Middle East</option>
-           <option>Australia/Pacific</option>
-           <option>Africa</option>
-
-    </select>
-
-
-        </div>
-
-
-
-        <div class="col-md-2 col-xs-12 col-sm-3 short_div">
-
-<label for = "Hotel Type">Hotel Type</label>
-<select id="hoteltype" name="hoteltype" class="form-control" placeholder=".col-lg-4">
-      <option value=-1>Any</option>
-      <option value=3>Resort</option>
-      <option value=8>All-Inclusive</option>
-      <option value=5>Bed and Breakfast</option>
-      <option value=14>Villa</option>
-       <option value=25>Riad</option>
+                    </div>
 
-    </select>
+                  <div class="row">
+                    <div class="col-md-2 col-xs-12 col-sm-3 short_div age1">
+                      <label for = "age1">Child 1 Age</label>
+                      <select id="age1" name="age1" class="form-control" placeholder=".col-lg-1">
+                        <option value="null" selected="TRUE">Age</option>
+                        <option value=0>Under 1</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=10>10</option>
+                        <option value=11>11</option>
+                        <option value=12>12</option>
+                        <option value=13>13</option>
+                        <option value=14>14</option>
+                        <option value=15>15</option>
+                        <option value=16>16</option>
+                        <option value=17>17</option>
+                      </select>
+                    </div>
 
-        </div>
 
-<div class="row">
-        <div class="col-md-2 col-xs-12 col-sm-3 short_div age1">
-<label for = "age1">Child 1 Age</label>
-<select id="age1" name="age1" class="form-control" placeholder=".col-lg-1">
-<option value="null" selected="TRUE">Age</option>
-      <option value=0>Under 1</option>
-      <option value=1>1</option>
-      <option value=2>2</option>
-      <option value=3>3</option>
-      <option value=4>4</option>
-      <option value=5>5</option>
-      <option value=6>6</option>
-      <option value=7>7</option>
-      <option value=8>8</option>
-      <option value=9>9</option>
-      <option value=10>10</option>
-      <option value=11>11</option>
-      <option value=12>12</option>
-      <option value=13>13</option>
-      <option value=14>14</option>
-      <option value=15>15</option>
-      <option value=16>16</option>
-      <option value=17>17</option>
-    </select>
-</div>
 
 
+                      <div class="col-md-2 col-xs-12 col-sm-3 short_div age2">
+                        <label for = "age2">Child 2 Age</label>
+                        <select id="age2" name="age2" class="form-control" placeholder=".col-lg-1">
+                          <option value="null" selected="TRUE">Age</option>
+                          <option value=0>Under 1</option>
+                          <option value=1>1</option>
+                          <option value=2>2</option>
+                          <option value=3>3</option>
+                          <option value=4>4</option>
+                          <option value=5>5</option>
+                          <option value=6>6</option>
+                          <option value=7>7</option>
+                          <option value=8>8</option>
+                          <option value=9>9</option>
+                          <option value=10>10</option>
+                          <option value=11>11</option>
+                          <option value=12>12</option>
+                          <option value=13>13</option>
+                          <option value=14>14</option>
+                          <option value=15>15</option>
+                          <option value=16>16</option>
+                          <option value=17>17</option>
 
 
-        <div class="col-md-2 col-xs-12 col-sm-3 short_div age2">
-<label for = "age2">Child 2 Age</label>
-<select id="age2" name="age2" class="form-control" placeholder=".col-lg-1">
-<option value="null" selected="TRUE">Age</option>
-            <option value=0>Under 1</option>
-      <option value=1>1</option>
-      <option value=2>2</option>
-      <option value=3>3</option>
-      <option value=4>4</option>
-      <option value=5>5</option>
-      <option value=6>6</option>
-      <option value=7>7</option>
-      <option value=8>8</option>
-      <option value=9>9</option>
-      <option value=10>10</option>
-      <option value=11>11</option>
-      <option value=12>12</option>
-      <option value=13>13</option>
-      <option value=14>14</option>
-      <option value=15>15</option>
-      <option value=16>16</option>
-      <option value=17>17</option>
+                        </select>
+                      </div>
 
 
-    </select>
-</div>
+                        <div class="col-md-2 col-xs-12 col-sm-3 short_div age3">
+                          <label for = "age3">Child 3 Age</label>
+                          <select id="age3" name="age3" class="form-control" placeholder=".col-lg-1" >
+                            <option value ="null" selected="TRUE">Age</option>
+                            <option value=0>Under 1</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                            <option value=9>9</option>
+                            <option value=10>10</option>
+                            <option value=11>11</option>
+                            <option value=12>12</option>
+                            <option value=13>13</option>
+                            <option value=14>14</option>
+                            <option value=15>15</option>
+                            <option value=16>16</option>
+                            <option value=17>17</option>
 
 
-        <div class="col-md-2 col-xs-12 col-sm-3 short_div age3">
-<label for = "age3">Child 3 Age</label>
-<select id="age3" name="age3" class="form-control" placeholder=".col-lg-1" >
-<option value ="null" selected="TRUE">Age</option>
-           <option value=0>Under 1</option>
-      <option value=1>1</option>
-      <option value=2>2</option>
-      <option value=3>3</option>
-      <option value=4>4</option>
-      <option value=5>5</option>
-      <option value=6>6</option>
-      <option value=7>7</option>
-      <option value=8>8</option>
-      <option value=9>9</option>
-      <option value=10>10</option>
-      <option value=11>11</option>
-      <option value=12>12</option>
-      <option value=13>13</option>
-      <option value=14>14</option>
-      <option value=15>15</option>
-      <option value=16>16</option>
-      <option value=17>17</option>
 
+                          </select>
+                        </div>
 
 
-    </select>
-</div>
+                   </div>
 
 
 
 
+                  <div class="col-md-12 col-xs-12 col-sm-3 short_div" style="padding-top:40px;padding-bottom:40px;text-align:center;">
 
+                    <input type="button" "text="Search" value="Search" id="search" name="search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);ga('send', 'event', 'Search', 'Click', 'Search');"></a>
+                  </div>
 
 
 
-
-    </div>
-
-
-
-
-         <div class="col-md-12 col-xs-12 col-sm-3 short_div" style="padding-top:40px;padding-bottom:40px;text-align:center;">
-
-                <input type="button" "text="Search" value="Search" id="search" name="search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);ga('send', 'event', 'Search', 'Click', 'Search');"></a>
-        </div>
-
-
-
-
-
-  </div>
-
-
-
- <div class="col-md-1 match1 short_div">
-
-
-        </div>
-
-</div>
-
-        </div>
-
-
-
-
-
-    </form>
-
-
-
-
-<%else%>   <!--else for 2nd page!`-->
-
-
-
-<%counterbinary = 0%>
-<% counter = 0 %>
-
-<% if counter < 100 then %>
-
-
-<%if @hotelhash != nil && @check == nil then%>
-
-<div class="panel-group col-md-8 col-md-offset-2 column"><a href="/">Return to Search</a></div>
-
-<!-- ##%@hotelhash = @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"]} %>  !-->
-
-<%weatherinfo = 0%>
-
-
-
-
-
-
-
-<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
-
-<% @LAT = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LAT"]%>
-<% @LONG = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LONG"]%>
-
-<input type="hidden" name="LAT" id="LAT" value = "<%=@LAT%>">
-<input type="hidden" name="LONG" id="LONG" value = "<%=@LONG%>">
-
-<%hotelweather = []%>
-
-<% if DateTime.strptime(@checkin,'%m/%d/%Y')-15 < Date.today %>
-
-<%weatherinfo = 1%>
-<%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}&cnt=16"%>
-
-
-<%require 'open-uri'%>
-<%weather_search2 = URI.encode(weatherurl)%>
-<%weatherjsonfeed = open(weather_search2).read%>
-<%@weatherhash = JSON.parse(weatherjsonfeed)%>
-
-
-<%datelookup = []%>
-
-<%@weatherhash["list"].each do |dates|%>
-
-<%datelookup.push({'date' => dates["dt"],'icon' => dates["weather"][0]["icon"],'desc' => dates["weather"][0]["description"],'max' => (((dates["temp"]["max"].to_f)-273.15)*1.8+32).round(0),'min' => (((dates["temp"]["min"].to_f)-273.15)*1.8+32).round(0),'dateconverted' => DateTime.strptime(dates["dt"].to_s,'%s').strftime('%m/%d/%y') })%>
-
-<%end%>
-
-
-<% hotelweather = datelookup.select {|date| DateTime.strptime(date["dateconverted"],'%m/%d/%y') >= DateTime.strptime(@checkin,'%m/%d/%Y') && DateTime.strptime(date["dateconverted"],'%m/%d/%y') <= DateTime.strptime(@checkout,'%m/%d/%Y')}%>
-
-<%else%>
-
-<%hotelweather.push({'max' => 1000})%>
-
-<%end%>
-
-
-
-<% if hotelweather[0]["max"] >= @temp.to_i then%>
-
-
-
-<%counterbinary=1%>
-
-
-
-
-<form id="accordion<%=counter%>" action="/essentials/hoteldetails" method="post" >
-
-
-
-
-
-<a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000);ga('send', 'event', 'Rooms', 'Click', 'Booking'); return false;" style="color:black">
-
-
-<div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true" >
-
-    <div class="panel panel-default ">
-
-          <div class="panel-heading" role="tab" id="heading<%=counter%>">
-
-                 <h4 class="panel-title">
-                      <dl>
-
-
-                              <div class="media">
-                              <div class="media-left media-middle col-xs-12">
- <span class="price col-xs-12">$<%= zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"].to_i.round(0)%><span class="pricesmall">  rate per night</span></span>
-
-                                    <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"].sub("_t","_d")%>">  </div>
-
-
-
-                              <div class="media-body" style="padding-bottom:0px">
-                                    <h4 class="media-heading"><dt><%= zebra["name"].html_safe%> </dt></h4>
-
-          <dd><%= zebra["city"]%></dd>
-
-<%zebra["locationDescription"].gsub! '&gt;','>'%>
-<%zebra["locationDescription"].gsub! '&lt;','<'%>
-
-
-          <dd><%= zebra["locationDescription"].html_safe%></dd>
-           <dd ><%= zebra["hotelRating"]%>
-            <dd ><%= if zebra["supplierType"] != "E" then "Online Only!" end%></dd>
-
-
-<%i = 1 %>
-           <%while i <= zebra["hotelRating"] do%>
-
-           <i class="fa fa-star starrating"></span></i>
-            <%i = i + 1%>
-           <%end%>
-
-           <%if zebra["hotelRating"].floor == zebra["hotelRating"]%>
-           <%else%>
-<i class="fa fa-star-half-o starrating"></i>
-<%end%>
-           </dd>
-
-<%zebra["shortDescription"].gsub! '&gt;','>'%>
-<%zebra["shortDescription"].gsub! '&lt;','<'%>
-
-
-
-           <% shortdesc = zebra["shortDescription"].html_safe %>
-  <%=shortdesc[23..-1].html_safe %> <span style="color:blue">...More</span>
-           <!-- <dd><%= zebra["hotelId"]%></dd>  !-->
-          <!--<dd><a href=<%= zebra["deepLink"]%> style="color:black">Book Now</a></dd>!-->
-
-
-
-</div>
-
-
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=counter%>"aria-expanded="false" aria-controls="collapse<%=counter%>" style="color:black">
-
-<%if weatherinfo==1%>
-<dd style="padding-top:22px">What is the weather forecast?</dd>
-<%end%>
-
-</div>
-
-</dl>
-
-
-        </a>
-
-    </div>
-    <div id="collapse<%=counter%>" class="panel-collapse collapse" onClick="ga('send', 'event', 'Weather', 'Click', 'Weather');" role="tabpanel" aria-labelledby="heading<%=counter%>">
-      <div class="panel-body">
-
-
-<%if weatherinfo==1%>
-<table class="table">
-<%hotelweather.each do |weather|%>
-<tr><td><dt>
-Date: <%=weather["dateconverted"]%>
-<b>High: <%=weather["max"]%> (F)</b>
-<b>Low: <%=weather["min"]%> (F)</b>
-<img src="http://openweathermap.org/img/w/<%=weather["icon"]%>.png"></dt></td></tr>
-<%end%>
-</table>
-<%end%>
-
-      </div>
-    </div>
-
-
-<%counter = counter + 1%>
-
-<input value = <%= zebra["hotelId"]%> name="hotelid" type="hidden">
-<input value ="<%=@checkin%>" name="checkin" type="hidden">
-<input value ="<%=@checkout%>" name="checkout" type="hidden">
-<input value ="<%=@adults%>" name="adults" type="hidden">
-<input value ="<%=@children%>" name="children" type="hidden">
-<input value ="<%=@age1%>" name="age1" type="hidden">
-<input value ="<%=@age2%>" name="age2" type="hidden">
-<input value ="<%=@age3%>" name="age3" type="hidden">
-
-
-  </div>
-
-</div>
-
-</a>
-</a>
-
-<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
 </form>
 
-<%else%>
+      </div>
 
-  <%end%>
 
-  <%end%>
 
-  <%end%>
+      <div class="col-md-1 match1 short_div">
+
+
+      </div>
+
 
 <%end%>
 
-<%end%>
+
+
+ <!--else for 2nd page!`-->
 
 
 
 
 
-        <div class="col-md-6">
-
-        </div>
+          <div id="promotions">
 
 
-<%if counterbinary==1 then %>
-<div class="panel-group col-md-8 col-md-offset-2">
-<p>All displayed prices exclude Tax Recovery Charges and Service Fees</p>
+  <%= render(:partial => 'accordianload', :locals => {:hotelhash => nil}) %>
 
 
-<div id="map-canvas" style="height:600px">
 </div>
-</div>
-<%end%>
 
-
-    </div>
-
-
-
-
-    </div>
-</div>
 
 
 
@@ -696,212 +482,229 @@ Date: <%=weather["dateconverted"]%>
 
 
 
- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script type="text/javascript">
 
-var locations = <%=raw @coordarray%>;
+      var locations = <%=raw @coordarray%>;
 
-var map = new google.maps.Map(document.getElementById('map-canvas'), {
-     zoom: 4,
-     center: new google.maps.LatLng(<%=raw @centerlat%>,<%=raw @centerlong%>),
-     mapTypeId: google.maps.MapTypeId.ROADMAP
-});
-
-
-var infowindow = new google.maps.InfoWindow({
-      content: "HELLO"
-  });
+      var map = new google.maps.Map(document.getElementById('map-canvas'), {
+       zoom: 4,
+       center: new google.maps.LatLng(<%=raw @centerlat%>,<%=raw @centerlong%>),
+       mapTypeId: google.maps.MapTypeId.ROADMAP
+     });
 
 
-var marker, i;
+      var infowindow = new google.maps.InfoWindow({
+        content: "HELLO"
+      });
 
-for (i = 0; i < locations.length; i++) {
-    marker = new google.maps.Marker({
+
+      var marker, i;
+
+      for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
          position: new google.maps.LatLng(locations[i][0], locations[i][1]),
          map: map,
          title: locations[i][2]
-    });
+       });
 
 
 
 
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
          return function() {
 
-             infowindow.open(map, marker);
+           infowindow.open(map, marker);
          }
-    })(marker, i));
-}
+       })(marker, i));
+      }
 
     </script>
 
 
 
-<style>
-  .full button span {
-    background-color: limegreen;
-    border-radius: 32px;
-    color: black;
-  }
-  .partially button span {
-    background-color: orange;
-    border-radius: 32px;
-    color: black;
-  }
-</style>
-
-
-
-<script type="text/javascript">
-
-
-
-
-var mySlider = $("#ex2").bootstrapSlider({
-    min: 50,
-   max: 1000,
-    scale: 'logarithmic',
-    step: 10
-});
-
-$("#ex2").on("slide", function(slideEvt) {
-  $("#SliderValMin").text(slideEvt.value[0]);
-  $("#SliderValMax").text(slideEvt.value[1]);
-});
-
-
-</script>
-
-
-<script>
-
-
-  $(function() {
-    $( "#checkin" ).datepicker();
-     $( "#checkout" ).datepicker();
-   });
-
-$(function() {
-
-$("#search").click(function(){
-
-var checkin = document.getElementById('checkin').value;
-var checkout = document.getElementById('checkout').value;
-var region = document.getElementById('region').value;
-var brand = document.getElementById('brand').value;
-var stars = document.getElementById('stars').value;
-var temp = document.getElementById('temp').value;
-var hoteltype = document.getElementById('hoteltype').value;
-var pricerange = document.getElementById('ex2').value;
-
-var adults = document.getElementById('adults').value;
-var children1 = document.getElementById('children').value;
-var age1a = document.getElementById('age1').value;
-var age2a = document.getElementById('age2').value;
-var age3a = document.getElementById('age3').value;
-
-
-var searchstring2 = [checkin,checkout,region,brand,stars,temp,hoteltype,pricerange,adults,children1,age1a,age2a,age3a];
-
-var searchstring3 = searchstring2.join('|');
-
-
-
-var input2 = $("<input>")
-               .attr("type", "hidden")
-               .attr("name", "searchstring").val(searchstring3)
-               .attr("class","form-control");
-$("#hotelsearch").append($(input2));
-
-
-$("#hotelsearch").submit();
-
-
-});
-
-});
-
-
-
-
-$("#children").change(function(){
-
-var ageselection = document.getElementById('children').value;
-$(".age1").hide();
-$(".age2").hide();
-$(".age3").hide();
-
-
-
-for (i=1; i <= ageselection;i++) {
-    $(".age" + i).show();
-}
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
-var waitingDialog = (function ($) {
-
-    // Creating modal dialog's DOM
-  var $dialog = $(
-    '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
-    '<div class="modal-dialog modal-m">' +
-    '<div class="modal-content">' +
-      '<div class="modal-header"><h3 style="margin:0;"></h3></div>' +
-      '<div class="modal-body">' +
-        '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>' +
-      '</div>' +
-    '</div></div></div>');
-
-  return {
-    /**
-     * Opens our dialog
-     * @param message Custom message
-     * @param options Custom options:
-     *          options.dialogSize - bootstrap postfix for dialog size, e.g. "sm", "m";
-     *          options.progressType - bootstrap postfix for progress bar type, e.g. "success", "warning".
-     */
-    show: function (message, options) {
-      // Assigning defaults
-      var settings = $.extend({
-        dialogSize: 'm',
-        progressType: ''
-      }, options);
-      if (typeof message === 'undefined') {
-        message = 'Loading';
+    <style>
+      .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
       }
-      if (typeof options === 'undefined') {
-        options = {};
+      .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
       }
-      // Configuring dialog
-      $dialog.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
-      $dialog.find('.progress-bar').attr('class', 'progress-bar');
-      if (settings.progressType) {
-        $dialog.find('.progress-bar').addClass('progress-bar-' + settings.progressType);
-      }
-      $dialog.find('h3').text(message);
-      // Opening dialog
-      $dialog.modal();
-    },
-    /**
-     * Closes dialog
-     */
-    hide: function () {
-      $dialog.modal('hide');
+    </style>
+
+
+
+    <script type="text/javascript">
+
+
+
+
+      var mySlider = $("#ex2").bootstrapSlider({
+        min: 50,
+        max: 1000,
+        scale: 'logarithmic',
+        step: 10
+      });
+
+      $("#ex2").on("slide", function(slideEvt) {
+        $("#SliderValMin").text(slideEvt.value[0]);
+        $("#SliderValMax").text(slideEvt.value[1]);
+      });
+
+
+    </script>
+
+
+    <script>
+
+
+      $(function() {
+        $( "#checkin" ).datepicker();
+        $( "#checkout" ).datepicker();
+      });
+
+      $(function() {
+
+        $("#search").click(function(){
+
+          var checkin = document.getElementById('checkin').value;
+          var checkout = document.getElementById('checkout').value;
+          var region = document.getElementById('region').value;
+          var brand = document.getElementById('brand').value;
+          var stars = document.getElementById('stars').value;
+          var temp = document.getElementById('temp').value;
+          var hoteltype = document.getElementById('hoteltype').value;
+          var pricerange = document.getElementById('ex2').value;
+
+          var adults = document.getElementById('adults').value;
+          var children1 = document.getElementById('children').value;
+          var age1a = document.getElementById('age1').value;
+          var age2a = document.getElementById('age2').value;
+          var age3a = document.getElementById('age3').value;
+
+
+          var searchstring2 = [checkin,checkout,region,brand,stars,temp,hoteltype,pricerange,adults,children1,age1a,age2a,age3a];
+
+          var searchstring3 = searchstring2.join('|');
+
+
+
+          var input2 = $("<input>")
+          .attr("type", "hidden")
+          .attr("name", "searchstring").val(searchstring3)
+          .attr("class","form-control");
+          $("#hotelsearch").append($(input2));
+
+
+          $("#hotelsearch").submit();
+
+
+        });
+
+  });
+
+
+
+  $("#filterresults").change(function(){
+
+
+
+    var numresults = document.getElementById('filterresults').value;
+    var hotelhash = document.getElementById('hotelhash').value;
+    var get_latlong = document.getElementById('get_latlong').value;
+    var url = "/essentials/filter";
+
+    $.ajax({
+      type: 'POST',
+      url: url,
+      dataType:'script',
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong}
+       });
+ });
+
+
+  $("#children").change(function(){
+
+    var ageselection = document.getElementById('children').value;
+    $(".age1").hide();
+    $(".age2").hide();
+    $(".age3").hide();
+
+
+
+    for (i=1; i <= ageselection;i++) {
+      $(".age" + i).show();
     }
-  }
 
-})(jQuery);
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+  var waitingDialog = (function ($) {
+
+      // Creating modal dialog's DOM
+      var $dialog = $(
+        '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15%; overflow-y:visible;">' +
+        '<div class="modal-dialog modal-m">' +
+        '<div class="modal-content">' +
+        '<div class="modal-header"><h3 style="margin:0;"></h3></div>' +
+        '<div class="modal-body">' +
+        '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>' +
+        '</div>' +
+        '</div></div></div>');
+
+      return {
+      /**
+       * Opens our dialog
+       * @param message Custom message
+       * @param options Custom options:
+       *          options.dialogSize - bootstrap postfix for dialog size, e.g. "sm", "m";
+       *          options.progressType - bootstrap postfix for progress bar type, e.g. "success", "warning".
+       */
+       show: function (message, options) {
+        // Assigning defaults
+        var settings = $.extend({
+          dialogSize: 'm',
+          progressType: ''
+        }, options);
+        if (typeof message === 'undefined') {
+          message = 'Loading';
+        }
+        if (typeof options === 'undefined') {
+          options = {};
+        }
+        // Configuring dialog
+        $dialog.find('.modal-dialog').attr('class', 'modal-dialog').addClass('modal-' + settings.dialogSize);
+        $dialog.find('.progress-bar').attr('class', 'progress-bar');
+        if (settings.progressType) {
+          $dialog.find('.progress-bar').addClass('progress-bar-' + settings.progressType);
+        }
+        $dialog.find('h3').text(message);
+        // Opening dialog
+        $dialog.modal();
+      },
+      /**
+       * Closes dialog
+       */
+       hide: function () {
+        $dialog.modal('hide');
+      }
+    }
+
+  })(jQuery);
 
 
 
