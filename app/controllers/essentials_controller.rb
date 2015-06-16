@@ -335,6 +335,11 @@ sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"
 @get_latlong = ActiveRecord::Base.connection.execute(sql)
 
 
+
+
+
+
+
           hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren><childAges>#{@agestring}</childAges></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
 
 
@@ -379,9 +384,12 @@ end
 @hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"]
 
 
+if @hotelhash["HotelListResponse"]["cacheLocation"] == nil then
+else
+
+
 
         @pagecount = @hotelhash["HotelListResponse"]["cachedSupplierResponse"]["@cacheEntryMissNum"].to_i / 20
-
 
 
 for i in 1..@pagecount
@@ -413,11 +421,11 @@ else
 
               end
 
-    end
+
+end
 
 
-
-
+end
 
 
 rescue
@@ -472,7 +480,7 @@ def filter
 
   @filterresults = params[:filterresults]
   @get_latlong = params[:get_latlong].gsub!(/#/,'')
-   @checkin = params[:checkin]
+
 
   @hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))
 
