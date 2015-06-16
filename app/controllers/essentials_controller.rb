@@ -185,7 +185,6 @@ require 'date'
 @age3 = params["age3"].to_i
 @searchstring = params["searchstring"].to_i
 @filterresults = params["filterresults"]
-@get_latlong = []
 
 if @filterresults == nil then
   @filterresults = 15
@@ -333,18 +332,7 @@ end
 sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\""
 
 
-@latlongs = ActiveRecord::Base.connection.execute(sql)
-
-
- @latlongs.each do |latlong|
-
-     @get_latlong.push(latlong["EANHotelID"])
-
-         end
-
-
-
-
+@get_latlong = ActiveRecord::Base.connection.execute(sql)
 
 
           hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren><childAges>#{@agestring}</childAges></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
@@ -483,7 +471,7 @@ def filter
 
 
   @filterresults = params[:filterresults]
-  @get_latlong = params[:get_latlong]
+  @get_latlong = params[:get_latlong].gsub!(/#/,'')
    @checkin = params[:checkin]
 
   @hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))
