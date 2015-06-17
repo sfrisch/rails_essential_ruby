@@ -185,7 +185,7 @@ require 'date'
 @age3 = params["age3"].to_i
 @searchstring = params["searchstring"].to_i
 @filterresults = params["filterresults"]
-
+@get_latlong = []
 if @filterresults == nil then
   @filterresults = 15
 end
@@ -332,10 +332,14 @@ end
 sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\""
 
 
-@get_latlong = ActiveRecord::Base.connection.execute(sql)
+@latlongs = ActiveRecord::Base.connection.execute(sql)
 
 
+ @latlongs.each do |latlong|
 
+     @get_latlong.push({"EANHotelID" => latlong["EANHotelID"],"LAT" => latlong["LAT"],"LONG" => latlong["LONG"]})
+
+         end
 
 
 
@@ -479,10 +483,11 @@ def filter
 
 
   @filterresults = params[:filterresults]
-  @get_latlong = params[:get_latlong].gsub!(/#/,'')
-
-
+  @get_latlong = params[:get_latlong].gsub!(/\"/, '\'')
+  @checkin = params[:checkin]
+  @checkout = params[:checkout]
   @hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))
+
 
   @check = nil
 @LAT = 50

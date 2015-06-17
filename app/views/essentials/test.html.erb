@@ -612,17 +612,19 @@
   $("#filterresults").change(function(){
 
 
-
+    var checkin = document.getElementById('checkin').value;
     var numresults = document.getElementById('filterresults').value;
     var hotelhash = document.getElementById('hotelhash').value;
     var get_latlong = document.getElementById('get_latlong').value;
+    var checkout = document.getElementById('checkout').value;
+
     var url = "/essentials/filter";
 
     $.ajax({
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults}
        });
  });
 
