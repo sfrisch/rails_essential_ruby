@@ -304,6 +304,11 @@ ActiveRecord::Base.connection.execute(sqlcreate)
 
 
 
+if @hotelslist.count > 100 then
+    @hotelslist = @hotelslist.sample(100)
+end
+
+
 ActiveRecord::Base.connection.execute("BEGIN TRANSACTION;")
 
 @hotelslist.each do |hotel|
@@ -320,16 +325,14 @@ ActiveRecord::Base.connection.execute("COMMIT;")
 
 
 
-if @hotelslist.count > 600 then
-    @hotelslist = @hotelslist.sample(600)
-end
+
 
 @hotelslist =@hotelslist.map(&:strip).join(', ')
 
 
 
 
-sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\""
+sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\" WHERE hoteltemp.\"eanhotelid\" IN (#{@hotelslist}) "
 
 
 @latlongs = ActiveRecord::Base.connection.execute(sql)
@@ -389,6 +392,8 @@ end
 
 
 if @hotelhash["HotelListResponse"]["cacheLocation"] == nil then
+
+
 else
 
 
@@ -397,6 +402,8 @@ else
 
 
 for i in 1..@pagecount
+
+
 
 
         if i == 1 then
@@ -416,7 +423,7 @@ else
                   @jsonfeed5 = open(moreresults2).read
                   @moreresults = JSON.parse(@jsonfeed5)
 
-
+                if @moreresults["HotelListResponse"]["cachedSupplierResponse"] == nil then else
 
           for t in 0..@moreresults["HotelListResponse"]["cachedSupplierResponse"]["@supplierResponseNum"].to_i-1
 
@@ -424,6 +431,8 @@ else
            @hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].push(@moreresults["HotelListResponse"]["HotelList"]["HotelSummary"][t])
 
               end
+
+end
 
 
 end
@@ -486,6 +495,13 @@ def filter
   @get_latlong = params[:get_latlong].gsub!(/\"/, '\'')
   @checkin = params[:checkin]
   @checkout = params[:checkout]
+
+     @low = params[:low]
+    @high = params[:high]
+    case when @high == 'true' then @pricecheck = 299
+    when @low == 'true' then @pricecheck = 0
+     end
+
   @hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))
 
 

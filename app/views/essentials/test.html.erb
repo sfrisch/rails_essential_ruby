@@ -609,7 +609,7 @@
 
 
 
-  $("#filterresults").change(function(){
+  $("#filters").change(function(){
 
 
     var checkin = document.getElementById('checkin').value;
@@ -617,6 +617,8 @@
     var hotelhash = document.getElementById('hotelhash').value;
     var get_latlong = document.getElementById('get_latlong').value;
     var checkout = document.getElementById('checkout').value;
+   var high = document.getElementById('high').checked;
+    var low = document.getElementById('low').checked;
 
     var url = "/essentials/filter";
 
@@ -624,7 +626,7 @@
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,low:low,high:high}
        });
  });
 

@@ -5,13 +5,6 @@
 
 
 
-<select id="filterresults" name="filterresults">
-  <option value=4>5</option>
-  <option value=9>10</option>
-  <option value=3>4</option>
-  <option value=5>6</option>
-  <option value=18>19</option>
-</select>
 
 
 
@@ -37,18 +30,30 @@
 
 
   <div id="sidebar-wrapper">
-   <ul class="sidebar-nav">
+   <ul class="sidebar-nav" id ="filters">
+
+
+<select id="filterresults" name="filterresults">
+  <option value=4>5</option>
+  <option value=9>10</option>
+  <option value=3>4</option>
+  <option value=5>6</option>
+  <option value=18>19</option>
+</select>
+
+
+
      <li><div class="checkbox">
       <label>
-       <input type="checkbox" value="">
-       Starwood
+       <input type="checkbox" id = "low" name="low">
+       499-
      </label>
    </div></li>
 
    <li><div class="checkbox">
     <label>
-      <input type="checkbox" value="">
-      Hyatt
+      <input type="checkbox" id ="high" name="high">
+      500+
     </label>
   </div></li>
 
@@ -113,7 +118,20 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 <%@get_latlong= eval(@get_latlong.to_s)%>
 
 
-<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'][0..@filterresults.to_i].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
+<%@hotelhash2 = []%>
+<%=@pricecheck%>
+
+<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |hotelsearch| %>
+
+
+<%case when hotelsearch["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"].to_i > @pricecheck.to_i then @hotelhash2.push(hotelsearch)%>
+<%end%>
+<%end%>
+
+
+<%@hotelhash2[0..@filterresults.to_i].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
+
+
 
 <% @LAT = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LAT"]%>
 <% @LONG = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LONG"]%>
@@ -290,16 +308,8 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <%counter = counter + 1%>
 
                                       <input value = <%= zebra["hotelId"]%> name="hotelid" type="hidden">
-                                      <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
-                                      <input value ="<%=@checkout%>" name="checkout" id="checkout" type="hidden">
-                                      <input value ="<%=@adults%>" name="adults" type="hidden">
-                                      <input value ="<%=@children%>" name="children" type="hidden">
-                                      <input value ="<%=@age1%>" name="age1" type="hidden">
-                                      <input value ="<%=@age2%>" name="age2" type="hidden">
-                                      <input value ="<%=@age3%>" name="age3" type="hidden">
-                                      <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
-                                      <input value ="<%=@get_latlong%>" name="get_latlong" id="get_latlong" type="hidden">
-                                      <input value ="<%=@filterresults%>" name="filterresults" id="filterresults" type="hidden">
+
+
 
                                     </div>
 
@@ -360,8 +370,20 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
           <%end%>
 
+    <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
+                                      <input value ="<%=@checkout%>" name="checkout" id="checkout" type="hidden">
+                                      <input value ="<%=@adults%>" name="adults" type="hidden">
+                                      <input value ="<%=@children%>" name="children" type="hidden">
+                                      <input value ="<%=@age1%>" name="age1" type="hidden">
+                                      <input value ="<%=@age2%>" name="age2" type="hidden">
+                                      <input value ="<%=@age3%>" name="age3" type="hidden">
+                                      <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
+                                      <input value ="<%=@get_latlong%>" name="get_latlong" id="get_latlong" type="hidden">
+                                      <input value ="<%=@filterresults%>" name="filterresults" id="filterresults" type="hidden">
+                                      <input value ="<%=@high%>" name="high" id="high" type="hidden">
+                                      <input value ="<%=@low%>" name="low" id="low" type="hidden">
 <script>
-  $("#filterresults").change(function(){
+  $("#filters").change(function(){
 
 
     var checkin = document.getElementById('checkin').value;
@@ -369,6 +391,8 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
     var hotelhash = document.getElementById('hotelhash').value;
     var get_latlong = document.getElementById('get_latlong').value;
     var checkout = document.getElementById('checkout').value;
+    var high = document.getElementById('high').checked;
+    var low = document.getElementById('low').checked;
 
     var url = "/essentials/filter";
 
@@ -376,7 +400,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,high:high,low:low}
        });
  });
   </script>
