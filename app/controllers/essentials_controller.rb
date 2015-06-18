@@ -186,6 +186,9 @@ require 'date'
 @searchstring = params["searchstring"].to_i
 @filterresults = params["filterresults"]
 @get_latlong = []
+@firstformtoggle = 1
+
+
 if @filterresults == nil then
   @filterresults = 15
 end
@@ -495,11 +498,29 @@ def filter
   @get_latlong = params[:get_latlong].gsub!(/\"/, '\'')
   @checkin = params[:checkin]
   @checkout = params[:checkout]
+  @firstformtoggle = params[:firstformtoggle]
+         @pricea = params[:pricea]
+         @priceb = params[:priceb]
+         @pricec = params[:pricec]
+         @priced = params[:priced]
+         @pricee = params[:pricee]
+         @pricef = params[:pricef]
 
-     @low = params[:low]
-    @high = params[:high]
-    case when @high == 'true' then @pricecheck = 299
-    when @low == 'true' then @pricecheck = 0
+
+@price_a = 0
+@price_b = 0
+@price_c = 0
+@price_d = 0
+@price_e = 0
+@price_f = 0
+
+    case when @pricea == 'true' then @price_a = 1
+      when @priceb == 'true' then @price_b = 1
+        when @pricec == 'true' then @price_c = 1
+          when @priced == 'true' then @price_d = 1
+            when @pricee == 'true' then @price_e = 1
+              when @pricef == 'true' then @price_f = 1
+
      end
 
   @hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))

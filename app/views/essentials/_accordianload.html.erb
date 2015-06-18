@@ -33,45 +33,63 @@
    <ul class="sidebar-nav" id ="filters">
 
 
-<%number = [['1',0],['2',1],['3',2],['4',3],['5',4],['6',5],['7',6],['8',7],['9',8],['10',9],['11',10]]%>
+<%number = [['1',0],['2',1],['3',2],['4',3],['5',4],['6',5],['7',6],['8',7],['9',8],['10',9],['11',10],['16',15]]%>
 
 <%= select_tag(:filterresults,options_for_select(number,@filterresults))%>
-
-
 
 
      <li><div class="checkbox">
       <label>
 
-<%= check_box_tag(:low) %>
-<%= label_tag(:low, "low") %>
-
+<%= check_box_tag(:pricea)%>
+<%= label_tag(:pricea, "0-100") %>
+</label>
    </div></li>
 
    <li><div class="checkbox">
     <label>
- <%= check_box_tag(:high) %>
-<%= label_tag(:high, "high") %>
+ <%= check_box_tag(:priceb) %>
+<%= label_tag(:priceb, "101-200") %>
 
-     </label>
     </label>
   </div></li>
 
 
   <li><div class="checkbox">
     <label>
-      <input type="checkbox" value="">
-      Intercontinental
+ <%= check_box_tag(:pricec) %>
+<%= label_tag(:pricec, "201-300") %>
+
     </label>
   </div></li>
 
 
   <li><div class="checkbox">
     <label>
-      <input type="checkbox" value="">
-      Four Seasons
+ <%= check_box_tag(:priced) %>
+<%= label_tag(:priced, "301-400") %>
     </label>
   </div></li>
+
+
+  <li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:pricee) %>
+<%= label_tag(:pricee, "401-500") %>
+
+    </label>
+  </div></li>
+
+
+
+  <li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:pricef) %>
+<%= label_tag(:pricef, "500+") %>
+    </label>
+  </div></li>
+
+
 </ul>
 </div>
 
@@ -119,14 +137,83 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 <%@hotelhash2 = []%>
-<%=@pricecheck%>
-
-<%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |hotelsearch| %>
 
 
-<%case when hotelsearch["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"].to_i > @pricecheck.to_i then @hotelhash2.push(hotelsearch)%>
-<%end%>
-<%end%>
+
+
+<%=@firstformtoggle%>
+
+
+<%search_a = 0%>
+<%search_b = 0%>
+<%search_c = 0%>
+<%search_d = 0%>
+<%search_e = 0%>
+<%search_f = 0%>
+
+
+
+
+
+<%if @firstformtoggle == 1%>
+
+
+
+      <%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |hotelsearch| %>
+
+             <%if hotelsearch == nil then else%>
+
+                       <%@hotelhash2.push(hotelsearch)%>
+
+              <%end%>
+
+       <%end%>
+
+
+<%else%>
+
+        <%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |hotelsearch| %>
+
+               <%if hotelsearch == nil then else%>
+
+
+                     <%@priceactual = hotelsearch["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"].to_i%>
+
+
+
+              <% case when @priceactual.to_f.between?(0,100) && @price_a == 1  then search_a = 1 else search_a=0%>
+              <%end%>
+
+              <% case when @priceactual.to_f.between?(101,200) && @price_b == 1  then search_b = 1 else search_b=0%>
+              <%end%>
+
+                <% case when @priceactual.to_f.between?(201,300) && @price_c == 1  then search_c = 1 else search_c=0%>
+            <%end%>
+
+                  <% case when @priceactual.to_f.between?(301,400) && @price_d == 1  then search_d = 1 else search_d=0%>
+              <%end%>
+
+                  <% case when @priceactual.to_f.between?(401,500) && @price_e == 1  then search_e = 1 else search_e=0%>
+              <%end%>
+
+                    <% case when @priceactual.to_f.between?(501,20000) && @price_f == 1  then search_f = 1 else search_f=0%>
+                <%end%>
+
+
+
+                <% if search_a + search_b+ search_c + search_d + search_e + search_f >= 1 then @hotelhash2.push(hotelsearch)%>
+                <%end%>
+
+               <%end%>
+
+        <%end%>
+
+        <%end%>
+
+
+
+
+
 
 
 <%@hotelhash2[0..@filterresults.to_i].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
@@ -342,9 +429,10 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                             <div class="panel-group col-md-8 col-md-offset-2">
                               <p>All displayed prices exclude Tax Recovery Charges and Service Fees</p>
 
-
                               <div id="map-canvas" style="height:600px">
                               </div>
+
+
                             </div>
                             <%end%>
 
@@ -370,7 +458,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
           <%end%>
 
-    <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
+                                    <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
                                       <input value ="<%=@checkout%>" name="checkout" id="checkout" type="hidden">
                                       <input value ="<%=@adults%>" name="adults" type="hidden">
                                       <input value ="<%=@children%>" name="children" type="hidden">
@@ -380,8 +468,16 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
                                       <input value ="<%=@get_latlong%>" name="get_latlong" id="get_latlong" type="hidden">
                                       <input value ="<%=@filterresults%>" name="filterresults" id="filterresults" type="hidden">
-                                      <input value ="<%=@high%>" name="high" id="high" type="hidden">
-                                      <input value ="<%=@low%>" name="low" id="low" type="hidden">
+                                      <input value ="<%=@pricea%>" name="@pricea" id="@pricea" type="hidden">
+                                      <input value ="<%=@priceb%>" name="@priceb" id="@priceb" type="hidden">
+                                      <input value ="<%=@pricec%>" name="@pricec" id="@pricec" type="hidden">
+                                      <input value ="<%=@priced%>" name="@priced" id="@priced" type="hidden">
+                                      <input value ="<%=@pricee%>" name="@pricee" id="@pricee" type="hidden">
+                                      <input value ="<%=@pricef%>" name="@pricef" id="@pricef" type="hidden">
+
+
+
+
 <script>
   $("#filters").change(function(){
 
@@ -391,16 +487,25 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
     var hotelhash = document.getElementById('hotelhash').value;
     var get_latlong = document.getElementById('get_latlong').value;
     var checkout = document.getElementById('checkout').value;
-    var high = document.getElementById('high').checked;
-    var low = document.getElementById('low').checked;
-
+        var firstformtoggle = 0;
+    var pricea = document.getElementById('pricea').checked;
+    var priceb = document.getElementById('priceb').checked;
+    var pricec = document.getElementById('pricec').checked;
+    var priced = document.getElementById('priced').checked;
+    var pricee = document.getElementById('pricee').checked;
+    var pricef = document.getElementById('pricef').checked;
     var url = "/essentials/filter";
 
     $.ajax({
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,high:high,low:low}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle}
        });
  });
+
+
   </script>
+
+
+
