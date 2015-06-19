@@ -514,14 +514,21 @@ def filter
 @price_e = 0
 @price_f = 0
 
-    case when @pricea == 'true' then @price_a = 1
-      when @priceb == 'true' then @price_b = 1
-        when @pricec == 'true' then @price_c = 1
-          when @priced == 'true' then @price_d = 1
-            when @pricee == 'true' then @price_e = 1
-              when @pricef == 'true' then @price_f = 1
+    if @pricea == 'true' then @price_a = 1 and @pricea=true else @pricea = false end
+      if @priceb == 'true' then @price_b = 1 and @priceb=true else @priceb = false end
+        if @pricec == 'true' then @price_c = 1  and @pricec=true else @pricec = false end
+          if @priced == 'true' then @price_d = 1 and @priced=true else @priced = false end
+            if @pricee == 'true' then @price_e = 1 and @pricee=true else @pricee = false end
+              if @pricef == 'true' then @price_f = 1 and @pricef=true else @pricef = false end
 
-     end
+
+
+
+
+
+if @price_a.to_i + @price_b.to_i + @price_c.to_i + @price_d.to_i + @price_e.to_i + @price_f.to_i == 0 then @firstformtoggle = 1 else @firstformtoggle = 0 end
+
+
 
   @hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))
 

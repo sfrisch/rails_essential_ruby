@@ -41,14 +41,14 @@
      <li><div class="checkbox">
       <label>
 
-<%= check_box_tag(:pricea)%>
+<%= check_box_tag(:pricea,true,checked=@pricea)%>
 <%= label_tag(:pricea, "0-100") %>
 </label>
    </div></li>
 
    <li><div class="checkbox">
     <label>
- <%= check_box_tag(:priceb) %>
+ <%= check_box_tag(:priceb,true,checked=@priceb) %>
 <%= label_tag(:priceb, "101-200") %>
 
     </label>
@@ -57,7 +57,7 @@
 
   <li><div class="checkbox">
     <label>
- <%= check_box_tag(:pricec) %>
+ <%= check_box_tag(:pricec,true,checked=@pricec) %>
 <%= label_tag(:pricec, "201-300") %>
 
     </label>
@@ -66,7 +66,7 @@
 
   <li><div class="checkbox">
     <label>
- <%= check_box_tag(:priced) %>
+ <%= check_box_tag(:priced,true,checked=@priced) %>
 <%= label_tag(:priced, "301-400") %>
     </label>
   </div></li>
@@ -74,7 +74,7 @@
 
   <li><div class="checkbox">
     <label>
- <%= check_box_tag(:pricee) %>
+ <%= check_box_tag(:pricee,true,checked=@pricee) %>
 <%= label_tag(:pricee, "401-500") %>
 
     </label>
@@ -84,7 +84,7 @@
 
   <li><div class="checkbox">
     <label>
- <%= check_box_tag(:pricef) %>
+ <%= check_box_tag(:pricef,true,checked=@pricef) %>
 <%= label_tag(:pricef, "500+") %>
     </label>
   </div></li>
@@ -201,7 +201,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 
-                <% if search_a + search_b+ search_c + search_d + search_e + search_f >= 1 then @hotelhash2.push(hotelsearch)%>
+                <% if search_a + search_b + search_c + search_d + search_e + search_f >= 1 then @hotelhash2.push(hotelsearch)%>
                 <%end%>
 
                <%end%>
@@ -487,7 +487,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
     var hotelhash = document.getElementById('hotelhash').value;
     var get_latlong = document.getElementById('get_latlong').value;
     var checkout = document.getElementById('checkout').value;
-        var firstformtoggle = 0;
+
     var pricea = document.getElementById('pricea').checked;
     var priceb = document.getElementById('priceb').checked;
     var pricec = document.getElementById('pricec').checked;
@@ -495,6 +495,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
     var pricee = document.getElementById('pricee').checked;
     var pricef = document.getElementById('pricef').checked;
     var url = "/essentials/filter";
+    var firstformtoggle = 0;
 
     $.ajax({
       type: 'POST',
