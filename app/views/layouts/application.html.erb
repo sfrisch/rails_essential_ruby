@@ -230,6 +230,13 @@ height: 6em;
     var hyatt = document.getElementById('hyatt').checked;
     var whotels = document.getElementById('whotels').checked;
     var waldorf = document.getElementById('waldorf').checked;
+    var fourseasons = document.getElementById('fourseasons').checked;
+    var hilton = document.getElementById('hilton').checked;
+    var radissonblu = document.getElementById('radissonblu').checked;
+    var renaissance = document.getElementById('renaissance').checked;
+    var sheraton = document.getElementById('sheraton').checked;
+    var stregis = document.getElementById('stregis').checked;
+    var westin = document.getElementById('westin').checked;
 
 
 
@@ -238,6 +245,13 @@ var brandstring =[]
     if(hyatt==1) { brandstring.push('65');}
     if(whotels==1) {brandstring.push('706');}
     if(waldorf==1) {brandstring.push('2194');}
+    if(fourseasons==1) {brandstring.push('2130');}
+    if(hilton==1) {brandstring.push('2146');}
+    if(radissonblu==1) {brandstring.push('2431');}
+    if(renaissance==1) {brandstring.push('15');}
+    if(sheraton==1) {brandstring.push('130');}
+    if(stregis==1) {brandstring.push('2045');}
+    if(westin==1) {brandstring.push('152');}
 
 
     var url = "/essentials/filter";
@@ -247,9 +261,10 @@ var brandstring =[]
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,hyatt:hyatt,waldorf:waldorf,whotels:whotels}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin}
        });
  });
+
 
 
   </script>

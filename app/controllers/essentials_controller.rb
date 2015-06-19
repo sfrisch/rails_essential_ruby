@@ -526,8 +526,16 @@ def filter
          @pricef = params[:pricef]
          @brandstring = params[:brandstring]
           @whotels = params[:whotels]
+          @hyatt = params[:hyatt]
+           @fourseasons = params[:fourseasons]
+           @hilton = params[:hilton]
+           @radissonblu = params[:radissonblu]
+           @renaissance = params[:renaissance]
+           @sheraton = params[:sheraton]
+           @stregis = params[:stregis]
+           @westin = params[:westin]
            @waldorf = params[:waldorf]
-            @hyatt = params[:hyatt]
+
 
 
 
@@ -546,13 +554,20 @@ def filter
             if @pricee == 'true' then @price_e = 1 and @pricee=true else @pricee = false end
               if @pricef == 'true' then @price_f = 1 and @pricef=true else @pricef = false end
                 if @whotels == 'true'then @whotels=true else @whotels = false end
-                   if @hyatt == 'true'then @hyatt=true else @hyatt = false end
+                   if @hyatt == 'true' then @hyatt=true else @hyatt = false end
+                     if @fourseasons == 'true'then @fourseasons=true else @fourseasons = false end
+                     if @hilton == 'true' then @hilton=true else @hilton = false end
+                     if @radissonblu == 'true' then @radissonblu=true else @radissonblu = false end
+                     if @renaissance == 'true' then @renaissance=true else @renaissance = false end
+                     if @sheraton == 'true' then @sheraton=true else @sheraton = false end
+                     if @stregis == 'true' then @stregis=true else @stregis = false end
+                     if @westin == 'true' then @westin=true else @westin = false end
                      if @waldorf == 'true'then @waldorf=true else @waldorf = false end
 
 if @brandstring == nil then @brandstring = [] end
 
 
-@brandchecked = @whotels || @hyatt || @waldorf
+@brandchecked = @whotels || @hyatt || @fourseasons || @hilton || @radissonblu || @renaissance || @sheraton || @stregis || @westin || @waldorf
 @pricechecked = @pricea || @priceb || @pricec || @priced || @pricee || @pricef
 
 
