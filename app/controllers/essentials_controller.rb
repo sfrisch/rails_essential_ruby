@@ -187,7 +187,7 @@ require 'date'
 @filterresults = params["filterresults"]
 @get_latlong = []
 @firstformtoggle = 1
-
+@filterresults = 15
 
 if @filterresults == nil then
   @filterresults = 15
@@ -535,6 +535,20 @@ def filter
            @stregis = params[:stregis]
            @westin = params[:westin]
            @waldorf = params[:waldorf]
+           @boscolo = params[:boscolo]
+           @fairmont = params[:fairmont]
+           @intercontinental = params[:intercontinental]
+           @jwmarriott = params[:jwmarriott]
+           @mandarin = params[:mandarin]
+           @marriott = params[:marriott]
+           @melia = params[:melia]
+           @shangra = params[:shangra]
+           @sofitel = params[:sofitel]
+           @starwoodlux = params[:starwoodlux]
+           @swisshotel = params[:swisshotel]
+           @langham = params[:langham]
+           @peninsula = params[:peninsula]
+           @lemeridian = params[:lemeridian]
 
 
 
@@ -563,11 +577,26 @@ def filter
                      if @stregis == 'true' then @stregis=true else @stregis = false end
                      if @westin == 'true' then @westin=true else @westin = false end
                      if @waldorf == 'true'then @waldorf=true else @waldorf = false end
+                     if @boscolo == 'true'then @boscolo=true else @boscolo = false end
+                     if @fairmont == 'true'then @fairmont=true else @fairmont = false end
+                     if @intercontinental == 'true'then @intercontinental=true else @intercontinental = false end
+                     if @jwmarriott == 'true'then @jwmarriott=true else @jwmarriott = false end
+                     if @mandarin == 'true'then @mandarin=true else @mandarin = false end
+                     if @marriott == 'true'then @marriott=true else @marriott = false end
+                     if @melia == 'true'then @melia=true else @melia = false end
+                     if @shangra == 'true'then @shangra=true else @shangra = false end
+                     if @sofitel == 'true'then @sofitel=true else @sofitel = false end
+                     if @starwoodlux == 'true'then @starwoodlux=true else @starwoodlux = false end
+                     if @swisshotel == 'true'then @swisshotel=true else @swisshotel = false end
+                     if @langham == 'true' then @langham=true else @langham = false end
+                     if @peninsula == 'true' then @peninsula=true else @peninsula = false end
+                     if @lemeridian == 'true'then @lemeridian=true else @lemeridian = false end
 
 if @brandstring == nil then @brandstring = [] end
 
 
-@brandchecked = @whotels || @hyatt || @fourseasons || @hilton || @radissonblu || @renaissance || @sheraton || @stregis || @westin || @waldorf
+@brandchecked = @whotels || @hyatt || @fourseasons || @hilton || @radissonblu || @renaissance || @sheraton || @stregis || @westin || @waldorf || @boscolo || @fairmont || @intercontinental || @jwmarriott || @mandarin || @marriott || @melia || @shangra || @sofitel || @starwoodlux || @swisshotel || @langham || @peninsula || @lemeridian
+
 @pricechecked = @pricea || @priceb || @pricec || @priced || @pricee || @pricef
 
 
