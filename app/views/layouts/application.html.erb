@@ -208,3 +208,50 @@ height: 6em;
 
 </script>
 
+
+
+<script>
+  $("#filters").change(function(){
+
+
+    var checkin = document.getElementById('checkin').value;
+    var numresults = document.getElementById('filterresults').value;
+    var hotelhash = document.getElementById('hotelhash').value;
+    var get_latlong = document.getElementById('get_latlong').value;
+    var chainid = document.getElementById('chainid').value;
+    var checkout = document.getElementById('checkout').value;
+
+    var pricea = document.getElementById('pricea').checked;
+    var priceb = document.getElementById('priceb').checked;
+    var pricec = document.getElementById('pricec').checked;
+    var priced = document.getElementById('priced').checked;
+    var pricee = document.getElementById('pricee').checked;
+    var pricef = document.getElementById('pricef').checked;
+    var hyatt = document.getElementById('hyatt').checked;
+    var whotels = document.getElementById('whotels').checked;
+    var waldorf = document.getElementById('waldorf').checked;
+
+
+
+
+var brandstring =[]
+    if(hyatt==1) { brandstring.push('65');}
+    if(whotels==1) {brandstring.push('706');}
+    if(waldorf==1) {brandstring.push('2194');}
+
+
+    var url = "/essentials/filter";
+    var firstformtoggle = 0;
+
+    $.ajax({
+      type: 'POST',
+      url: url,
+      dataType:'script',
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,hyatt:hyatt,waldorf:waldorf,whotels:whotels}
+       });
+ });
+
+
+  </script>
+
+

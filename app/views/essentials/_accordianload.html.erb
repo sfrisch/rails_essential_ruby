@@ -33,8 +33,9 @@
    <ul class="sidebar-nav" id ="filters">
 
 
-<%number = [['1',0],['2',1],['3',2],['4',3],['5',4],['6',5],['7',6],['8',7],['9',8],['10',9],['11',10],['16',15]]%>
+<%number = [['5',4],['10',9],['15',14],['25',24],['50',49]]%>
 
+<%= label_tag(:filterresults, "Number of Results") %>
 <%= select_tag(:filterresults,options_for_select(number,@filterresults))%>
 
 
@@ -42,14 +43,14 @@
       <label>
 
 <%= check_box_tag(:pricea,true,checked=@pricea)%>
-<%= label_tag(:pricea, "0-100") %>
+<%= label_tag(:pricea, "$0-$100") %>
 </label>
    </div></li>
 
    <li><div class="checkbox">
     <label>
  <%= check_box_tag(:priceb,true,checked=@priceb) %>
-<%= label_tag(:priceb, "101-200") %>
+<%= label_tag(:priceb, "$101-$200") %>
 
     </label>
   </div></li>
@@ -58,7 +59,7 @@
   <li><div class="checkbox">
     <label>
  <%= check_box_tag(:pricec,true,checked=@pricec) %>
-<%= label_tag(:pricec, "201-300") %>
+<%= label_tag(:pricec, "$201-$300") %>
 
     </label>
   </div></li>
@@ -67,7 +68,7 @@
   <li><div class="checkbox">
     <label>
  <%= check_box_tag(:priced,true,checked=@priced) %>
-<%= label_tag(:priced, "301-400") %>
+<%= label_tag(:priced, "$301-$400") %>
     </label>
   </div></li>
 
@@ -75,7 +76,7 @@
   <li><div class="checkbox">
     <label>
  <%= check_box_tag(:pricee,true,checked=@pricee) %>
-<%= label_tag(:pricee, "401-500") %>
+<%= label_tag(:pricee, "$401-$500") %>
 
     </label>
   </div></li>
@@ -85,17 +86,36 @@
   <li><div class="checkbox">
     <label>
  <%= check_box_tag(:pricef,true,checked=@pricef) %>
-<%= label_tag(:pricef, "500+") %>
+<%= label_tag(:pricef, "$500+") %>
     </label>
   </div></li>
 
 
+  <li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:whotels,true,checked=@whotels) %>
+<%= label_tag(:whotels, "W Hotels") %>
+    </label>
+  </div></li>
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:hyatt,true,checked=@hyatt) %>
+<%= label_tag(:hyatt, "Hyatt") %>
+    </label>
+  </div></li>
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:waldorf,true,checked=@waldorf) %>
+<%= label_tag(:waldorf, "Waldorf Astoria") %>
+    </label>
+  </div></li>
+
+
+
 </ul>
 </div>
-
-
-
-
 
 
 <div id="page-content-wrapper">
@@ -106,7 +126,6 @@
 
 
       <div class="col-md-12">
-
 
 
 
@@ -150,8 +169,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 <%search_d = 0%>
 <%search_e = 0%>
 <%search_f = 0%>
-
-
+<%brand_search = 0%>
 
 
 
@@ -199,10 +217,43 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                     <% case when @priceactual.to_f.between?(501,20000) && @price_f == 1  then search_f = 1 else search_f=0%>
                 <%end%>
 
+               <%@chain = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["ChaincodeID"] + "\"")%>
+
+          <%@brands = @brandstring.include? @chain%>
+              <%if @brands == true then brand_search = 1 else brand_search = 0 end %>
 
 
-                <% if search_a + search_b + search_c + search_d + search_e + search_f >= 1 then @hotelhash2.push(hotelsearch)%>
+
+                <%if @pricechecked == true and @brandchecked == true then%>
+                        <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 and brand_search == 1 then %>
+                        <%@hotelhash2.push(hotelsearch)%>
                 <%end%>
+                <%end%>
+
+                    <%if @pricechecked == false and @brandchecked == true then%>
+                      <% if brand_search == 1 then %>
+                      <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
+                      <%end%>
+
+
+                       <%if @pricechecked == false and @brandchecked == false then%>
+                        <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
+
+                          <%if @pricechecked == true and @brandchecked == false then%>
+                           <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 then%>
+                        <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
+                      <%end%>
+
+
+
+
+
+
+
+
 
                <%end%>
 
@@ -217,6 +268,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 <%@hotelhash2[0..@filterresults.to_i].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
+
 
 
 
@@ -474,6 +526,14 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <input value ="<%=@priced%>" name="@priced" id="@priced" type="hidden">
                                       <input value ="<%=@pricee%>" name="@pricee" id="@pricee" type="hidden">
                                       <input value ="<%=@pricef%>" name="@pricef" id="@pricef" type="hidden">
+                                      <input value ="<%=@whotels%>" name="@whotels" id="@whotels" type="hidden">
+                                      <input value ="<%=@hyatt%>" name="@hyatt" id="@hyatt" type="hidden">
+                                      <input value ="<%=@waldorf%>" name="@waldorf" id="@waldorf" type="hidden">
+
+                                      <input value ="<%=@brandstring%>" name="@brandstring" id="@brandstring" type="hidden">
+                                      <input value ="<%=@chainid%>" name="chainid" id="chainid" type="hidden">
+
+
 
 
 
@@ -486,6 +546,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
     var numresults = document.getElementById('filterresults').value;
     var hotelhash = document.getElementById('hotelhash').value;
     var get_latlong = document.getElementById('get_latlong').value;
+    var chainid = document.getElementById('chainid').value;
     var checkout = document.getElementById('checkout').value;
 
     var pricea = document.getElementById('pricea').checked;
@@ -494,6 +555,19 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
     var priced = document.getElementById('priced').checked;
     var pricee = document.getElementById('pricee').checked;
     var pricef = document.getElementById('pricef').checked;
+    var hyatt = document.getElementById('hyatt').checked;
+    var whotels = document.getElementById('whotels').checked;
+    var waldorf = document.getElementById('waldorf').checked;
+
+
+
+
+var brandstring =[]
+    if(hyatt==1) { brandstring.push('65');}
+    if(whotels==1) {brandstring.push('706');}
+    if(waldorf==1) {brandstring.push('2194');}
+
+
     var url = "/essentials/filter";
     var firstformtoggle = 0;
 
@@ -501,12 +575,9 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf}
        });
  });
 
 
   </script>
-
-
-

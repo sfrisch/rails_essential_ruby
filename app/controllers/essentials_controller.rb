@@ -335,7 +335,7 @@ ActiveRecord::Base.connection.execute("COMMIT;")
 
 
 
-sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\" WHERE hoteltemp.\"eanhotelid\" IN (#{@hotelslist}) "
+sql = "SELECT hotels.\"EANHotelID\",\"ChainCodeID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\" WHERE hoteltemp.\"eanhotelid\" IN (#{@hotelslist}) "
 
 
 @latlongs = ActiveRecord::Base.connection.execute(sql)
@@ -343,7 +343,7 @@ sql = "SELECT hotels.\"EANHotelID\",airport_lat_long.\"LAT\",airport_lat_long.\"
 
  @latlongs.each do |latlong|
 
-     @get_latlong.push({"EANHotelID" => latlong["EANHotelID"],"LAT" => latlong["LAT"],"LONG" => latlong["LONG"]})
+     @get_latlong.push({"EANHotelID" => latlong["EANHotelID"],"LAT" => latlong["LAT"],"LONG" => latlong["LONG"],"ChaincodeID" => latlong["ChainCodeID"]})
 
          end
 
@@ -388,6 +388,19 @@ end
 
 @centerlat = @sum / @coordarray.length
 @centerlong = @sum2 / @coordarray.length
+
+
+ sql = "SELECT \"ChainID\",\"ChainName\" FROM chain"
+@chains = ActiveRecord::Base.connection.execute(sql)
+
+@chainid = []
+ @chains.each do |chain|
+
+     @chainid.push({"ChainID" => chain["ChainID"],"ChainName" => chain["ChainName"]})
+
+         end
+
+
 
 
 
@@ -444,6 +457,11 @@ end
 end
 
 
+
+
+
+
+
 rescue
 
   case        when @hotelhash["HotelListResponse"]["EanWsError"]["category"] == "SOLD_OUT"
@@ -497,6 +515,7 @@ def filter
   @filterresults = params[:filterresults]
   @get_latlong = params[:get_latlong].gsub!(/\"/, '\'')
   @checkin = params[:checkin]
+  @chainid = params[:chainid]
   @checkout = params[:checkout]
   @firstformtoggle = params[:firstformtoggle]
          @pricea = params[:pricea]
@@ -505,6 +524,11 @@ def filter
          @priced = params[:priced]
          @pricee = params[:pricee]
          @pricef = params[:pricef]
+         @brandstring = params[:brandstring]
+          @whotels = params[:whotels]
+           @waldorf = params[:waldorf]
+            @hyatt = params[:hyatt]
+
 
 
 @price_a = 0
@@ -514,19 +538,28 @@ def filter
 @price_e = 0
 @price_f = 0
 
+
     if @pricea == 'true' then @price_a = 1 and @pricea=true else @pricea = false end
       if @priceb == 'true' then @price_b = 1 and @priceb=true else @priceb = false end
         if @pricec == 'true' then @price_c = 1  and @pricec=true else @pricec = false end
           if @priced == 'true' then @price_d = 1 and @priced=true else @priced = false end
             if @pricee == 'true' then @price_e = 1 and @pricee=true else @pricee = false end
               if @pricef == 'true' then @price_f = 1 and @pricef=true else @pricef = false end
+                if @whotels == 'true'then @whotels=true else @whotels = false end
+                   if @hyatt == 'true'then @hyatt=true else @hyatt = false end
+                     if @waldorf == 'true'then @waldorf=true else @waldorf = false end
+
+if @brandstring == nil then @brandstring = [] end
+
+
+@brandchecked = @whotels || @hyatt || @waldorf
+@pricechecked = @pricea || @priceb || @pricec || @priced || @pricee || @pricef
 
 
 
 
 
-
-if @price_a.to_i + @price_b.to_i + @price_c.to_i + @price_d.to_i + @price_e.to_i + @price_f.to_i == 0 then @firstformtoggle = 1 else @firstformtoggle = 0 end
+if @price_a.to_i + @price_b.to_i + @price_c.to_i + @price_d.to_i + @price_e.to_i + @price_f.to_i + @brandstring.count.to_i == 0 then @firstformtoggle = 1 else @firstformtoggle = 0 end
 
 
 

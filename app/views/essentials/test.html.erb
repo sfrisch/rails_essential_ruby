@@ -609,33 +609,6 @@
 
 
 
-  $("#filters").change(function(){
-
-
-    var checkin = document.getElementById('checkin').value;
-    var numresults = document.getElementById('filterresults').value;
-    var hotelhash = document.getElementById('hotelhash').value;
-    var get_latlong = document.getElementById('get_latlong').value;
-    var checkout = document.getElementById('checkout').value;
-    var pricea = document.getElementById('pricea').checked;
-    var priceb = document.getElementById('priceb').checked;
-    var pricec = document.getElementById('pricec').checked;
-    var priced = document.getElementById('priced').checked;
-    var pricee = document.getElementById('pricee').checked;
-    var pricef = document.getElementById('pricef').checked;
-    var firstformtoggle = 0;
-
-    var url = "/essentials/filter";
-
-    $.ajax({
-      type: 'POST',
-      url: url,
-      dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle}
-       });
- });
-
-
   $("#children").change(function(){
 
     var ageselection = document.getElementById('children').value;
@@ -651,8 +624,6 @@
 
 
   });
-
-
 
 
 
