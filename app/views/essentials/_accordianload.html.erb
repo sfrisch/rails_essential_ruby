@@ -444,10 +444,12 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 
+<%sortfield = 'tripAdvisorReviewCount'%>
 
 
 
-<%@hotelhash2[0..@filterresults.to_i].sort_by{|zebra| zebra['tripAdvisorReviewCount'].to_i}.reverse!.each do |zebra|%>
+
+<%@hotelhash2[0..@filterresults.to_i].sort_by{|zebra| zebra[sortfield].to_i}.reverse!.each do |zebra|%>
 
 
 
