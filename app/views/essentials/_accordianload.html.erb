@@ -358,18 +358,12 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 <%if @firstformtoggle == 1%>
 
+             <%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |hotelsearch| %>
 
-
-      <%@hotelhash['HotelListResponse']['HotelList']['HotelSummary'].each do |hotelsearch| %>
-
-             <%if hotelsearch == nil then else%>
-
-                       <%@hotelhash2.push(hotelsearch)%>
-
-              <%end%>
-
-       <%end%>
-
+                      <%if hotelsearch == nil then else%>
+                                <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
+             <%end%>
 
 <%else%>
 
@@ -389,31 +383,34 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
               <%end%>
 
                 <% case when @priceactual.to_f.between?(201,300) && @price_c == 1  then search_c = 1 else search_c=0%>
-            <%end%>
-
-                  <% case when @priceactual.to_f.between?(301,400) && @price_d == 1  then search_d = 1 else search_d=0%>
-              <%end%>
-
-                  <% case when @priceactual.to_f.between?(401,500) && @price_e == 1  then search_e = 1 else search_e=0%>
-              <%end%>
-
-                    <% case when @priceactual.to_f.between?(501,20000) && @price_f == 1  then search_f = 1 else search_f=0%>
                 <%end%>
 
-               <%@chain = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["ChaincodeID"] + "\"")%>
+                  <% case when @priceactual.to_f.between?(301,400) && @price_d == 1  then search_d = 1 else search_d=0%>
+                   <%end%>
 
-          <%@brands = @brandstring.include? @chain%>
-              <%if @brands == true then brand_search = 1 else brand_search = 0 end %>
+
+                  <% case when @priceactual.to_f.between?(401,500) && @price_e == 1  then search_e = 1 else search_e=0%>
+                  <%end%>
+
+                    <% case when @priceactual.to_f.between?(501,20000) && @price_f == 1  then search_f = 1 else search_f=0%>
+                    <%end%>
+
+
+                    <%@chain = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["ChaincodeID"] + "\"")%>
+
+                 <%@brands = @brandstring.include? @chain%>
+                <%if @brands == true then brand_search = 1 else brand_search = 0 end %>
 
 
 
                 <%if @pricechecked == true and @brandchecked == true then%>
-                        <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 and brand_search == 1 then %>
-                        <%@hotelhash2.push(hotelsearch)%>
-                <%end%>
+                            <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 and brand_search == 1 then %>
+                             <%@hotelhash2.push(hotelsearch)%>
+                               <%end%>
                 <%end%>
 
-                    <%if @pricechecked == false and @brandchecked == true then%>
+
+                      <%if @pricechecked == false and @brandchecked == true then%>
                       <% if brand_search == 1 then %>
                       <%@hotelhash2.push(hotelsearch)%>
                       <%end%>
@@ -424,27 +421,30 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                         <%@hotelhash2.push(hotelsearch)%>
                       <%end%>
 
+
                           <%if @pricechecked == true and @brandchecked == false then%>
                            <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 then%>
-                        <%@hotelhash2.push(hotelsearch)%>
-                      <%end%>
-                      <%end%>
-
-
-
-
-
-
+                                   <%@hotelhash2.push(hotelsearch)%>
+                             <%end%>
+                             <%end%>
 
 
 
                <%end%>
-
         <%end%>
+<%end%>
 
-        <%end%>
 
+                <%if @hotelhash2 == [] then%>
+                <%noresults=1%>
 
+                <%end%>
+
+ <%if noresults==1 then%>
+    <div class="panel-group col-md-8 col-md-offset-2 column" id="accordion" role="tablist" aria-multiselectable="true">
+    No Results Available
+    </div>
+    <%end%>
 
 
 <%sortfield = 'tripAdvisorReviewCount'%>
@@ -506,8 +506,6 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 <form id="accordion<%=counter%>" action="/essentials/hoteldetails" method="post" >
-
-
 
 
 
@@ -643,14 +641,14 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                               </a>
 
                               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
- <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
+                                      <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
                                       <input value ="<%=@checkout%>" name="checkout" id="checkout" type="hidden">
                                       <input value ="<%=@adults%>" name="adults" type="hidden">
                                       <input value ="<%=@children%>" name="children" type="hidden">
                                       <input value ="<%=@age1%>" name="age1" type="hidden">
                                       <input value ="<%=@age2%>" name="age2" type="hidden">
                                       <input value ="<%=@age3%>" name="age3" type="hidden">
-                                      <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
+
                                       <input value ="<%=@get_latlong%>" name="get_latlong" id="get_latlong" type="hidden">
                                       <input value ="<%=@filterresults%>" name="filterresults" id="filterresults" type="hidden">
                                       <input value ="<%=@pricea%>" name="@pricea" id="@pricea" type="hidden">
@@ -685,6 +683,8 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <input value ="<%=@langham%>" name="@langham" id="@langham" type="hidden">
                                       <input value ="<%=@peninsula%>" name="@peninsula" id="@peninsula" type="hidden">
 
+
+                                    <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
 
 
 
@@ -751,6 +751,55 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
           <%end%>
+
+<%if noresults == 1%>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                      <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
+                                      <input value ="<%=@checkout%>" name="checkout" id="checkout" type="hidden">
+                                      <input value ="<%=@adults%>" name="adults" type="hidden">
+                                      <input value ="<%=@children%>" name="children" type="hidden">
+                                      <input value ="<%=@age1%>" name="age1" type="hidden">
+                                      <input value ="<%=@age2%>" name="age2" type="hidden">
+                                      <input value ="<%=@age3%>" name="age3" type="hidden">
+
+                                      <input value ="<%=@get_latlong%>" name="get_latlong" id="get_latlong" type="hidden">
+                                      <input value ="<%=@filterresults%>" name="filterresults" id="filterresults" type="hidden">
+                                      <input value ="<%=@pricea%>" name="@pricea" id="@pricea" type="hidden">
+                                      <input value ="<%=@priceb%>" name="@priceb" id="@priceb" type="hidden">
+                                      <input value ="<%=@pricec%>" name="@pricec" id="@pricec" type="hidden">
+                                      <input value ="<%=@priced%>" name="@priced" id="@priced" type="hidden">
+                                      <input value ="<%=@pricee%>" name="@pricee" id="@pricee" type="hidden">
+                                      <input value ="<%=@pricef%>" name="@pricef" id="@pricef" type="hidden">
+                                      <input value ="<%=@whotels%>" name="@whotels" id="@whotels" type="hidden">
+                                      <input value ="<%=@hyatt%>" name="@hyatt" id="@hyatt" type="hidden">
+                                      <input value ="<%=@waldorf%>" name="@waldorf" id="@waldorf" type="hidden">
+                                      <input value ="<%=@fourseasons%>" name="@fourseasons" id="@fourseasons" type="hidden">
+                                      <input value ="<%=@hilton%>" name="@hilton" id="@hilton" type="hidden">
+                                      <input value ="<%=@radissionblu%>" name="@radissionblu" id="@radissonblu" type="hidden">
+                                      <input value ="<%=@renaissance%>" name="@renaissance" id="@renaissance" type="hidden">
+                                      <input value ="<%=@sheraton%>" name="@sheraton" id="@sheraton" type="hidden">
+                                      <input value ="<%=@stregis%>" name="@stregis" id="@stregis" type="hidden">
+                                      <input value ="<%=@westin%>" name="@westin" id="@westin" type="hidden">
+
+                                      <input value ="<%=@boscolo%>" name="@boscolo" id="@boscolo" type="hidden">
+                                      <input value ="<%=@fairmont%>" name="@fairmont" id="@fairmont" type="hidden">
+                                      <input value ="<%=@intercontinental%>" name="@intercontinental" id="@intercontinental" type="hidden">
+                                      <input value ="<%=@jwmarriott%>" name="@jwmarriott" id="@jwmarriott" type="hidden">
+                                      <input value ="<%=@lemeridian%>" name="@lemeridian" id="@lemeridian" type="hidden">
+                                      <input value ="<%=@mandarin%>" name="@mandarin" id="@mandarin" type="hidden">
+                                      <input value ="<%=@marriott%>" name="@marriott" id="@marriott" type="hidden">
+                                      <input value ="<%=@melia%>" name="@melia" id="@melia" type="hidden">
+                                      <input value ="<%=@shangra%>" name="@shangra" id="@shangra" type="hidden">
+                                      <input value ="<%=@sofitel%>" name="@sofitel" id="@sofitel" type="hidden">
+                                      <input value ="<%=@starwoodlux%>" name="@starwoodlux" id="@starwoodlux" type="hidden">
+                                      <input value ="<%=@swisshotel%>" name="@swisshotel" id="@swisshotel" type="hidden">
+                                      <input value ="<%=@langham%>" name="@langham" id="@langham" type="hidden">
+                                      <input value ="<%=@peninsula%>" name="@peninsula" id="@peninsula" type="hidden">
+                                    <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
+                                      <input value ="<%=@brandstring%>" name="@brandstring" id="@brandstring" type="hidden">
+                                      <input value ="<%=@chainid%>" name="chainid" id="chainid" type="hidden">
+<%noresults=0%>
+<%end%>
 
 
 

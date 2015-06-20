@@ -596,7 +596,7 @@ if @brandstring == nil then @brandstring = [] end
 
 @pricechecked = @pricea || @priceb || @pricec || @priced || @pricee || @pricef
 
-
+if @pricechecked == false and @brandchecked == false then @firstformtoggle == 1 end
 
 
 
