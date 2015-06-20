@@ -643,59 +643,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                               </a>
 
                               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-                            </form>
-
-                            <%else%>
-
-                            <%end%>
-
-                            <%end%>
-
-                            <%end%>
-
-                            <%end%>
-
-
-
-                            <div class="col-md-6">
-
-                            </div>
-
-                            <%if counterbinary==1 then %>
-                            <div class="panel-group col-md-8 col-md-offset-2">
-                              <p>All displayed prices exclude Tax Recovery Charges and Service Fees</p>
-
-                              <div id="map-canvas" style="height:600px">
-                              </div>
-
-
-                            </div>
-                            <%end%>
-
-
-                          </div>
-
-
-
-
-                        </div>
-                      </div>
-
-
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-          <%end%>
-
-                                    <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
+ <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
                                       <input value ="<%=@checkout%>" name="checkout" id="checkout" type="hidden">
                                       <input value ="<%=@adults%>" name="adults" type="hidden">
                                       <input value ="<%=@children%>" name="children" type="hidden">
@@ -745,9 +693,64 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
                                       <input value ="<%=@brandstring%>" name="@brandstring" id="@brandstring" type="hidden">
                                       <input value ="<%=@chainid%>" name="chainid" id="chainid" type="hidden">
+                            </form>
+
+                            <%else%>
+
+                            <%end%>
+
+                            <%end%>
+
+                            <%end%>
+
+                            <%end%>
 
 
 
+                            <div class="col-md-6">
+
+                            </div>
+
+                            <%if counterbinary==1 then %>
+                            <div class="panel-group col-md-8 col-md-offset-2">
+                              <p>All displayed prices exclude Tax Recovery Charges and Service Fees</p>
+
+                              <div id="map-canvas" style="height:600px">
+                              </div>
+
+
+                            </div>
+                            <%end%>
+
+
+
+
+
+
+
+
+
+                          </div>
+
+
+
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <%end%>
 
 
 
