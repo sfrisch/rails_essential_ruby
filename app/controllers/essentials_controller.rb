@@ -307,8 +307,8 @@ ActiveRecord::Base.connection.execute(sqlcreate)
 
 
 
-if @hotelslist.count > 100 then
-    @hotelslist = @hotelslist.sample(100)
+if @hotelslist.count > 600 then
+    @hotelslist = @hotelslist.sample(600)
 end
 
 
