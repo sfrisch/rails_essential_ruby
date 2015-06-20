@@ -144,6 +144,8 @@ color:red;
 <% counter1 = 0 %>
 
 
+<%if @hoteldetailhash["HotelRoomAvailabilityResponse"]["HotelImages"] == nil then else%>
+
 
 <%@hoteldetailhash["HotelRoomAvailabilityResponse"]["HotelImages"]["HotelImage"].each do |zebra|%>
 
@@ -164,7 +166,7 @@ color:red;
 
 <%counter1 = counter1 + 1%>
 <%end%>
-
+<%end%>
 
 
 </div>
@@ -210,8 +212,6 @@ color:red;
 
 
                     </div>
-
-
 
 
 <%charbreak = @escapedescription.index("</p>") + 3%>
@@ -331,8 +331,13 @@ color:red;
 
 <div>
 <ul class="list-inline">
+
+<%if zebra["RoomType"]["roomAmenities"] == nil then else %>
+
+
 <%zebra["RoomType"]["roomAmenities"]["RoomAmenity"].each do |amenitys|%>
 <li><%=amenitys["amenity"]%></li>
+<%end%>
 <%end%>
 </ul>
 </div>
@@ -383,6 +388,9 @@ color:red;
 
 
 
+
+                                    <input value ="<%=@checkin%>" name="checkin" id="checkin" type="hidden">
+                                      <input value ="<%=@checkout%>" name="checkout" id="checkout" type="hidden">
 
 
 

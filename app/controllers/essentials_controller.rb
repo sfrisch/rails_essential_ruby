@@ -459,9 +459,6 @@ end
 
 
 
-
-
-
 rescue
 
   case        when @hotelhash["HotelListResponse"]["EanWsError"]["category"] == "SOLD_OUT"
