@@ -187,10 +187,10 @@ require 'date'
 @filterresults = params["filterresults"]
 @get_latlong = []
 @firstformtoggle = 1
-@filterresults = 15
+@filterresults = 14
 
 if @filterresults == nil then
-  @filterresults = 15
+  @filterresults = 14
 end
 
 
