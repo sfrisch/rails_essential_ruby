@@ -332,7 +332,7 @@ ActiveRecord::Base.connection.execute("COMMIT;")
 
 
 
-if @hotellist == nil then @hotelslist = '000000' end
+if @hotelslist == nil then @hotelslist = '000000' end
 
 
 sql = "SELECT hotels.\"EANHotelID\",\"ChainCodeID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\" WHERE hoteltemp.\"eanhotelid\" IN (#{@hotelslist}) "
