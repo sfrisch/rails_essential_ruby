@@ -57,7 +57,7 @@
 .panel-heading{background-color:white;}
 
 
-.fade {
+#fade {
     display: none;
     position:absolute;
     top: 0%;
@@ -71,7 +71,7 @@
     filter: alpha(opacity=80);
 }
 
-.modal {
+#modal {
     display: none;
     position: absolute;
     top: 45%;
