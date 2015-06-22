@@ -509,7 +509,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 
-  <a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000);ga('send', 'event','Rooms', 'Click', 'Booking'); return false;" style="color:black">
+  <a href="javascript:{}" onclick="document.getElementById('accordion<%=counter%>').submit();waitingDialog.show('Searching for Rooms...');setTimeout(function () {waitingDialog.hide();}, 30000);ga('send', 'event','Rooms', 'Click', 'Rooms'); return false;" style="color:black">
 
 
 
@@ -605,9 +605,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 
-                                    <div id="collapse<%=counter%>" class="panel-collapse collapse" onClick="ga('send', 'event',
-
-                                      'Weather', 'Click', 'Weather');" role="tabpanel" aria-labelledby="heading<%=counter%>">
+                                    <div id="collapse<%=counter%>" class="panel-collapse collapse" onClick="ga('send','event','Weather', 'Click', 'Weather');" role="tabpanel" aria-labelledby="heading<%=counter%>">
                                       <div class="panel-body">
 
 
