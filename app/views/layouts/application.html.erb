@@ -209,11 +209,17 @@ height: 6em;
 </script>
 
 
-
-
 <script>
-  $("#filters").change(function(){
 
+$("#sortfilter").change(function(){
+
+$("#filters").change();
+
+});
+
+
+
+  $("#filters").change(function(){
 
 
     var checkin = document.getElementById('checkin').value;
@@ -223,6 +229,8 @@ height: 6em;
     var chainid = document.getElementById('chainid').value;
     var checkout = document.getElementById('checkout').value;
     var coordarray = document.getElementById('coordarray').value;
+     var centerlat = document.getElementById('centerlat').value;
+      var centerlong = document.getElementById('centerlong').value;
     var pricea = document.getElementById('pricea').checked;
     var priceb = document.getElementById('priceb').checked;
     var pricec = document.getElementById('pricec').checked;
@@ -253,7 +261,7 @@ height: 6em;
     var swisshotel = document.getElementById('swisshotel').checked;
     var langham = document.getElementById('langham').checked;
     var peninsula = document.getElementById('peninsula').checked;
-
+    var sorting = document.getElementById('sorting').value;
 
 
 
@@ -291,15 +299,21 @@ var brandstring =[]
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin,boscolo:boscolo,renaissance:renaissance,fairmont:fairmont,intercontinental:intercontinental,jwmarriott:jwmarriott,lemeridian:lemeridian,mandarin:mandarin,marriott:marriott,melia:melia,shangra:shangra,sofitel:sofitel,starwoodlux:starwoodlux,langham:langham,peninsula:peninsula,coordarray:coordarray}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin,boscolo:boscolo,renaissance:renaissance,fairmont:fairmont,intercontinental:intercontinental,jwmarriott:jwmarriott,lemeridian:lemeridian,mandarin:mandarin,marriott:marriott,melia:melia,shangra:shangra,sofitel:sofitel,starwoodlux:starwoodlux,langham:langham,peninsula:peninsula,coordarray:coordarray,centerlat:centerlat,centerlong:centerlong,sorting:sorting}
+    });
+});
 
 
-       });
+$body = $("body");
 
- });
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+     ajaxStop: function() { $body.removeClass("loading"); }
 
 
 
+});
 
   </script>
+
 
