@@ -33,12 +33,6 @@
    <ul class="sidebar-nav" id ="filters">
 
 
-<%number = [['5',4],['10',9],['15',14],['25',24],['50',49]]%>
-
-<%= label_tag(:filterresults, "Number of Results") %>
-<%= select_tag(:filterresults,options_for_select(number,[@filterresults]))%>
-
-
 <%= label_tag(:pricebox, "Price Per Night") %>
 <div id="pricebox">
 
@@ -290,6 +284,11 @@
 
 
 
+
+
+
+
+
 </div>
 
 
@@ -316,10 +315,24 @@
         <div class="panel-group col-md-8 col-md-offset-2 column" id="resultsform"><a
 
           href="/">Return to Search</a>
+
+
+
         </div>
 
 
-
+<div id="sortfilter">
+<%number = [['5',4],['10',9],['15',14],['25',24],['50',49]]%>
+<div class="panel-group col-md-4 col-md-offset-2 column">
+<%= label_tag(:filterresults, "Number of Results") %>
+<%= select_tag(:filterresults,options_for_select(number,[@filterresults]))%>
+</div>
+<%sortorder = [['Most Popular',0],['Price Ascending',1],['Price Descending',2]]%>
+<div class="panel-group col-md-4 col-md-offset-2 column">
+<%= label_tag(:sorting, "Sort By") %>
+<%= select_tag(:sorting,options_for_select(sortorder,[@sorting]))%>
+</div>
+</div>
 
 
                             <!-- ##%@hotelhash = @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|
@@ -449,12 +462,22 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 <%sortfield = 'tripAdvisorReviewCount'%>
 
+<%case when @sorting == 0 then %>
+<%@hotelhash2 = @hotelhash2.sort_by{|zebra| zebra[sortfield].to_i}.reverse!%>
+
+<% when @sorting == 1 then %>
+<%@hotelhash2 = @hotelhash2.sort_by!{|zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"].to_i}%>
 
 
 
-<%@hotelhash2[0..@filterresults.to_i].sort_by{|zebra| zebra[sortfield].to_i}.reverse!.each do |zebra|%>
+<% when @sorting == 2 then %>
+<%@hotelhash2 = @hotelhash2.sort_by{|zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"]["ChargeableRateInfo"]["@averageRate"].to_i}.reverse!%>
+
+<%end%>
 
 
+
+<%@hotelhash2[0..@filterresults.to_i].each do |zebra|%>
 
 
 <% @LAT = @get_latlong.find{|i| i["EANHotelID"].to_i == zebra["hotelId"]}["LAT"]%>
@@ -646,9 +669,12 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <input value ="<%=@age1%>" name="age1" type="hidden">
                                       <input value ="<%=@age2%>" name="age2" type="hidden">
                                       <input value ="<%=@age3%>" name="age3" type="hidden">
-
+                                      <input value ="<%=@coordarray%>" name="coordarray" id="coordarray" type="hidden">
+                                      <input value ="<%=@centerlat%>" name="centerlat" id="centerlat" type="hidden">
+                                      <input value ="<%=@centerlong%>" name="centerlong" id="centerlong" type="hidden">
                                       <input value ="<%=@get_latlong%>" name="get_latlong" id="get_latlong" type="hidden">
                                       <input value ="<%=@filterresults%>" name="filterresults" id="filterresults" type="hidden">
+                                       <input value ="<%=@sorting%>" name="sorting" id="sorting" type="hidden">
                                       <input value ="<%=@pricea%>" name="@pricea" id="@pricea" type="hidden">
                                       <input value ="<%=@priceb%>" name="@priceb" id="@priceb" type="hidden">
                                       <input value ="<%=@pricec%>" name="@pricec" id="@pricec" type="hidden">
@@ -665,7 +691,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <input value ="<%=@sheraton%>" name="@sheraton" id="@sheraton" type="hidden">
                                       <input value ="<%=@stregis%>" name="@stregis" id="@stregis" type="hidden">
                                       <input value ="<%=@westin%>" name="@westin" id="@westin" type="hidden">
-
+                                      <input value ="<%=@sorting%>" name="sorting" id="sorting" type="hidden">
                                       <input value ="<%=@boscolo%>" name="@boscolo" id="@boscolo" type="hidden">
                                       <input value ="<%=@fairmont%>" name="@fairmont" id="@fairmont" type="hidden">
                                       <input value ="<%=@intercontinental%>" name="@intercontinental" id="@intercontinental" type="hidden">
@@ -759,7 +785,12 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <input value ="<%=@age1%>" name="age1" type="hidden">
                                       <input value ="<%=@age2%>" name="age2" type="hidden">
                                       <input value ="<%=@age3%>" name="age3" type="hidden">
+                                      <input value ="<%=@coordarray%>" name="coordarray" id="coordarray" type="hidden">
+                                      <input value ="<%=@sorting%>" name="sorting" id="sorting" type="hidden">
 
+
+                                          <input value ="<%=@centerlat%>" name="centerlat" id="centerlat" type="hidden">
+                                      <input value ="<%=@centerlong%>" name="centerlong" id="centerlong" type="hidden">
                                       <input value ="<%=@get_latlong%>" name="get_latlong" id="get_latlong" type="hidden">
                                       <input value ="<%=@filterresults%>" name="filterresults" id="filterresults" type="hidden">
                                       <input value ="<%=@pricea%>" name="@pricea" id="@pricea" type="hidden">
@@ -803,6 +834,15 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 <script>
+
+$("#sortfilter").change(function(){
+
+$("#filters").change();
+
+});
+
+
+
   $("#filters").change(function(){
 
 
@@ -812,7 +852,9 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
     var get_latlong = document.getElementById('get_latlong').value;
     var chainid = document.getElementById('chainid').value;
     var checkout = document.getElementById('checkout').value;
-
+    var coordarray = document.getElementById('coordarray').value;
+     var centerlat = document.getElementById('centerlat').value;
+      var centerlong = document.getElementById('centerlong').value;
     var pricea = document.getElementById('pricea').checked;
     var priceb = document.getElementById('priceb').checked;
     var pricec = document.getElementById('pricec').checked;
@@ -843,7 +885,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
     var swisshotel = document.getElementById('swisshotel').checked;
     var langham = document.getElementById('langham').checked;
     var peninsula = document.getElementById('peninsula').checked;
-
+    var sorting = document.getElementById('sorting').value;
 
 
 
@@ -881,7 +923,7 @@ var brandstring =[]
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin,boscolo:boscolo,renaissance:renaissance,fairmont:fairmont,intercontinental:intercontinental,jwmarriott:jwmarriott,lemeridian:lemeridian,mandarin:mandarin,marriott:marriott,melia:melia,shangra:shangra,sofitel:sofitel,starwoodlux:starwoodlux,langham:langham,peninsula:peninsula}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin,boscolo:boscolo,renaissance:renaissance,fairmont:fairmont,intercontinental:intercontinental,jwmarriott:jwmarriott,lemeridian:lemeridian,mandarin:mandarin,marriott:marriott,melia:melia,shangra:shangra,sofitel:sofitel,starwoodlux:starwoodlux,langham:langham,peninsula:peninsula,coordarray:coordarray,centerlat:centerlat,centerlong:centerlong,sorting:sorting}
     });
 });
 
@@ -891,9 +933,10 @@ $body = $("body");
 $(document).on({
     ajaxStart: function() { $body.addClass("loading");    },
      ajaxStop: function() { $body.removeClass("loading"); }
+
+
+
 });
 
-
-
-
   </script>
+

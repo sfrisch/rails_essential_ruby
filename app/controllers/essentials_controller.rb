@@ -188,6 +188,7 @@ require 'date'
 @get_latlong = []
 @firstformtoggle = 1
 @filterresults = 14
+@sorting = 0
 
 if @filterresults == nil then
   @filterresults = 14
@@ -546,7 +547,10 @@ def filter
            @langham = params[:langham]
            @peninsula = params[:peninsula]
            @lemeridian = params[:lemeridian]
-
+            @coordarray = params[:coordarray]
+            @centerlat= params[:centerlat]
+            @centerlong = params[:centerlong]
+            @sorting = params[:sorting].to_i
 
 
 
