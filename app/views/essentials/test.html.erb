@@ -10,8 +10,6 @@
   <style>
     .container img {
       width:auto;
-
-
     }
 
     body{  font-family: 'Lato', sans-serif;}
@@ -109,7 +107,6 @@
 
 
 
-
       @media (max-width: 767px) {
         .navbar-nav > li > a  {
           line-height: 20px;
@@ -150,7 +147,7 @@
 
 
 
-    <%if @hotelhash == nil || @check != nil then%>
+    <%if (@hotelhash == nil || @check != nil) && @counter == 1 then%>
 
 
              <form action="/essentials/hotelwherever" method="get", name="hotelsearch" id="hotelsearch" role="form">
@@ -438,6 +435,7 @@
                   </div>
 
 
+   <input value ="<%=@counter%>" name="counter" id="counter" type="hidden">
 
 
 </form>
@@ -460,6 +458,318 @@
 
 
 
+
+    <%if @counter != 1 then%>
+
+             <form action="/essentials/hotelwherever" method="get", name="hotelsearch" id="hotelsearch" role="form">
+
+
+
+      <a data-toggle="collapse" data-parent="#accordion" href="#secondsearch" aria-expanded="false" aria-controls="secondsearch">
+
+
+<div class="panel-group col-md-12 col-md-offset-2">
+
+             <div class="col-md-3" style='font-color:black';">
+              <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control" value="<%=@checkin%>">
+              </div>
+                 <div class="col-md-3" style='font-color:black';">
+              <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control" value="<%=@checkout%>">
+             </div>
+
+   <div class="col-md-3" style='font-color:black';">
+                    <input type="button" text="Search" value="Search" id="search" name="search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);ga('send', 'event', 'Search', 'Click', 'Search');">
+</div>
+<div class="col-md-12">
+<dd class="amenities">More Search Options>></dd>
+</div>
+</div>
+        </a>
+
+
+
+
+    <div id="secondsearch" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsearch"style="padding-bottom:30px">
+
+
+
+
+
+
+
+
+
+
+
+                   <% if @check.present? %>
+
+
+            <div class="col-md-6 col-xs-12 col-sm-3 hidden-xs short_div">
+                          <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong><%=@check%>
+                            </div>
+
+ </div>
+
+                         <%end%>
+
+
+
+
+
+          <div class="panel-group col-md-8 col-md-offset-4">
+
+
+            <label for = "ex2" style="color:black">Filter by price interval:  </label><p style="color:black">$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="1000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
+
+          </div>
+
+
+            <div class="col-md-1 col-xs-12 col-sm-3">
+
+
+              <label for = "adults" style="color:black">Adults</label>
+              <select id="adults" name="adults" class="form-control" placeholder=".col-lg-1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+
+              </select>
+            </div>
+
+
+
+                  <div class="col-md-1 col-xs-12 col-sm-3 children">
+
+                    <label for = "children" style="color:black">Children</label>
+                    <select id="children" name="children" class="form-control" placeholder=".col-lg-1">
+                      <option>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+
+
+                    </select>
+
+                  </div>
+
+
+
+
+
+
+                <div class="col-md-1 col-xs-12 col-sm-3 ">
+
+                  <label for = "stars" style="color:black">Stars</label>
+                  <select id="stars" name="stars" class="form-control" placeholder=".col-lg-1">
+                    <option>4</option>
+                    <option>4.5</option>
+                    <option>5</option>
+                  </select>
+                </div>
+
+
+
+
+                <div class="col-md-2 col-xs-12 col-sm-3 ">
+                  <label for = "brand" style="color:black">Brand</label>
+                  <select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4 .col-xs-4" value="<%=@chain%>">
+                    <option>Any</option>
+                    <option>Boscolo</option>
+                    <option>Fairmont</option>
+                    <option>Four Seasons</option>
+                    <option>Hilton</option>
+                    <option>Hyatt</option>
+                    <option>Intercontinental</option>
+                    <option>JW Marriott</option>
+                    <option>Le Meredian</option>
+                    <option>Mandarin Oriental</option>
+                    <option>Marriott</option>
+                    <option>Melia</option>
+                    <option>Radisson Blu</option>
+                    <option>Renaissance</option>
+                    <option>Ritz Carlton</option>
+                    <option>Shangri-La</option>
+                    <option>Sheraton</option>
+                    <option>Sofitel</option>
+                    <option>St. Regis</option>
+                    <option>Starwood Luxury Collection</option>
+                    <option>W Hotels</options>
+                      <option>Waldorf Astoria</option>
+                      <option>Westin</option>
+                    </select>
+
+                 </div>
+
+
+
+                  <div class="col-md-2 col-xs-12 col-sm-3 ">
+
+                    <label for = "temp" style="color:black"> Check-In Temperature</label>
+                    <select id="temp" class="form-control" name="temp" placeholder=".col-lg-4">
+
+                      <option>Any</option>
+                      <option>90+</option>
+                      <option>80+</option>
+                      <option>70+</option>
+                      <option>60+</option>
+                      <option>50+</option>
+                    </select>
+
+                  </div>
+
+
+
+
+
+                    <div class="col-md-2 col-xs-12 col-sm-3 ">
+
+                      <label for = "region" style="color:black">Region</label>
+                      <select id="region" class="form-control" name="region" placeholder=".col-lg-4" value = "<%=@region%>">
+                        <option>Any</option>
+                        <option>US</option>
+                        <option>Canada</option>
+                        <option>Europe</option>
+                        <option>South America</option>
+                        <option>Asia</option>
+                        <option>Latin America and the Caribbean</option>
+                        <option>Middle East</option>
+                        <option>Australia/Pacific</option>
+                        <option>Africa</option>
+
+                      </select>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-2 col-xs-12 col-sm-3 ">
+
+                      <label for = "Hotel Type" style="color:black">Hotel Type</label>
+                      <select id="hoteltype" name="hoteltype" class="form-control" placeholder=".col-lg-4">
+                        <option value=-1>Any</option>
+                        <option value=3>Resort</option>
+                        <option value=8>All-Inclusive</option>
+                        <option value=5>Bed and Breakfast</option>
+                        <option value=14>Villa</option>
+                        <option value=25>Riad</option>
+
+                      </select>
+
+                    </div>
+
+                  <div class="row">
+                    <div class="col-md-2 col-xs-12 col-sm-3  age1">
+                      <label for = "age1" style="color:black">Child 1 Age</label>
+                      <select id="age1" name="age1" class="form-control" placeholder=".col-lg-1">
+                        <option value="null" selected="TRUE">Age</option>
+                        <option value=0>Under 1</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=10>10</option>
+                        <option value=11>11</option>
+                        <option value=12>12</option>
+                        <option value=13>13</option>
+                        <option value=14>14</option>
+                        <option value=15>15</option>
+                        <option value=16>16</option>
+                        <option value=17>17</option>
+                      </select>
+                    </div>
+
+
+
+
+                      <div class="col-md-2 col-xs-12 col-sm-3  age2">
+                        <label for = "age2" style="color:black">Child 2 Age</label>
+                        <select id="age2" name="age2" class="form-control" placeholder=".col-lg-1">
+                          <option value="null" selected="TRUE">Age</option>
+                          <option value=0>Under 1</option>
+                          <option value=1>1</option>
+                          <option value=2>2</option>
+                          <option value=3>3</option>
+                          <option value=4>4</option>
+                          <option value=5>5</option>
+                          <option value=6>6</option>
+                          <option value=7>7</option>
+                          <option value=8>8</option>
+                          <option value=9>9</option>
+                          <option value=10>10</option>
+                          <option value=11>11</option>
+                          <option value=12>12</option>
+                          <option value=13>13</option>
+                          <option value=14>14</option>
+                          <option value=15>15</option>
+                          <option value=16>16</option>
+                          <option value=17>17</option>
+
+
+                        </select>
+                      </div>
+
+
+                        <div class="col-md-2 col-xs-12 col-sm-3 age3">
+                          <label for = "age3" style="color:black">Child 3 Age</label>
+                          <select id="age3" name="age3" class="form-control" placeholder=".col-lg-1" >
+                            <option value ="null" selected="TRUE">Age</option>
+                            <option value=0>Under 1</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                            <option value=9>9</option>
+                            <option value=10>10</option>
+                            <option value=11>11</option>
+                            <option value=12>12</option>
+                            <option value=13>13</option>
+                            <option value=14>14</option>
+                            <option value=15>15</option>
+                            <option value=16>16</option>
+                            <option value=17>17</option>
+
+
+
+                          </select>
+                        </div>
+
+
+                   </div>
+
+
+
+
+
+
+
+
+
+   <input value ="<%=@counter%>" name="counter" id="counter" type="hidden">
+
+
+
+              </form>
+
+
+
+</div>
+
+<%end%>
 
 
           <div id="promotions">
@@ -563,6 +873,12 @@
 
 
     <script>
+
+
+
+
+
+
 
 
       $(function() {

@@ -165,8 +165,12 @@ require 'date'
 
 @random = rand
 
+if @counter == nil then
+@counter = 1
+end
 
 
+@counter =  params['counter'].to_i
 @checkin =  params['checkin']
 @checkout = params['checkout']
 @roomhash = {}
@@ -363,6 +367,8 @@ sql = "SELECT hotels.\"EANHotelID\",\"ChainCodeID\",airport_lat_long.\"LAT\",air
   @hotelname = []
   hashresults = {}
   @coordarray = []
+  @tripresults2 = []
+  @tripreviews2 = []
   @check = nil
   @hotelhash3 = {'HotelListResponse'=> {'HotelList' => {"HotelSummary"=>[]}}}
 
@@ -374,21 +380,6 @@ if @hotelhash["HotelListResponse"]["HotelList"]["@size"] == "1" then
 @hotelhash = @hotelhash3
  end
 
-@hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].each do |geo|
-  @coordarray.push([geo["latitude"],  geo["longitude"],geo["name"]])
-end
-
-
-@sum = 0.0
-@sum2 = 0.0
-@coordarray.each do |avg|
-
-@sum = avg[0] + @sum
-@sum2 = avg[1] + @sum2
-end
-
-@centerlat = @sum / @coordarray.length
-@centerlong = @sum2 / @coordarray.length
 
 
  sql = "SELECT \"ChainID\",\"ChainName\" FROM chain"
@@ -458,6 +449,46 @@ end
 end
 
 
+@hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].each do |geo|
+
+          @coordarray.push([geo["latitude"],  geo["longitude"],geo["name"]])
+
+        tripadvisorurl = "http://api.tripadvisor.com/api/partner/2.0/location_mapper/#{geo["latitude"]},#{geo["longitude"]}?key=db62f2a733a040b1b4e0ebdac4e8aac8-mapper&category=hotels&q=#{geo["name"]}"
+
+                 trip1 = URI.encode(tripadvisorurl)
+
+                  @jsonfeed6 = open(trip1).read
+                  @tripresults = JSON.parse(@jsonfeed6)
+                  if @tripresults["data"] == [] then else
+                  @tripresults2.push(@tripresults["data"][0]["location_id"],geo["hotelId"],geo["name"])
+
+            tripadvisorlookup = "http://api.tripadvisor.com/api/partner/2.0/location/#{@tripresults["data"][0]["location_id"]}?key=db62f2a733a040b1b4e0ebdac4e8aac8"
+
+                 trip2 = URI.encode(tripadvisorlookup)
+                  @jsonfeed7 = open(trip2).read
+                  @tripreviews = JSON.parse(@jsonfeed7)
+
+
+                  geo["rank"] = @tripreviews["ranking_data"]["ranking_string"]
+                  geo["reviews"] = @tripreviews["reviews"]
+                  geo["rating_image_url"] = @tripreviews["rating_image_url"]
+                  geo["num_reviews"] = @tripreviews["num_reviews"]
+                  geo["web_url"] = @tripreviews["web_url"]
+end
+end
+
+
+@sum = 0.0
+@sum2 = 0.0
+@coordarray.each do |avg|
+
+@sum = avg[0] + @sum
+@sum2 = avg[1] + @sum2
+end
+
+@centerlat = @sum / @coordarray.length
+@centerlong = @sum2 / @coordarray.length
+
 
 
 rescue
@@ -496,7 +527,9 @@ rescue
 
    end
 
-
+if @check == nil then
+  @counter = @counter + 1
+end
 
 
     render('test.html.erb')
@@ -522,6 +555,7 @@ def filter
          @priced = params[:priced]
          @pricee = params[:pricee]
          @pricef = params[:pricef]
+            @pricerange = params[:pricerange]
          @brandstring = params[:brandstring]
           @whotels = params[:whotels]
           @hyatt = params[:hyatt]
@@ -608,8 +642,9 @@ if @price_a.to_i + @price_b.to_i + @price_c.to_i + @price_d.to_i + @price_e.to_i
 
 
 
-  @hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))
+  @hotelhash = eval(params[:hotelhash])
 
+  #@hotelhash = eval(params[:hotelhash].gsub!(/\"/, '\''))  maybe ?
 
   @check = nil
 @LAT = 50
