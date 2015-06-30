@@ -161,7 +161,7 @@
 
 <div class="container-fluid">
 
-
+ <%if current_user.present?%>
 
     <%if (@hotelhash == nil || @check != nil) && @counter == 1 then%>
 
@@ -704,6 +704,11 @@
 
 </div>
 
+
+
+<%else%>
+This is a development site - Please login to continue
+<%end%>
 
 
 
