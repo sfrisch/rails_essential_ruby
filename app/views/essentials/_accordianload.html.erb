@@ -3,7 +3,7 @@
 
 
 <style>
-a,a:hover,a:click, a:visited{
+.triplink,.triplink:hover,.triplink:click, .triplink:visited{
   border:none;
   outline:none;
   text-decoration:none;
@@ -41,6 +41,7 @@ a,a:hover,a:click, a:visited{
 
   <div id="sidebar-wrapper">
    <ul class="sidebar-nav col-xs-12 hidden-xs" id ="filters">
+
 
 
 <%= label_tag(:pricebox, "Price Per Night") %>
@@ -311,7 +312,7 @@ a,a:hover,a:click, a:visited{
 
 <div id="page-content-wrapper">
   <div class="page-content">
-   <div class="container">
+   <div class="container-fluid">
      <div class="row">
 
 
@@ -323,16 +324,19 @@ a,a:hover,a:click, a:visited{
 
 <div id="sortfilter">
 <%number = [['5',4],['10',9],['15',14],['25',24],['50',49]]%>
-<div class="panel-group col-md-4 col-md-offset-2 column">
+<div class="panel-group col-md-3 col-md-offset-2 column">
 <%= label_tag(:filterresults, "Number of Results") %>
 <%= select_tag(:filterresults,options_for_select(number,[@filterresults]))%>
 </div>
+
 <%sortorder = [['Most Popular',0],['Price Ascending',1],['Price Descending',2]]%>
-<div class="panel-group col-md-4 col-md-offset-2 column">
+<div class="panel-group col-md-3 col-md-offset-2 column">
 <%= label_tag(:sorting, "Sort By") %>
 <%= select_tag(:sorting,options_for_select(sortorder,[@sorting]))%>
 </div>
+Ratings and Reviews Powered By <img style ="height:40px" src="http://www.tripadvisor.com/img/cdsi/langs/en/tripadvisor_logo_transp_280x60-MCID-0.png">
 </div>
+
 
 
                             <!-- ##%@hotelhash = @hotelhash['HotelListResponse']['HotelList']['HotelSummary'].sort_by{|
@@ -563,13 +567,30 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 
-              <dd><%= zebra["city"]%></dd>
+              <dd><%= zebra["city"]%>
+                <%i = 1 %>
+
+                <%while i <= zebra["hotelRating"] do%>
+
+                <i class="fa fa-star starrating"></span></i>
+                <%i = i + 1%>
+                <%end%>
+
+                <%if zebra["hotelRating"].floor == zebra["hotelRating"]%>
+
+                <%else%>
+                <i class="fa fa-star-half-o starrating"></i>
+                <%end%></dd>
               <dd><%= zebra["rank"]%></dd>
-              <img src="<%=zebra['rating_image_url']%>">
+              <dd style="color:orange;font-size:14px">Tripadvisor® Traveler Rating</dd>
 
-                <a class="triplink" href="<%= zebra["web_url"] %>" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Based on <%= zebra["num_reviews"].to_i %> reviews</a>
+              <img src="<%=zebra['rating_image_url']%>"><span class="triplink" onclick="window.open('<%= zebra["write_reviews"] %>'); return false;" style="text-decoration:underline">Write a review</span>
+
+ <div class="triplink" style="text-decoration:underline"  onclick="window.open('<%= zebra["web_url"] %>'); return false;" onkeypress="window.open('<%= zebra["web_url"] %>'); return false;">Based on <%= zebra["num_reviews"].to_i %> reviews</div>
 
 
+
+ <!-- <dd style="color:black;font-size:14px">Tripadvisor® Traveler Reviews</dd>
                 <%if zebra["reviews"] == nil then else%>
 <dd>
                          <%zebra["reviews"].each do |rating|%>
@@ -578,7 +599,10 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
                            <%end%>
   </dd>
-                 <%end%>
+                 <%end%>  !-->
+
+
+
 
 
 
@@ -594,19 +618,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 
-                <%i = 1 %>
 
-                <%while i <= zebra["hotelRating"] do%>
-
-                <i class="fa fa-star starrating"></span></i>
-                <%i = i + 1%>
-                <%end%>
-
-                <%if zebra["hotelRating"].floor == zebra["hotelRating"]%>
-
-                <%else%>
-                <i class="fa fa-star-half-o starrating"></i>
-                <%end%>
               </dd>
 
               <%zebra["shortDescription"].gsub! '&gt;','>'%>

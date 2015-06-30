@@ -178,7 +178,7 @@ end
 @hotelslist = []
 @stars = params['stars'].to_f
 @adults = params['adults']
-@children = params['children']
+@children = params['children'].to_i
 @region = params['region']
 @countrylist = []
 @chain = params['brand']
@@ -193,6 +193,9 @@ end
 @firstformtoggle = 1
 @filterresults = 14
 @sorting = 0
+@hoteltype = params[:hoteltype]
+@temp = params[:temp]
+@stars = params[:stars].to_i
 
 if @filterresults == nil then
   @filterresults = 14
@@ -300,6 +303,9 @@ sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}'
          end
 
 
+
+
+
 @hotelstring = ""
 sqlinsert = ""
 
@@ -308,6 +314,7 @@ sqldrop = "DROP TABLE hoteltemp"
 ActiveRecord::Base.connection.execute(sqldrop)
 sqlcreate = "CREATE TABLE hoteltemp (EANHotelID int);"
 ActiveRecord::Base.connection.execute(sqlcreate)
+
 
 
 
@@ -337,7 +344,12 @@ ActiveRecord::Base.connection.execute("COMMIT;")
 
 
 
-if @hotelslist == nil then @hotelslist = '000000' end
+
+if @hotelslist == nil
+  then @check = "No Results Available - Please broaden your search" and @hotelslist = '000000'
+
+end
+
 
 
 sql = "SELECT hotels.\"EANHotelID\",\"ChainCodeID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\" WHERE hoteltemp.\"eanhotelid\" IN (#{@hotelslist}) "
@@ -474,6 +486,8 @@ end
                   geo["rating_image_url"] = @tripreviews["rating_image_url"]
                   geo["num_reviews"] = @tripreviews["num_reviews"]
                   geo["web_url"] = @tripreviews["web_url"]
+                  geo["write_reviews"] = @tripreviews["write_review"]
+
 end
 end
 
@@ -516,6 +530,8 @@ rescue
 
                         @check = "No Results Available ; Please broaden your search criteria"
 
+                  when @hotelhash == nil then @check ="No Available Hotels"
+
 
  else
               @check = "Please enter date in DD/MM/YYYY format"
@@ -535,7 +551,6 @@ end
     render('test.html.erb')
 
   end
-
 
 
 
@@ -585,6 +600,13 @@ def filter
             @centerlat= params[:centerlat]
             @centerlong = params[:centerlong]
             @sorting = params[:sorting].to_i
+            @hoteltype = params[:hoteltype]
+              @temp = params[:temp]
+                @stars = params[:stars].to_i
+@children = params['children'].to_i
+@age1 = params["age1"].to_i
+@age2 = params["age2"].to_i
+@age3 = params["age3"].to_i
 
 
 

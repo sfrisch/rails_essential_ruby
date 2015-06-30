@@ -46,6 +46,17 @@
       color:white;
       height:80px;
     }
+
+
+
+
+    .col_div {
+        height:40px;
+        text-align:center;
+        margin:auto;
+            }
+
+
     .matchpadding{padding-top:50px;
     }
 
@@ -103,8 +114,7 @@
         margin: 0;
         padding: 0;
       }
-
-
+.form-tags{text-align: center;}
 
 
       @media (max-width: 767px) {
@@ -140,6 +150,12 @@
           .input-group-lg>.form-control, .input-group-lg>.input-group-addon,
           .input-group-lg>.input-group-btn>.btn {
             height: 49px;}
+
+.background_fill {background-color:white;border-color:black;}
+
+
+
+
           </style>
 
 
@@ -240,12 +256,13 @@
                 <div class="col-md-1 col-xs-12 col-sm-3 short_div">
 
                   <label for = "stars">Stars</label>
-                  <select id="stars" name="stars" class="form-control" placeholder=".col-lg-1">
+                  <select id="stars" name="stars" class="form-control" value="<%=@stars%>" placeholder=".col-lg-1">
                     <option>4</option>
                     <option>4.5</option>
                     <option>5</option>
                   </select>
                 </div>
+
 
 
 
@@ -465,43 +482,32 @@
 
 
 
-      <a data-toggle="collapse" data-parent="#accordion" href="#secondsearch" aria-expanded="false" aria-controls="secondsearch">
 
 
-<div class="panel-group col-md-12 col-md-offset-2">
+<div class="panel-group col-md-9 col-md-offset-3">
 
-             <div class="col-md-3" style='font-color:black';">
+             <div class="col-md-2" style='font-color:black';">
+              <label for = "checkin" style="color:black">Check-In:  </label>
               <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control" value="<%=@checkin%>">
               </div>
-                 <div class="col-md-3" style='font-color:black';">
+                 <div class="col-md-2" style='font-color:black';">
+                  <label for = "checkout" style="color:black">Check-Out:  </label>
               <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control" value="<%=@checkout%>">
              </div>
 
+<div class="col-md-4" style='font-color:black';">
+  <label for = "ex2" style="color:black">Filter by price interval:  </label><p style="color:black">$<span id="SliderValMin"><%= @minprice %></span> <input id="ex2" type="text" name="pricerange" data-slider-min="<%= @minprice %>" data-slider-max="<%= @maxprice %>" data-slider-step="5" data-slider-value="[<%= @pricerange %>]"/>$<span id="SliderValMax"><%= @maxprice %></span>
+</div>
+
+
    <div class="col-md-3" style='font-color:black';">
                     <input type="button" text="Search" value="Search" id="search" name="search" class="btn btn-info btn-lg" onclick="waitingDialog.show('Searching for Hotels...');setTimeout(function () {waitingDialog.hide();}, 300000);ga('send', 'event', 'Search', 'Click', 'Search');">
+
+
+
 </div>
-<div class="col-md-12">
-<dd class="amenities">More Search Options>></dd>
-</div>
-</div>
-        </a>
 
-
-
-
-    <div id="secondsearch" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingsearch"style="padding-bottom:30px">
-
-
-
-
-
-
-
-
-
-
-
-                   <% if @check.present? %>
+          <% if @check.present? %>
 
 
             <div class="col-md-6 col-xs-12 col-sm-3 hidden-xs short_div">
@@ -510,50 +516,51 @@
                             <strong><%=@check%>
                             </div>
 
- </div>
-
-                         <%end%>
+           </div>
 
 
+           <%end%>
 
 
 
-          <div class="panel-group col-md-8 col-md-offset-4">
+
+<div class="col-md-12">
+
+      <a data-toggle="collapse" data-parent="#accordion" href="#secondsearch" aria-expanded="false" aria-controls="secondsearch">
+<dd class="amenities">Change Search>></dd>
+</div>
+</div>
+        </a>
 
 
-            <label for = "ex2" style="color:black">Filter by price interval:  </label><p style="color:black">$<span id="SliderValMin">100</span> <input id="ex2" type="text" name="pricerange" data-slider-min="50" data-slider-max="1000" data-slider-step="5" data-slider-value="[100,500]"/>$<span id="SliderValMax">500</span>
-
-          </div>
 
 
-            <div class="col-md-1 col-xs-12 col-sm-3">
+    <div id="secondsearch" class="panel-collapse collapse background_fill" role="tabpanel" aria-labelledby="headingsearch"style="padding-bottom:30px">
 
 
-              <label for = "adults" style="color:black">Adults</label>
-              <select id="adults" name="adults" class="form-control" placeholder=".col-lg-1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
 
-              </select>
+<div class="row">
+
+
+            <div class="col-md-1 col-xs-12 col-sm-3 col_div">
+
+                     <%adultname = [['1',1],['2',2],['3',3],['4',4],['5',5],['6',6]]%>
+
+<div class="formtags"><%= label_tag(:adults, "Adults") %></div>
+<%= select_tag(:adults,options_for_select(adultname,[@adults]))%>
+
+
             </div>
 
 
 
-                  <div class="col-md-1 col-xs-12 col-sm-3 children">
-
-                    <label for = "children" style="color:black">Children</label>
-                    <select id="children" name="children" class="form-control" placeholder=".col-lg-1">
-                      <option>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
+                  <div class="col-md-1 col-xs-12 col-sm-3 children col_div">
 
 
-                    </select>
+<%childrenname = [['0',0],['1',1],['2',2],['3',3]]%>
+
+<div class="formtags"><%= label_tag(:children, "Children") %></div>
+<%= select_tag(:children,options_for_select(childrenname,[@children]))%>
 
                   </div>
 
@@ -562,63 +569,39 @@
 
 
 
-                <div class="col-md-1 col-xs-12 col-sm-3 ">
+                <div class="col-md-1 col-xs-12 col-sm-3 col_div">
 
-                  <label for = "stars" style="color:black">Stars</label>
-                  <select id="stars" name="stars" class="form-control" placeholder=".col-lg-1">
-                    <option>4</option>
-                    <option>4.5</option>
-                    <option>5</option>
-                  </select>
+
+<%starname = [['4','4'],['4.5','4.5'],['5','5']]%>
+
+<div class="formtags"><%= label_tag(:stars, "Stars") %></div>
+<%= select_tag(:stars,options_for_select(starname,[@stars]))%>
+
                 </div>
 
 
 
+ <div class="col-md-2 col-xs-12 col-sm-3 col_div">
+<%brandname = [['Any','Any'],['Boscolo','Boscolo'],['Fairmont','Fairmont'],['Four Seasons','Four Seasons'],['Hilton','Hilton'],['Hyatt','Hyatt'],['Intercontinental','Intercontinental'],['JW Marriott','JW Marriott'],['Le Meredian','Le Meredian'],['Mandarin Oriental','Mandarin Oriental'],['Marriott','Marriott'],['Melia','Melia'],['Radisson Blu','Radisson Blu'],['Renaissance','Renaissance'],['Ritz Carlton','Ritz Carlton'],['Shangri-La','Shangri-La'],['Sofitel','Sofitel'],['St. Regis','St. Regis'],['Starwood Luxury Collection','Starwood Luxury Collection'],['W Hotels','W Hotels'],['Waldorf Astoria','Waldorf Astoria'],['Westin','Westin']]%>
 
-                <div class="col-md-2 col-xs-12 col-sm-3 ">
-                  <label for = "brand" style="color:black">Brand</label>
-                  <select id="brand" name = "brand" class="form-control" placeholder=".col-lg-4 .col-xs-4" value="<%=@chain%>">
-                    <option>Any</option>
-                    <option>Boscolo</option>
-                    <option>Fairmont</option>
-                    <option>Four Seasons</option>
-                    <option>Hilton</option>
-                    <option>Hyatt</option>
-                    <option>Intercontinental</option>
-                    <option>JW Marriott</option>
-                    <option>Le Meredian</option>
-                    <option>Mandarin Oriental</option>
-                    <option>Marriott</option>
-                    <option>Melia</option>
-                    <option>Radisson Blu</option>
-                    <option>Renaissance</option>
-                    <option>Ritz Carlton</option>
-                    <option>Shangri-La</option>
-                    <option>Sheraton</option>
-                    <option>Sofitel</option>
-                    <option>St. Regis</option>
-                    <option>Starwood Luxury Collection</option>
-                    <option>W Hotels</options>
-                      <option>Waldorf Astoria</option>
-                      <option>Westin</option>
-                    </select>
+<div class="formtags"><%= label_tag(:brand, "Brand") %></div>
+<%= select_tag(:brand,options_for_select(brandname,[@chain]))%>
+
+
+
 
                  </div>
 
 
 
-                  <div class="col-md-2 col-xs-12 col-sm-3 ">
+                  <div class="col-md-2 col-xs-12 col-sm-3 col_div">
 
-                    <label for = "temp" style="color:black"> Check-In Temperature</label>
-                    <select id="temp" class="form-control" name="temp" placeholder=".col-lg-4">
 
-                      <option>Any</option>
-                      <option>90+</option>
-                      <option>80+</option>
-                      <option>70+</option>
-                      <option>60+</option>
-                      <option>50+</option>
-                    </select>
+<%tempname = [['Any','Any'],['90+','90+'],['80+','80+'],['70+','70+'],['60+','60+']]%>
+
+<div class="formtags"><%= label_tag(:temp, "Check-In Temp") %></div>
+<%= select_tag(:temp,options_for_select(tempname,[@temp]))%>
+
 
                   </div>
 
@@ -626,136 +609,77 @@
 
 
 
-                    <div class="col-md-2 col-xs-12 col-sm-3 ">
+                    <div class="col-md-3 col-xs-12 col-sm-3 col_div">
 
-                      <label for = "region" style="color:black">Region</label>
-                      <select id="region" class="form-control" name="region" placeholder=".col-lg-4" value = "<%=@region%>">
-                        <option>Any</option>
-                        <option>US</option>
-                        <option>Canada</option>
-                        <option>Europe</option>
-                        <option>South America</option>
-                        <option>Asia</option>
-                        <option>Latin America and the Caribbean</option>
-                        <option>Middle East</option>
-                        <option>Australia/Pacific</option>
-                        <option>Africa</option>
+<%regionname = [['Any','Any'],['US','US'],['Canada','Canada'],['Europe','Europe'],['South America','South America'],['Asia','Asia'],['Latin America and the Caribbean','Latin America and the Caribbean'],['Middle East','Middle East'],['Australia/Pacific','Australia/Pacific'],['Africa','Africa']]%>
 
-                      </select>
-
+<div class="formtags"><%= label_tag(:region, "Region") %></div>
+<%= select_tag(:region,options_for_select(regionname,[@region]))%>
 
                     </div>
 
 
 
-                    <div class="col-md-2 col-xs-12 col-sm-3 ">
+                    <div class="col-md-2 col-xs-12 col-sm-3 col_div">
 
-                      <label for = "Hotel Type" style="color:black">Hotel Type</label>
-                      <select id="hoteltype" name="hoteltype" class="form-control" placeholder=".col-lg-4">
-                        <option value=-1>Any</option>
-                        <option value=3>Resort</option>
-                        <option value=8>All-Inclusive</option>
-                        <option value=5>Bed and Breakfast</option>
-                        <option value=14>Villa</option>
-                        <option value=25>Riad</option>
+<%hoteltypename = [['Any',1],['Resort',3],['All-Inclusive',8],['Bed and Breakfast',5],['Villa',14],['Riad',25]]%>
 
-                      </select>
+<div class="formtags"><%= label_tag(:hoteltype, "Hotel Type") %></div>
+<%= select_tag(:hoteltype,options_for_select(hoteltypename,[@hoteltype]))%>
 
                     </div>
+
+</div>
+
 
                   <div class="row">
-                    <div class="col-md-2 col-xs-12 col-sm-3  age1">
-                      <label for = "age1" style="color:black">Child 1 Age</label>
-                      <select id="age1" name="age1" class="form-control" placeholder=".col-lg-1">
-                        <option value="null" selected="TRUE">Age</option>
-                        <option value=0>Under 1</option>
-                        <option value=1>1</option>
-                        <option value=2>2</option>
-                        <option value=3>3</option>
-                        <option value=4>4</option>
-                        <option value=5>5</option>
-                        <option value=6>6</option>
-                        <option value=7>7</option>
-                        <option value=8>8</option>
-                        <option value=9>9</option>
-                        <option value=10>10</option>
-                        <option value=11>11</option>
-                        <option value=12>12</option>
-                        <option value=13>13</option>
-                        <option value=14>14</option>
-                        <option value=15>15</option>
-                        <option value=16>16</option>
-                        <option value=17>17</option>
-                      </select>
+                    <div class="col-md-2 col-xs-12 col-sm-3  age1" style='padding-top: 30px;'>
+
+
+
+<%age1name = [['Under 1',0],['1',1],['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9],['10',10],['11',11],['12',12],['13',13],['14',14],['15',15],['16',16],['17',17]]%>
+
+<%= label_tag(:age1, "Child 1 Age") %>
+<%= select_tag(:age1,options_for_select(age1name,[@age1]))%>
+
                     </div>
 
 
 
 
-                      <div class="col-md-2 col-xs-12 col-sm-3  age2">
-                        <label for = "age2" style="color:black">Child 2 Age</label>
-                        <select id="age2" name="age2" class="form-control" placeholder=".col-lg-1">
-                          <option value="null" selected="TRUE">Age</option>
-                          <option value=0>Under 1</option>
-                          <option value=1>1</option>
-                          <option value=2>2</option>
-                          <option value=3>3</option>
-                          <option value=4>4</option>
-                          <option value=5>5</option>
-                          <option value=6>6</option>
-                          <option value=7>7</option>
-                          <option value=8>8</option>
-                          <option value=9>9</option>
-                          <option value=10>10</option>
-                          <option value=11>11</option>
-                          <option value=12>12</option>
-                          <option value=13>13</option>
-                          <option value=14>14</option>
-                          <option value=15>15</option>
-                          <option value=16>16</option>
-                          <option value=17>17</option>
+                      <div class="col-md-2 col-xs-12 col-sm-3  age2" style='padding-top: 30px;'>
+
+                     <%age2name = [['Under 1',0],['1',1],['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9],['10',10],['11',11],['12',12],['13',13],['14',14],['15',15],['16',16],['17',17]]%>
+
+<%= label_tag(:age2, "Child 2 Age") %>
+<%= select_tag(:age2,options_for_select(age2name,[@age2]))%>
 
 
-                        </select>
                       </div>
 
 
-                        <div class="col-md-2 col-xs-12 col-sm-3 age3">
-                          <label for = "age3" style="color:black">Child 3 Age</label>
-                          <select id="age3" name="age3" class="form-control" placeholder=".col-lg-1" >
-                            <option value ="null" selected="TRUE">Age</option>
-                            <option value=0>Under 1</option>
-                            <option value=1>1</option>
-                            <option value=2>2</option>
-                            <option value=3>3</option>
-                            <option value=4>4</option>
-                            <option value=5>5</option>
-                            <option value=6>6</option>
-                            <option value=7>7</option>
-                            <option value=8>8</option>
-                            <option value=9>9</option>
-                            <option value=10>10</option>
-                            <option value=11>11</option>
-                            <option value=12>12</option>
-                            <option value=13>13</option>
-                            <option value=14>14</option>
-                            <option value=15>15</option>
-                            <option value=16>16</option>
-                            <option value=17>17</option>
+                        <div class="col-md-2 col-xs-12 col-sm-3 age3" style='padding-top: 30px;'>
+
+                     <%age3name = [['Under 1',0],['1',1],['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9],['10',10],['11',11],['12',12],['13',13],['14',14],['15',15],['16',16],['17',17]]%>
+
+<%= label_tag(:age3, "Child 3 Age") %>
+<%= select_tag(:age3,options_for_select(age3name,[@age3]))%>
 
 
 
-                          </select>
+
                         </div>
 
 
+
+
+
+
+
+
+
+
                    </div>
-
-
-
-
-
-
 
 
 
@@ -765,7 +689,7 @@
 
               </form>
 
-
+<hr>
 
 </div>
 
