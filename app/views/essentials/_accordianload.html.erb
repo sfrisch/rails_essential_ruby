@@ -42,8 +42,7 @@
   <div id="sidebar-wrapper">
    <ul class="sidebar-nav col-xs-12 hidden-xs" id ="filters">
 
-<div style="height:40px">Filter By:</div>
-<div></div>
+
 
 <%= label_tag(:pricebox, "Price Per Night") %>
 <div id="pricebox">
@@ -304,83 +303,6 @@
 </div>
 
 
-<%= label_tag(:regionbox, "Regions") %>
-<div id="regionbox">
-
-  <li><div class="checkbox">
-    <label>
- <%= check_box_tag(:us,true,checked=@us) %>
-<%= label_tag(:us, "US") %>
-    </label>
-  </div></li>
-
-<li><div class="checkbox">
-    <label>
- <%= check_box_tag(:canada,true,checked=@canada) %>
-<%= label_tag(:canada, "Canada") %>
-    </label>
-  </div></li>
-
-<li><div class="checkbox">
-    <label>
- <%= check_box_tag(:europe,true,checked=@europe) %>
-<%= label_tag(:europe, "Europe") %>
-    </label>
-  </div></li>
-
-<li><div class="checkbox">
-    <label>
- <%= check_box_tag(:southamerica,true,checked=@southamerica) %>
-<%= label_tag(:southamerica, "South America") %>
-    </label>
-  </div></li>
-
-<li><div class="checkbox">
-    <label>
- <%= check_box_tag(:asia,true,checked=@asia) %>
-<%= label_tag(:asia, "Asia") %>
-    </label>
-  </div></li>
-
-
-<li><div class="checkbox">
-    <label>
- <%= check_box_tag(:latin,true,checked=@latin) %>
-<%= label_tag(:latin, "Latin America and the Caribbean") %>
-    </label>
-  </div></li>
-
-<li><div class="checkbox">
-    <label>
- <%= check_box_tag(:middleeast,true,checked=@middleeast) %>
-<%= label_tag(:middleeast, "Middle East") %>
-    </label>
-  </div></li>
-
-
-<li><div class="checkbox">
-    <label>
- <%= check_box_tag(:australia,true,checked=@australia) %>
-<%= label_tag(:australia, "Australia/Pacific") %>
-    </label>
-  </div></li>
-
-
-<li><div class="checkbox">
-    <label>
- <%= check_box_tag(:africa,true,checked=@africa) %>
-<%= label_tag(:africa, "Africa") %>
-    </label>
-  </div></li>
-
-
-
-</div>
-
-
-
-
-
 
 </ul>
 </div>
@@ -408,7 +330,7 @@
 </div>
 
 <%sortorder = [['Most Popular',0],['Price Ascending',1],['Price Descending',2]]%>
-<div class="panel-group col-md-3 col-md-offset-2 column" style="text-align:right">
+<div class="panel-group col-md-3 col-md-offset-2 column">
 <%= label_tag(:sorting, "Sort By") %>
 <%= select_tag(:sorting,options_for_select(sortorder,[@sorting]))%>
 </div>
@@ -492,8 +414,6 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
                     <%@chain = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["ChaincodeID"] + "\"")%>
-                     <%@country = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["Region"] + "\"")%>
-<%=country%>
 
                  <%@brands = @brandstring.include? @chain%>
                 <%if @brands == true then brand_search = 1 else brand_search = 0 end %>
@@ -524,10 +444,6 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                    <%@hotelhash2.push(hotelsearch)%>
                              <%end%>
                              <%end%>
-
-
-
-
 
 
 
@@ -833,21 +749,11 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <input value ="<%=@langham%>" name="@langham" id="@langham" type="hidden">
                                       <input value ="<%=@peninsula%>" name="@peninsula" id="@peninsula" type="hidden">
 
-                                      <input value ="<%=@us%>" name="@us" id="@us" type="hidden">
-                                      <input value ="<%=@canada%>" name="@canada" id="@canada" type="hidden">
-                                      <input value ="<%=@europe%>" name="@europe" id="@europe" type="hidden">
-                                      <input value ="<%=@southamerica%>" name="@southamerica" id="@southamerica" type="hidden">
-                                      <input value ="<%=@asia%>" name="@asia" id="@asia" type="hidden">
-                                      <input value ="<%=@latin%>" name="@latin" id="@latin" type="hidden">
-                                      <input value ="<%=@middleeast%>" name="@middleeast" id="@middleeast" type="hidden">
-                                      <input value ="<%=@australia%>" name="@australia" id="@australia" type="hidden">
-                                        <input value ="<%=@africa%>" name="@africa" id="@africa" type="hidden">
-
 
                                     <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
 
 
-       <input value ="<%=@regionstring%>" name="@regionstring" id="@regionstring" type="hidden">
+
 
 
 
@@ -974,22 +880,8 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                       <input value ="<%=@swisshotel%>" name="@swisshotel" id="@swisshotel" type="hidden">
                                       <input value ="<%=@langham%>" name="@langham" id="@langham" type="hidden">
                                       <input value ="<%=@peninsula%>" name="@peninsula" id="@peninsula" type="hidden">
-
-                                      <input value ="<%=@us%>" name="@us" id="@us" type="hidden">
-                                      <input value ="<%=@canada%>" name="@canada" id="@canada" type="hidden">
-                                      <input value ="<%=@europe%>" name="@europe" id="@europe" type="hidden">
-                                      <input value ="<%=@southamerica%>" name="@southamerica" id="@southamerica" type="hidden">
-                                      <input value ="<%=@asia%>" name="@asia" id="@asia" type="hidden">
-                                      <input value ="<%=@latin%>" name="@latin" id="@latin" type="hidden">
-                                      <input value ="<%=@middleeast%>" name="@middleeast" id="@middleeast" type="hidden">
-                                      <input value ="<%=@australia%>" name="@australia" id="@australia" type="hidden">
-                                        <input value ="<%=@africa%>" name="@africa" id="@africa" type="hidden">
-
-
-
                                     <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
                                       <input value ="<%=@brandstring%>" name="@brandstring" id="@brandstring" type="hidden">
-                                       <input value ="<%=@regionstring%>" name="@regionstring" id="@regionstring" type="hidden">
                                       <input value ="<%=@chainid%>" name="chainid" id="chainid" type="hidden">
 <%noresults=0%>
 <%end%>
@@ -1055,16 +947,6 @@ $("#filters").change();
     var sorting = document.getElementById('sorting').value;
     var counter = document.getElementById('counter').value;
 
-     var us = document.getElementById('us').checked;
-    var canada = document.getElementById('canada').checked;
-    var europe = document.getElementById('europe').checked;
-    var latin = document.getElementById('latin').checked;
-    var asia = document.getElementById('asia').checked;
-    var africa = document.getElementById('africa').checked;
-    var australia = document.getElementById('australia').checked;
-    var middleeast = document.getElementById('middleeast').checked;
-    var southamerica = document.getElementById('southamerica').checked;
-
 
 var brandstring =[]
     if(hyatt==1) { brandstring.push('65');}
@@ -1092,18 +974,6 @@ var brandstring =[]
      if(peninsula==1) {brandstring.push('2025');}
      if(lemeridian==1) {brandstring.push('87');}
 
-var regionstring =[]
-   if(asia==1) { regionstring.push('Middle East');}
-   if(us==1) { regionstring.push('Latin America and the Caribbean');}
-   if(southamerica==1) { regionstring.push('Africa');}
-   if(australia==1) { regionstring.push('Australia/Pacific');}
-   if(latin==1) { regionstring.push('Europe');}
-   if(europe==1) { regionstring.push('South America');}
-   if(africa==1) { regionstring.push('Canada');}
-   if(canada==1) { regionstring.push('US');}
-   if(middleeast==1) { regionstring.push('Asia');}
-
-
 
     var url = "/essentials/filter";
     var firstformtoggle = 0;
@@ -1112,7 +982,7 @@ var regionstring =[]
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin,boscolo:boscolo,renaissance:renaissance,fairmont:fairmont,intercontinental:intercontinental,jwmarriott:jwmarriott,lemeridian:lemeridian,mandarin:mandarin,marriott:marriott,melia:melia,shangra:shangra,sofitel:sofitel,starwoodlux:starwoodlux,langham:langham,peninsula:peninsula,coordarray:coordarray,centerlat:centerlat,centerlong:centerlong,sorting:sorting,counter:counter,us:us,europe:europe,latin:latin,australia:australia,africa:africa,middleeast:middleeast,southamerica:southamerica,canada:canada,asia:asia,regionstring:regionstring}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin,boscolo:boscolo,renaissance:renaissance,fairmont:fairmont,intercontinental:intercontinental,jwmarriott:jwmarriott,lemeridian:lemeridian,mandarin:mandarin,marriott:marriott,melia:melia,shangra:shangra,sofitel:sofitel,starwoodlux:starwoodlux,langham:langham,peninsula:peninsula,coordarray:coordarray,centerlat:centerlat,centerlong:centerlong,sorting:sorting,counter:counter}
     });
 });
 
