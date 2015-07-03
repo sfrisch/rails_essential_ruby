@@ -506,7 +506,6 @@ end
 @centerlong = @sum2 / @coordarray.length
 
 
-
 rescue
 
   case        when @hotelhash["HotelListResponse"]["EanWsError"]["category"] == "SOLD_OUT"
@@ -686,7 +685,7 @@ if @brandstring == nil then @brandstring = [] end
 
 @pricechecked = @pricea || @priceb || @pricec || @priced || @pricee || @pricef
 
-if @pricechecked == false and @brandchecked == false then @firstformtoggle == 1 end
+if @pricechecked == false and @brandchecked == false and @regionchecked = false then @firstformtoggle == 1 end
 
 
 @regionchecked = @us || @europe || @latin || @canada || @middleeast || @africa || @asia || @southamerica || @australia
@@ -696,7 +695,7 @@ if @pricechecked == false and @brandchecked == false and @regionchecked == false
 
 
 
-if @price_a.to_i + @price_b.to_i + @price_c.to_i + @price_d.to_i + @price_e.to_i + @price_f.to_i + @brandstring.count.to_i == 0 then @firstformtoggle = 1 else @firstformtoggle = 0 end
+if @price_a.to_i + @price_b.to_i + @price_c.to_i + @price_d.to_i + @price_e.to_i + @price_f.to_i + @brandstring.count.to_i + @regionstring.count.to_i == 0 then @firstformtoggle = 1 else @firstformtoggle = 0 end
 
 
 
@@ -707,6 +706,7 @@ if @price_a.to_i + @price_b.to_i + @price_c.to_i + @price_d.to_i + @price_e.to_i
   @check = nil
 @LAT = 50
 @LONG = 30
+
 
 
   respond_to do |format|
