@@ -492,17 +492,14 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                     <%@chain = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["ChaincodeID"] + "\"")%>
 
 
-                    <%@country = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["Region"] + "\"")%>
+                    <%@country = @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["Region"].strip%>
 
 
 
 
                  <%@brands = @brandstring.include? @chain%>
 
-                 <%@regions = @regionstring.include? @country%>
-
-
-
+                 <%@regions = @regionstring.include? @country.strip%>
 
 
 
@@ -510,6 +507,12 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
                 <%if @regions == true then region_search = 1 else region_search = 0 end %>
 
+
+  <%if @pricechecked == false and @brandchecked == false and @regionchecked == true then%>
+                      <% if @regions == true then %>
+                      <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
+                      <%end%>
 
 
                 <%if @pricechecked == true and @brandchecked == true and @regionchecked == true then%>
@@ -526,11 +529,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                 <%end%>
 
 
-                      <%if @pricechecked == false and @brandchecked == true and @regionchecked == true then%>
-                      <% if brand_search == 1 and region_search == 1 then %>
-                      <%@hotelhash2.push(hotelsearch)%>
-                      <%end%>
-                      <%end%>
+
 
 
                        <%if @pricechecked == false and @brandchecked == false and @regionchecked == false  then%>
@@ -553,21 +552,19 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
 
-  <%if @pricechecked == false and @brandchecked == false and @regionchecked == true then%>
-                      <%if region_search == 1 then%>
+
+
+                     <%if @pricechecked == true and @brandchecked == false and @regionchecked == true then%>
+                      <% if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 and region_search == 1 then %>
                       <%@hotelhash2.push(hotelsearch)%>
                       <%end%>
                       <%end%>
 
-
-
-                      <%if @pricechecked == true and @brandchecked == false and @regionchecked == true then%>
+   <%if @pricechecked == false and @brandchecked == true and @regionchecked == true then%>
                       <% if brand_search == 1 and region_search == 1 then %>
                       <%@hotelhash2.push(hotelsearch)%>
                       <%end%>
                       <%end%>
-
-
 
 
 
@@ -683,6 +680,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 
              <div class="media-left"><img class="media-object" src="http://media.expedia.com<%= zebra["thumbNailUrl"].sub("_t","_d")%>">  </div>
+
 
 
              <div class="media-body" style="padding-bottom:0px">
