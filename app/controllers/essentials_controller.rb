@@ -352,7 +352,9 @@ end
 
 
 
-sql = "SELECT hotels.\"EANHotelID\",\"ChainCodeID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\" WHERE hoteltemp.\"eanhotelid\" IN (#{@hotelslist}) "
+
+sql = "SELECT hotels.\"EANHotelID\",countries.\"Code\",countries.\"Area\",\"ChainCodeID\",airport_lat_long.\"LAT\",airport_lat_long.\"LONG\" FROM hotels INNER JOIN airport_lat_long ON airport_lat_long.\"AIRPORT\" = hotels.\"AirportCode\" INNER JOIN hoteltemp ON hotels.\"EANHotelID\" = hoteltemp.\"eanhotelid\" INNER JOIN countries ON countries.\"Code\" = hotels.\"Country\" WHERE hoteltemp.\"eanhotelid\" IN (#{@hotelslist})"
+
 
 
 @latlongs = ActiveRecord::Base.connection.execute(sql)
@@ -360,7 +362,7 @@ sql = "SELECT hotels.\"EANHotelID\",\"ChainCodeID\",airport_lat_long.\"LAT\",air
 
  @latlongs.each do |latlong|
 
-     @get_latlong.push({"EANHotelID" => latlong["EANHotelID"],"LAT" => latlong["LAT"],"LONG" => latlong["LONG"],"ChaincodeID" => latlong["ChainCodeID"]})
+     @get_latlong.push({"EANHotelID" => latlong["EANHotelID"],"LAT" => latlong["LAT"],"LONG" => latlong["LONG"],"ChaincodeID" => latlong["ChainCodeID"],"Region" => latlong["Area"].strip})
 
          end
 
@@ -603,6 +605,20 @@ def filter
             @hoteltype = params[:hoteltype]
               @temp = params[:temp]
                 @stars = params[:stars].to_i
+              @us = params[:us]
+           @europe = params[:europe]
+            @canada = params[:canada]
+           @southamerica = params[:southamerica]
+           @asia = params[:asia]
+            @africa = params[:africa]
+            @australia= params[:australia]
+            @middleeast = params[:middleeast]
+            @latin = params[:latin]
+            @regionstring = params[:regionstring]
+
+
+
+
 @children = params['children'].to_i
 @age1 = params["age1"].to_i
 @age2 = params["age2"].to_i
@@ -649,7 +665,21 @@ def filter
                      if @peninsula == 'true' then @peninsula=true else @peninsula = false end
                      if @lemeridian == 'true'then @lemeridian=true else @lemeridian = false end
 
+                     if @us == 'true'then @us=true else @us = false end
+                     if @europe == 'true'then @europe=true else @europe = false end
+                     if @asia == 'true'then @asia=true else @asia = false end
+                     if @africa == 'true'then @africa=true else @africa = false end
+                     if @australia == 'true'then @australia=true else @australia = false end
+                     if @latin == 'true'then @latin=true else @latin = false end
+                     if @southamerica == 'true' then @southamerica=true else @southamerica = false end
+                     if @canada == 'true' then @canada=true else @canada = false end
+                     if @middleeast == 'true'then @middleeast=true else @middleeast = false end
+
+
+
+
 if @brandstring == nil then @brandstring = [] end
+  if @regionstring == nil then @regionstring = [] end
 
 
 @brandchecked = @whotels || @hyatt || @fourseasons || @hilton || @radissonblu || @renaissance || @sheraton || @stregis || @westin || @waldorf || @boscolo || @fairmont || @intercontinental || @jwmarriott || @mandarin || @marriott || @melia || @shangra || @sofitel || @starwoodlux || @swisshotel || @langham || @peninsula || @lemeridian
@@ -657,6 +687,12 @@ if @brandstring == nil then @brandstring = [] end
 @pricechecked = @pricea || @priceb || @pricec || @priced || @pricee || @pricef
 
 if @pricechecked == false and @brandchecked == false then @firstformtoggle == 1 end
+
+
+@regionchecked = @us || @europe || @latin || @canada || @middleeast || @africa || @asia || @southamerica || @australia
+
+if @pricechecked == false and @brandchecked == false and @regionchecked == false then @firstformtoggle = 1 end
+
 
 
 

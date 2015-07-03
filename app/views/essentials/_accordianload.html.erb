@@ -43,6 +43,8 @@
    <ul class="sidebar-nav col-xs-12 hidden-xs" id ="filters">
 
 
+<div style="height:40px">Filter By:</div>
+<div></div>
 
 <%= label_tag(:pricebox, "Price Per Night") %>
 <div id="pricebox">
@@ -297,6 +299,76 @@
 
 
 
+<%= label_tag(:regionbox, "Regions") %>
+<div id="regionbox">
+
+  <li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:us,true,checked=@us) %>
+<%= label_tag(:us, "US") %>
+    </label>
+  </div></li>
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:canada,true,checked=@canada) %>
+<%= label_tag(:canada, "Canada") %>
+    </label>
+  </div></li>
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:europe,true,checked=@europe) %>
+<%= label_tag(:europe, "Europe") %>
+    </label>
+  </div></li>
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:southamerica,true,checked=@southamerica) %>
+<%= label_tag(:southamerica, "South America") %>
+    </label>
+  </div></li>
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:asia,true,checked=@asia) %>
+<%= label_tag(:asia, "Asia") %>
+    </label>
+  </div></li>
+
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:latin,true,checked=@latin) %>
+<%= label_tag(:latin, "Latin America and the Caribbean") %>
+    </label>
+  </div></li>
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:middleeast,true,checked=@middleeast) %>
+<%= label_tag(:middleeast, "Middle East") %>
+    </label>
+  </div></li>
+
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:australia,true,checked=@australia) %>
+<%= label_tag(:australia, "Australia/Pacific") %>
+    </label>
+  </div></li>
+
+
+<li><div class="checkbox">
+    <label>
+ <%= check_box_tag(:africa,true,checked=@africa) %>
+<%= label_tag(:africa, "Africa") %>
+    </label>
+  </div></li>
+
+
 
 
 
@@ -330,7 +402,10 @@
 </div>
 
 <%sortorder = [['Most Popular',0],['Price Ascending',1],['Price Descending',2]]%>
-<div class="panel-group col-md-3 col-md-offset-2 column">
+
+
+
+<div class="panel-group col-md-3 col-md-offset-2 column" style="text-align:right">
 <%= label_tag(:sorting, "Sort By") %>
 <%= select_tag(:sorting,options_for_select(sortorder,[@sorting]))%>
 </div>
@@ -370,6 +445,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 <%search_e = 0%>
 <%search_f = 0%>
 <%brand_search = 0%>
+<%region_search = 0%>
 
 
 
@@ -415,35 +491,84 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
                     <%@chain = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["ChaincodeID"] + "\"")%>
 
+
+                    <%@country = eval("\"" + @get_latlong.find{|i| i["EANHotelID"].to_i == hotelsearch["hotelId"]}["Region"] + "\"")%>
+
+
+
+
                  <%@brands = @brandstring.include? @chain%>
+
+                 <%@regions = @regionstring.include? @country%>
+
+
+
+
+
+
                 <%if @brands == true then brand_search = 1 else brand_search = 0 end %>
 
+                <%if @regions == true then region_search = 1 else region_search = 0 end %>
 
 
-                <%if @pricechecked == true and @brandchecked == true then%>
+
+                <%if @pricechecked == true and @brandchecked == true and @regionchecked == true then%>
+                            <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 and brand_search == 1 and region_search == 1 then %>
+                             <%@hotelhash2.push(hotelsearch)%>
+                               <%end%>
+                <%end%>
+
+
+                <%if @pricechecked == true and @brandchecked == true and @regionchecked == false then%>
                             <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 and brand_search == 1 then %>
                              <%@hotelhash2.push(hotelsearch)%>
                                <%end%>
                 <%end%>
 
 
-                      <%if @pricechecked == false and @brandchecked == true then%>
+                      <%if @pricechecked == false and @brandchecked == true and @regionchecked == true then%>
+                      <% if brand_search == 1 and region_search == 1 then %>
+                      <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
+                      <%end%>
+
+
+                       <%if @pricechecked == false and @brandchecked == false and @regionchecked == false  then%>
+                        <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
+
+
+                          <%if @pricechecked == true and @brandchecked == false and @regionchecked == false then%>
+                           <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 then%>
+                                   <%@hotelhash2.push(hotelsearch)%>
+                             <%end%>
+                             <%end%>
+
+
+  <%if @pricechecked == false and @brandchecked == true and @regionchecked == false then%>
                       <% if brand_search == 1 then %>
                       <%@hotelhash2.push(hotelsearch)%>
                       <%end%>
                       <%end%>
 
 
-                       <%if @pricechecked == false and @brandchecked == false then%>
-                        <%@hotelhash2.push(hotelsearch)%>
+
+  <%if @pricechecked == false and @brandchecked == false and @regionchecked == true then%>
+                      <%if region_search == 1 then%>
+                      <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
                       <%end%>
 
 
-                          <%if @pricechecked == true and @brandchecked == false then%>
-                           <%if (search_a + search_b + search_c + search_d + search_e + search_f) >= 1 then%>
-                                   <%@hotelhash2.push(hotelsearch)%>
-                             <%end%>
-                             <%end%>
+
+                      <%if @pricechecked == true and @brandchecked == false and @regionchecked == true then%>
+                      <% if brand_search == 1 and region_search == 1 then %>
+                      <%@hotelhash2.push(hotelsearch)%>
+                      <%end%>
+                      <%end%>
+
+
+
 
 
 
@@ -759,6 +884,28 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
                                       <input value ="<%=@brandstring%>" name="@brandstring" id="@brandstring" type="hidden">
                                       <input value ="<%=@chainid%>" name="chainid" id="chainid" type="hidden">
+
+
+                  <input value ="<%=@us%>" name="@us" id="@us" type="hidden">
+                                      <input value ="<%=@canada%>" name="@canada" id="@canada" type="hidden">
+                                      <input value ="<%=@europe%>" name="@europe" id="@europe" type="hidden">
+                                      <input value ="<%=@southamerica%>" name="@southamerica" id="@southamerica"
+
+type="hidden">
+                                      <input value ="<%=@asia%>" name="@asia" id="@asia" type="hidden">
+                                      <input value ="<%=@latin%>" name="@latin" id="@latin" type="hidden">
+                                      <input value ="<%=@middleeast%>" name="@middleeast" id="@middleeast" type="hidden">
+                                      <input value ="<%=@australia%>" name="@australia" id="@australia" type="hidden">
+                                        <input value ="<%=@africa%>" name="@africa" id="@africa" type="hidden">
+
+
+
+
+       <input value ="<%=@regionstring%>" name="@regionstring" id="@regionstring" type="hidden">
+
+
+
+
                             </form>
 
                             <%else%>
@@ -883,6 +1030,28 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
                                     <input value ="<%=@hotelhash%>" name="hotelhash" id="hotelhash" type="hidden">
                                       <input value ="<%=@brandstring%>" name="@brandstring" id="@brandstring" type="hidden">
                                       <input value ="<%=@chainid%>" name="chainid" id="chainid" type="hidden">
+
+
+                  <input value ="<%=@us%>" name="@us" id="@us" type="hidden">
+                                      <input value ="<%=@canada%>" name="@canada" id="@canada" type="hidden">
+                                      <input value ="<%=@europe%>" name="@europe" id="@europe" type="hidden">
+                                      <input value ="<%=@southamerica%>" name="@southamerica" id="@southamerica"
+
+type="hidden">
+                                      <input value ="<%=@asia%>" name="@asia" id="@asia" type="hidden">
+                                      <input value ="<%=@latin%>" name="@latin" id="@latin" type="hidden">
+                                      <input value ="<%=@middleeast%>" name="@middleeast" id="@middleeast" type="hidden">
+                                      <input value ="<%=@australia%>" name="@australia" id="@australia" type="hidden">
+                                        <input value ="<%=@africa%>" name="@africa" id="@africa" type="hidden">
+
+
+
+
+       <input value ="<%=@regionstring%>" name="@regionstring" id="@regionstring" type="hidden">
+
+
+
+
 <%noresults=0%>
 <%end%>
 
@@ -947,6 +1116,29 @@ $("#filters").change();
     var sorting = document.getElementById('sorting').value;
     var counter = document.getElementById('counter').value;
 
+     var us = document.getElementById('us').checked;
+    var canada = document.getElementById('canada').checked;
+    var europe = document.getElementById('europe').checked;
+    var latin = document.getElementById('latin').checked;
+    var asia = document.getElementById('asia').checked;
+    var africa = document.getElementById('africa').checked;
+    var australia = document.getElementById('australia').checked;
+    var middleeast = document.getElementById('middleeast').checked;
+    var southamerica = document.getElementById('southamerica').checked;
+
+
+
+var regionstring =[]
+   if(asia==1) { regionstring.push('Asia');}
+   if(us==1) { regionstring.push('US');}
+   if(southamerica==1) { regionstring.push('South America');}
+   if(australia==1) { regionstring.push('Australia/Pacific');}
+   if(latin==1) { regionstring.push('Latin America and the Caribbean');}
+   if(europe==1) { regionstring.push('Europe');}
+   if(africa==1) { regionstring.push('Africa');}
+   if(canada==1) { regionstring.push('Canada');}
+   if(middleeast==1) { regionstring.push('Middle East');}
+
 
 var brandstring =[]
     if(hyatt==1) { brandstring.push('65');}
@@ -982,7 +1174,7 @@ var brandstring =[]
       type: 'POST',
       url: url,
       dataType:'script',
-      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin,boscolo:boscolo,renaissance:renaissance,fairmont:fairmont,intercontinental:intercontinental,jwmarriott:jwmarriott,lemeridian:lemeridian,mandarin:mandarin,marriott:marriott,melia:melia,shangra:shangra,sofitel:sofitel,starwoodlux:starwoodlux,langham:langham,peninsula:peninsula,coordarray:coordarray,centerlat:centerlat,centerlong:centerlong,sorting:sorting,counter:counter}
+      data: {hotelhash: JSON.stringify(hotelhash),get_latlong:get_latlong,checkin:checkin,checkout:checkout,filterresults:numresults,pricea:pricea,priceb:priceb,pricec:pricec,priced:priced,pricee:pricee,pricef:pricef,firstformtoggle:firstformtoggle,brandstring:brandstring,chainid:chainid,whotels:whotels,hyatt:hyatt,waldorf:waldorf,fourseasons:fourseasons,hilton:hilton,radissonblu:radissonblu,renaissance:renaissance,sheraton:sheraton,stregis:stregis,westin:westin,boscolo:boscolo,renaissance:renaissance,fairmont:fairmont,intercontinental:intercontinental,jwmarriott:jwmarriott,lemeridian:lemeridian,mandarin:mandarin,marriott:marriott,melia:melia,shangra:shangra,sofitel:sofitel,starwoodlux:starwoodlux,langham:langham,peninsula:peninsula,coordarray:coordarray,centerlat:centerlat,centerlong:centerlong,sorting:sorting,counter:counter,regionstring:regionstring,us:us,canada:canada,europe:europe,africa:africa,australia:australia,asia:asia,middleeast:middleeast,latin:latin}
     });
 });
 
