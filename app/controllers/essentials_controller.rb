@@ -288,7 +288,7 @@ else
 end
 
 
-sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid} AND \"StarRating\" >= #{@stars} AND \"PropertyCategory\" = #{@hoteltypeid} ORDER BY \"LowRate\" DESC"
+sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid} AND \"StarRating\" >= #{@stars} AND \"PropertyCategory\" = #{@hoteltypeid} ORDER BY \"HighRate\" DESC"
 
 @HotelIDS = ActiveRecord::Base.connection.execute(sql)
 
@@ -321,7 +321,7 @@ ActiveRecord::Base.connection.execute(sqlcreate)
 
 
 if @hotelslist.count > 200 then
-    @hotelslist = @hotelslist.sample(200)
+    @hotelslist = @hotelslist[0..199]
 end
 
 
