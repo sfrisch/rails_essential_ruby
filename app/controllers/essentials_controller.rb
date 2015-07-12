@@ -288,7 +288,7 @@ else
 end
 
 
-sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid} AND \"StarRating\" >= #{@stars} AND \"PropertyCategory\" = #{@hoteltypeid}"
+sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid} AND \"StarRating\" >= #{@stars} AND \"PropertyCategory\" = #{@hoteltypeid} ORDER BY \"LowRate\" DESC"
 
 @HotelIDS = ActiveRecord::Base.connection.execute(sql)
 
@@ -319,8 +319,9 @@ ActiveRecord::Base.connection.execute(sqlcreate)
 
 
 
-if @hotelslist.count > 600 then
-    @hotelslist = @hotelslist.sample(600)
+
+if @hotelslist.count > 200 then
+    @hotelslist = @hotelslist.sample(200)
 end
 
 
@@ -345,10 +346,12 @@ ActiveRecord::Base.connection.execute("COMMIT;")
 
 
 
-if @hotelslist == nil
+if @hotelslist == nil || @hotelslist == ''
   then @check = "No Results Available - Please broaden your search" and @hotelslist = '000000'
 
 end
+
+
 
 
 
@@ -368,10 +371,7 @@ sql = "SELECT hotels.\"EANHotelID\",countries.\"Code\",countries.\"Area\",\"Chai
 
 
 
-
           hotel_search = "http://api.ean.com/ean-services/rs/hotel/v3/list?cid=489058&minorRev=28&apiKey=5vbhuthojstbnn6jueqqnff8j8&sig=#{@signature}&locale=en_GB&_type=json&currencyCode=USD&xml=<HotelListRequest><arrivalDate>#{@checkin}</arrivalDate><departureDate>#{@checkout}</departureDate><RoomGroup><Room><numberOfAdults>#{@adults}</numberOfAdults><numberOfChildren>#{@children}</numberOfChildren><childAges>#{@agestring}</childAges></Room></RoomGroup><hotelIdList>#{@hotelslist}</hotelIdList><minStarRating>4</minStarRating><maxRate>#{@maxprice}</maxRate><minRate>#{@minprice}</minRate><supplierCacheTolerance>MED_ENHANCED</supplierCacheTolerance></HotelListRequest>"
-
-
 
           hotel_search2 = URI.encode(hotel_search)
           @jsonfeed = open(hotel_search2).read
@@ -385,6 +385,7 @@ sql = "SELECT hotels.\"EANHotelID\",countries.\"Code\",countries.\"Area\",\"Chai
   @tripreviews2 = []
   @check = nil
   @hotelhash3 = {'HotelListResponse'=> {'HotelList' => {"HotelSummary"=>[]}}}
+
 
 begin
 
@@ -402,11 +403,9 @@ if @hotelhash["HotelListResponse"]["HotelList"]["@size"] == "1" then
 @chainid = []
  @chains.each do |chain|
 
-     @chainid.push({"ChainID" => chain["ChainID"],"ChainName" => chain["ChainName"]})
+     @chainid.push({"ChainID" => chain["ChainID"],"ChainName" => chain["ChainName"].strip})
 
          end
-
-
 
 
 
@@ -473,6 +472,7 @@ end
 
                   @jsonfeed6 = open(trip1).read
                   @tripresults = JSON.parse(@jsonfeed6)
+
                   if @tripresults["data"] == [] then else
                   @tripresults2.push(@tripresults["data"][0]["location_id"],geo["hotelId"],geo["name"])
 
@@ -482,6 +482,15 @@ end
                   @jsonfeed7 = open(trip2).read
                   @tripreviews = JSON.parse(@jsonfeed7)
 
+if @tripreviews == nil then
+
+                  geo["rank"] = ""
+                  geo["reviews"] = ""
+                  geo["rating_image_url"] = ""
+                  geo["num_reviews"] = ""
+                  geo["web_url"] = ""
+                  geo["write_reviews"] = ""
+else
 
                   geo["rank"] = @tripreviews["ranking_data"]["ranking_string"]
                   geo["reviews"] = @tripreviews["reviews"]
@@ -489,6 +498,7 @@ end
                   geo["num_reviews"] = @tripreviews["num_reviews"]
                   geo["web_url"] = @tripreviews["web_url"]
                   geo["write_reviews"] = @tripreviews["write_review"]
+                end
 
 end
 end
@@ -504,6 +514,8 @@ end
 
 @centerlat = @sum / @coordarray.length
 @centerlong = @sum2 / @coordarray.length
+
+
 
 
 rescue
