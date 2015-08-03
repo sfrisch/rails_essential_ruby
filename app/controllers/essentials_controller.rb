@@ -320,8 +320,8 @@ ActiveRecord::Base.connection.execute(sqlcreate)
 
 
 
-if @hotelslist.count > 200 then
-    @hotelslist = @hotelslist[0..199]
+if @hotelslist.count > 50 then
+    @hotelslist = @hotelslist[0..49]
 end
 
 
