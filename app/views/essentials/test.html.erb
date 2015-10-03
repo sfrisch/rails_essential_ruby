@@ -162,7 +162,7 @@
 <div class="container-fluid">
 
 
- <%if current_user.present?%>
+
 
     <%if (@hotelhash == nil || @check != nil) && @counter == 1 then%>
 
@@ -509,6 +509,7 @@
 
 </div>
 
+          <% if @check.present? %>
 
 
             <div class="col-md-6 col-xs-12 col-sm-3 hidden-xs short_div">
