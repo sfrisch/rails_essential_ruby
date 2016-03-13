@@ -642,7 +642,7 @@ def filter
             @middleeast = params[:middleeast]
             @latin = params[:latin]
             @regionstring = params[:regionstring]
-            @city = params[:city].titlecase
+
 
 
 
@@ -736,7 +736,7 @@ if @price_a.to_i + @price_b.to_i + @price_c.to_i + @price_d.to_i + @price_e.to_i
 @LAT = 50
 @LONG = 30
 
-
+brandchecked = @ATAA
 
   respond_to do |format|
     format.js {}
