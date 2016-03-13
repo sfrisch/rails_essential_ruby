@@ -612,6 +612,28 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 <input type="hidden" name="LAT" id="LAT" value = "<%=@LAT%>">
 <input type="hidden" name="LONG" id="LONG" value = "<%=@LONG%>">
 
+<%hotelweather = []%>
+
+<% if DateTime.strptime(@checkin,'%m/%d/%Y')-15 < Date.today %>
+
+<%weatherinfo = 1%>
+<%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}&cnt=16&APPID=d6b355ed174cb0591af8ebcc4f5de038"%>
+
+
+<%require 'open-uri'%>
+<%weather_search2 = URI.encode(weatherurl)%>
+<%weatherjsonfeed = open(weather_search2).read%>
+<%@weatherhash = JSON.parse(weatherjsonfeed)%>
+
+
+<%datelookup = []%>
+
+<%@weatherhash["list"].each do |dates|%>
+
+<%datelookup.push({'date' => dates["dt"],'icon' => dates["weather"][0]["icon"],'desc' => dates["weather"][0]["description"],'max' =>(((dates["temp"]["max"].to_f)-273.15)*1.8+32).round(0),'min' => (((dates["temp"]["min"].to_f)-273.15)*1.8+32).round(0),'dateconverted' => DateTime.strptime(dates["dt"].to_s,'%s').strftime('%m/%d/%y')})%>
+
+<%end%>
+
 
 <% hotelweather = datelookup.select {|date| DateTime.strptime(date["dateconverted"],'%m/%d/%y')>= DateTime.strptime(@checkin,'%m/%d/%Y') && DateTime.strptime(date["dateconverted"],'%m/%d/%y') <= DateTime.strptime(@checkout,'%m/%d/%Y')}%>
 
