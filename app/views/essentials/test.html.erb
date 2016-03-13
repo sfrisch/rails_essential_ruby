@@ -44,7 +44,7 @@
 
     .short_div {
       color:white;
-      height:80px;
+      height:110px;
     }
 
 
@@ -179,8 +179,11 @@
 
 
              <div class="col-md-3 short_div" style='font-color:black';">
+            <input type="text" name="city" id="city" placeholder="City" class= "form-control" value="<%=@city%>">
+
               <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control" value="<%=@checkin%>">
               <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control" value="<%=@checkout%>">
+
              </div>
 
 
@@ -487,6 +490,13 @@
 
 <div class="panel-group col-md-9 col-md-offset-3">
 
+ <div class="col-md-2" style='font-color:black';">
+              <label for = "city" style="color:black">City </label>
+              <input type="text" name="city" id="city" placeholder="City" class= "form-control" value="<%=@city%>">
+              </div>
+
+
+
              <div class="col-md-2" style='font-color:black';">
               <label for = "checkin" style="color:black">Check-In:  </label>
               <input type="text" name="checkin" id="checkin" placeholder="Check-In" class= "form-control" value="<%=@checkin%>">
@@ -495,6 +505,8 @@
                   <label for = "checkout" style="color:black">Check-Out:  </label>
               <input type="text" name="checkout" id = "checkout" placeholder="Check-Out"class= "form-control" value="<%=@checkout%>">
              </div>
+
+
 
 <div class="col-md-4" style='font-color:black';">
   <label for = "ex2" style="color:black">Filter by price interval:  </label><p style="color:black">$<span id="SliderValMin"><%= @minprice %></span> <input id="ex2" type="text" name="pricerange" data-slider-min="<%= @minprice %>" data-slider-max="<%= @maxprice %>" data-slider-step="5" data-slider-value="[<%= @pricerange %>]"/>$<span id="SliderValMax"><%= @maxprice %></span>
@@ -593,7 +605,6 @@
 
 
                  </div>
-
 
 
                   <div class="col-md-2 col-xs-12 col-sm-3 col_div">
@@ -827,7 +838,7 @@
           var temp = document.getElementById('temp').value;
           var hoteltype = document.getElementById('hoteltype').value;
           var pricerange = document.getElementById('ex2').value;
-
+          var city = document.getElementById('city').value;
           var adults = document.getElementById('adults').value;
           var children1 = document.getElementById('children').value;
           var age1a = document.getElementById('age1').value;
@@ -835,7 +846,7 @@
           var age3a = document.getElementById('age3').value;
 
 
-          var searchstring2 = [checkin,checkout,region,brand,stars,temp,hoteltype,pricerange,adults,children1,age1a,age2a,age3a];
+          var searchstring2 = [checkin,checkout,region,brand,stars,temp,hoteltype,pricerange,adults,children1,age1a,age2a,age3a,city];
 
           var searchstring3 = searchstring2.join('|');
 

@@ -75,11 +75,16 @@ require 'open-uri'
 hotel = params["hotelid"]
 @checkin = params["checkin"]
 @checkout = params["checkout"]
+@hoteltype = params["hoteltype"]
+@city = params["city"].titlecase
 @adults = params["adults"].to_i
 @children = params["children"].to_i
 @age1 = params["age1"].to_i
 @age2 = params["age2"].to_i
 @age3 = params["age3"].to_i
+@city = params["city"].titlecase
+
+
 
 @agelist = [@age1,@age2,@age3]
 
@@ -174,7 +179,11 @@ end
 @checkin =  params['checkin']
 @checkout = params['checkout']
 @roomhash = {}
-@city = params['city']
+
+if @counter == 1 then
+@city = params['city'].titlecase
+end
+
 @hotelslist = []
 @stars = params['stars'].to_f
 @adults = params['adults']
@@ -196,6 +205,12 @@ end
 @hoteltype = params[:hoteltype]
 @temp = params[:temp]
 @stars = params[:stars].to_i
+
+
+
+@city = params["city"]
+if @city == nil then @city = '' else @city = params["city"] end
+@city = @city.titlecase
 
 if @filterresults == nil then
   @filterresults = 14
@@ -288,7 +303,7 @@ else
 end
 
 
-sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid} AND \"StarRating\" >= #{@stars} AND \"PropertyCategory\" = #{@hoteltypeid} ORDER BY \"HighRate\" DESC"
+sql = "SELECT \"EANHotelID\" FROM hotels where \"Country\" IN ('#{@countrylist}') AND \"LowRate\" <= #{@maxprice} AND \"ChainCodeID\" = #{@chainid} AND \"StarRating\" >= #{@stars} AND \"PropertyCategory\" = #{@hoteltypeid} AND \"City\" IN ('#{@city}') ORDER BY \"HighRate\" DESC"
 
 @HotelIDS = ActiveRecord::Base.connection.execute(sql)
 
@@ -627,6 +642,7 @@ def filter
             @middleeast = params[:middleeast]
             @latin = params[:latin]
             @regionstring = params[:regionstring]
+            @city = params[:city].titlecase
 
 
 
