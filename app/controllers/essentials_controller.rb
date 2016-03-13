@@ -462,58 +462,59 @@ end
 end
 
 
-@hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].each do |geo|
 
-          @coordarray.push([geo["latitude"],  geo["longitude"],geo["name"]])
+#@hotelhash["HotelListResponse"]["HotelList"]["HotelSummary"].each do |geo|
+#
+#          @coordarray.push([geo["latitude"],  geo["longitude"],geo["name"]])#
+#
+ #       tripadvisorurl = "http://api.tripadvisor.com/api/partner/2.0/location_mapper/#{geo["latitude"]},#{geo["longitude"]}?key=db62f2a733a040b1b4e0ebdac4e8aac8-mapper&category=hotels&q=#{geo["name"]}"
 
-        tripadvisorurl = "http://api.tripadvisor.com/api/partner/2.0/location_mapper/#{geo["latitude"]},#{geo["longitude"]}?key=db62f2a733a040b1b4e0ebdac4e8aac8-mapper&category=hotels&q=#{geo["name"]}"
+  #               trip1 = URI.encode(tripadvisorurl)
 
-                 trip1 = URI.encode(tripadvisorurl)
+   #               @jsonfeed6 = open(trip1).read
+    #              @tripresults = JSON.parse(@jsonfeed6)
 
-                  @jsonfeed6 = open(trip1).read
-                  @tripresults = JSON.parse(@jsonfeed6)
+     #             if @tripresults["data"] == [] then else
+      #            @tripresults2.push(@tripresults["data"][0]["location_id"],geo["hotelId"],geo["name"])
 
-                  if @tripresults["data"] == [] then else
-                  @tripresults2.push(@tripresults["data"][0]["location_id"],geo["hotelId"],geo["name"])
+       #     tripadvisorlookup = "http://api.tripadvisor.com/api/partner/2.0/location/#{@tripresults["data"][0]["location_id"]}?key=db62f2a733a040b1b4e0ebdac4e8aac8"
 
-            tripadvisorlookup = "http://api.tripadvisor.com/api/partner/2.0/location/#{@tripresults["data"][0]["location_id"]}?key=db62f2a733a040b1b4e0ebdac4e8aac8"
+        #         trip2 = URI.encode(tripadvisorlookup)
+         #         @jsonfeed7 = open(trip2).read
+          #        @tripreviews = JSON.parse(@jsonfeed7)
 
-                 trip2 = URI.encode(tripadvisorlookup)
-                  @jsonfeed7 = open(trip2).read
-                  @tripreviews = JSON.parse(@jsonfeed7)
+#if @tripreviews == nil then
 
-if @tripreviews == nil then
+ #                 geo["rank"] = ""
+  #                geo["reviews"] = ""
+   #               geo["rating_image_url"] = ""
+    #              geo["num_reviews"] = ""
+     #             geo["web_url"] = ""
+      #            geo["write_reviews"] = ""
+#else
+#
+ #                 geo["rank"] = @tripreviews["ranking_data"]["ranking_string"]
+  #                geo["reviews"] = @tripreviews["reviews"]
+   #               geo["rating_image_url"] = @tripreviews["rating_image_url"]
+    #              geo["num_reviews"] = @tripreviews["num_reviews"]
+     #             geo["web_url"] = @tripreviews["web_url"]
+      #            geo["write_reviews"] = @tripreviews["write_review"]
+       #         end
 
-                  geo["rank"] = ""
-                  geo["reviews"] = ""
-                  geo["rating_image_url"] = ""
-                  geo["num_reviews"] = ""
-                  geo["web_url"] = ""
-                  geo["write_reviews"] = ""
-else
-
-                  geo["rank"] = @tripreviews["ranking_data"]["ranking_string"]
-                  geo["reviews"] = @tripreviews["reviews"]
-                  geo["rating_image_url"] = @tripreviews["rating_image_url"]
-                  geo["num_reviews"] = @tripreviews["num_reviews"]
-                  geo["web_url"] = @tripreviews["web_url"]
-                  geo["write_reviews"] = @tripreviews["write_review"]
-                end
-
-end
-end
+#end
+#end
 
 
-@sum = 0.0
-@sum2 = 0.0
-@coordarray.each do |avg|
+#@sum = 0.0
+#@sum2 = 0.0
+#@coordarray.each do |avg|
 
-@sum = avg[0] + @sum
-@sum2 = avg[1] + @sum2
-end
+#@sum = avg[0] + @sum
+#@sum2 = avg[1] + @sum2
+#end
 
-@centerlat = @sum / @coordarray.length
-@centerlong = @sum2 / @coordarray.length
+#@centerlat = @sum / @coordarray.length
+#@centerlong = @sum2 / @coordarray.length
 
 
 
