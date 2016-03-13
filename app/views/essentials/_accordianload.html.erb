@@ -614,7 +614,7 @@ zebra| zebra["RoomRateDetailsList"]["RoomRateDetails"]["RateInfos"]["RateInfo"][
 
 <%hotelweather = []%>
 
-<% if DateTime.strptime(@checkin,'%m/%d/%Y')-15 < Date.today %>
+<% if DateTime.strptime(@checkin,'%m/%d/%Y')+20 < Date.today %>
 
 <%weatherinfo = 1%>
 <%weatherurl ="http://api.openweathermap.org/data/2.5/forecast/daily?lat=#{@LAT}&lon=#{@LONG}&cnt=16&APPID=d6b355ed174cb0591af8ebcc4f5de038"%>
