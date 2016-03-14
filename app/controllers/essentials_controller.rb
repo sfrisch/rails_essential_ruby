@@ -76,13 +76,14 @@ hotel = params["hotelid"]
 @checkin = params["checkin"]
 @checkout = params["checkout"]
 @hoteltype = params["hoteltype"]
-@city = params["city"].titlecase
+
 @adults = params["adults"].to_i
 @children = params["children"].to_i
 @age1 = params["age1"].to_i
 @age2 = params["age2"].to_i
 @age3 = params["age3"].to_i
-@city = params["city"].titlecase
+if @city == nil then @city = '' else @city = params["city"] end
+@city = @city.titlecase
 
 
 
